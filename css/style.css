@@ -1,0 +1,191 @@
+*{
+    font-family:Arial, Helvetica, sans-serif;
+    margin: 0;
+}
+body{
+    background-image: url(../Assest/Diseño\ sin\ título.gif);    /*Fondo de pantalla de la bruja*/
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;   /*Para que se adapte al tamaño inferior a la pantalla*/
+}
+.botones{
+    height: 200px;
+    justify-content: center;
+    align-items: center;
+}
+.text-boton{
+    text-decoration: none;
+    font-family: kavoon; 
+    color: #FF9900;
+    font-size: 120%; 
+}
+.text-boton :hover{
+    color: #fcbc5c;
+}
+.titulo h1{
+ font-family:kavoon; /*Tipo de texto de titulo*/
+ color: #FF9900;
+ font-size: 650%;
+ text-decoration: solid 20px;
+ text-align: center;
+}
+.titulo{
+    padding: 2%;
+    flex-wrap: wrap;
+    display:flex;
+}
+
+@font-face{
+    font-family:Kavoon;
+    src: url(../Kavoon-Regular.ttf);
+}
+
+.bt{
+    background-image: url("../Assest/botones.png");   /*boton*/
+}
+.contenedor-bt{
+    align-content: center;
+    padding-left: 20%;
+    padding-right: -30%;
+    display: flex;
+    flex-wrap: wrap;
+}
+/* input volumen*/
+.range {
+    margin-top: 20px;
+    margin-left: 4%;
+    -webkit-appearance: none;  /* Anular los estilos CSS predeterminados */
+    appearance: none;
+    width: 100%; 
+    height: 20px;
+    background: #d3d3d3;
+    border-radius: 1pc;
+    outline: none; /* Quitar contorno */
+    opacity: 0.7; /* Establecer transparencia (para efectos de pasar el mouse al pasar el mouse)*/
+    -webkit-transition: .2s; /*Transición de 0,2 segundos al pasar el mouse */
+    transition: opacity .2s;
+}
+.modal-slider img{
+    width: 7%;
+    height: 3%;
+}
+.modal-slider{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.range::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    border: 0;
+    
+}
+.range::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Anular el aspecto predeterminado */
+    appearance: none;
+    border-radius: 1pc;
+    width: 15px; 
+    height: 45px;
+    background: #FF9900; 
+    cursor: pointer; /* Cursor al pasar el cursor */
+  }
+ .range{
+    background-color: red;
+    }
+/* configuracion de los botones*/
+#bt {
+    background-image: url("Assest/botones.png"); /*Boton*/
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 430px;
+}
+#bt h5{
+   text-align: center;
+   padding-top:180px;
+   padding-left:60px ;
+   text-decoration: none; 
+}
+
+.text-bt{
+    text-decoration: none;
+    color: #FF9900;
+    font-family: "Koh Santepheap", serif; /*Tipo de fuente de los botones, sacado de google*/
+}
+
+.fs-0{
+ font-size: 450%; 
+}
+
+#bt-modal{
+  background-image: url("Assest/botones.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 30%;
+}
+#bt-modal h5{
+  text-align: center;
+  padding-top:30%;
+  font-size: 200%;
+  padding-left:20%;
+  text-decoration: none; 
+}
+
+/*Configuracion de botones*/
+.boton{
+width: 50%;
+background-image: url(../Assest/botones.png);
+background-position: center;
+background-repeat: no-repeat;
+background-size: 100%;
+padding: 20%;
+align-items: center;
+justify-content: center;
+display: flex;
+}
+/*Md de modal, este es el boton que configura el tamaño de deistancia que tendra*/
+.md{
+    margin-left: 36%; 
+    margin-top:0px;
+} 
+/*Responsive*/
+
+@media (max-width: 1200px) {
+    /*tamaño de botones*/
+   .boton {
+      padding: 40%;
+    }
+    /*distancia de boton modal*/
+    .md{
+        margin-left: 27%;
+    }
+
+}
+@media (max-width:800px){
+    /*texto de boton modal*/
+    .boton h5{
+        font-size:medium;
+    }
+    /*Tamaño de botones*/
+    .boton {
+        padding: 60%;
+      }
+    /*tamaño de titulo*/
+    .titulo h1{
+        font-size:500%;
+     }
+    /*La distacia del borde de los botones */
+    .contenedor-bt{
+        padding-left: 0px;
+    }
+    /*distancia de boton modal*/
+    .md{
+        margin-left: 20%;
+    }
+    /*Tamaño de titulo*/
+    .titulo h1{
+        padding: 0%;
+        font-size: 600%;
+    }
+}
