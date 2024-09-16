@@ -1,0 +1,281 @@
+body{
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;   /*Para que se adapte al tamaño inferior a la pantalla*/
+}
+
+.retroceso{
+    margin: 0.5%;
+}
+
+.retroceso img{
+    width: 15%;
+}
+
+.tiempo{
+    background-image: url(../Assest/tiempo.png);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    place-items: center;
+    display: grid;
+}
+
+.tiempo h1{
+    font-size:1000%;
+    color: #9F3434;
+}
+
+.cabeza{
+    padding-top: 1%;
+}
+
+.corazon img{
+    width: 20%;
+}
+
+.hallar{
+    place-items: center;
+    display: grid;
+}
+
+.contenedorHallar{
+    margin-top: 20px;
+    border: 10px solid #5200FF;
+    width: 60%;
+    color: black;
+    height:auto;
+    text-align: center;
+    background: linear-gradient(#310776,#5C0EDC);
+}
+
+.contenedorItem{
+    margin-top: 20px;
+    margin-left: 20px;
+    border: 10px solid #5200FF;
+    width: 60%;
+    height:130px;
+    background: linear-gradient(#310776,#5C0EDC);
+
+}
+
+.contenedorAbajo{
+    display: flex;
+    flex-wrap: wrap;
+    height: 170px;
+}
+
+.bruja{
+    display: grid;
+    place-items: center;
+    background-image: url(../Assest/brujaRevolviendo.gif);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    position: relative;
+    bottom: 187px;
+}
+
+.colorMezcla{
+    margin-top: 277px;
+    margin-left: 10%;
+    width: 80%;
+	height: 30px;
+	background-color: #daa52061;
+	border-radius: 100%;
+}
+
+.tamañoBruja{
+    width: 400px;
+    height: 380px;
+}
+
+.item img{
+    width:100%;
+}
+
+.hallar hr{
+    width: 90%;
+    height: 7px;
+    margin-left: 10px;
+    margin-right: 10px;
+    background-color: #5200FF;
+}
+
+.colorHallar{
+    border: 2px solid;
+    width: 40%;
+    margin-left: 30%;
+    height: 100px;
+    margin-bottom: 5%;
+    background: #9C5ABB;
+}
+@media (max-width:1266px) {
+    .tiempo{
+        background-size:400px;
+    }
+    .tiempo h1{
+        font-size:700%;
+    }
+    .colorHallar{
+        height: 85px;
+    }
+        .corazon img{
+        width: 43%;
+    }
+    .contenedorHallar{
+        width: 100%;
+    }
+    .retroceso img{
+        width: 25%;
+    }
+    .contenedorItem{
+        width: 60%;
+        height: 90px;
+        margin-top: 5%;
+        margin-left: 0%;
+    }
+
+    .tamañoBruja{
+        width: 290px;
+        height: 380px;
+    }
+    .colorMezcla{
+        margin-top: 254px;
+        margin-left: 10%;
+        width: 80%;
+        height: 20px;
+        background-color: #daa52061;
+    }
+    .bruja{
+        bottom: 210px;
+        left: 36px;
+    }
+}
+@media (max-width:815px) {
+    .tiempo{
+        background-size:300px;
+    }
+    .tiempo h1{
+        font-size:500%;
+    }
+    .colorHallar{
+        height: 85px;
+    }
+        .corazon img{
+        width: 50%;
+    }
+    .contenedorHallar{
+        width: 100%;
+    }
+    .retroceso img{
+        width: 25%;
+    }
+    .contenedorItem{
+        width: 60%;
+        height: 70px;
+        margin-top: 16%;
+        margin-left: 0%;
+    }
+
+    .tamañoBruja{
+        width: 240px;
+        height: 380px;
+    }
+    .colorMezcla{
+        margin-top: 237px;
+        margin-left: 10%;
+        width: 80%;
+        height: 20px;
+        background-color: #daa52061;
+    }
+    .bruja{
+        bottom: 121px;
+    }
+}
+@media (max-width:617px) {
+    .tiempo{
+        background-size:170px;
+    }
+    .tiempo h1{
+        font-size:350%;
+    }
+    .corazon img{
+        width: 60%;
+    }
+    .contenedorHallar{
+        width: 100%;
+    }
+    .colorHallar{
+        height: 40px;
+    }
+    .retroceso img{
+        width: 25%;
+    }
+    .contenedorItem{
+        width: 100%;
+        height: 70px;
+        margin-top: 56%;
+        margin-left: 0%;
+    }
+
+    .tamañoBruja{
+        width: 230px;
+        height: 380px;
+    }
+    .colorMezcla{
+        margin-top: 237px;
+        margin-left: 10%;
+        width: 80%;
+        height: 20px;
+        background-color: #daa52061;
+    }
+    .bruja{
+        bottom: 369px;
+        left: 40%;
+    }
+}
+
+@media (max-width:400px) {
+    .tiempo{
+        background-size:140px;
+    }
+    .tiempo h1{
+        font-size:320%;
+    }
+    .corazon img{
+        width: 70%;
+    }
+    .contenedorHallar{
+        width: 100%;
+    }
+    .colorHallar{
+        height: 40px;
+    }
+    .retroceso img{
+        width: 25%;
+    }
+    .contenedorItem{
+        width: 100%;
+        height:40%;
+        margin-top: 30%;
+        margin-left: 0%;
+    }
+
+    .tamañoBruja{
+        width: 140px;
+        height: 380px;
+    }
+    .colorMezcla{
+        margin-top: 219px;
+        margin-left: 10%;
+        width: 80%;
+        height: 10px;
+        background-color: #daa52061;
+    }
+    .bruja{
+        bottom: 325px;
+        left: 52%;
+    }
+}
