@@ -41,6 +41,9 @@ body{
     src: url(../Kavoon-Regular.ttf);
 }
 
+a{
+    cursor: pointer;
+}
 .bt{
     background-image: url("../Assest/botones.png");   /*boton*/
 }
