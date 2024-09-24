@@ -13,9 +13,53 @@
     <link rel="shortcut icon" href="./Assest/ImagenBruja.png" type="image/x-icon">
         <!--enlace para fuente de google-->
     <link href="https://fonts.googleapis.com/css2?family=Koh+Santepheap:wght@100;300;400;700;900&display=swap" rel="stylesheet">
-    
 </head>
 <body>
+
+   <!--titulo del juego-->
+    <div class="col-12 titulo" >
+        <h1 class="text-titulo" style="margin-left: 120px;"> Mythical Witch Mixes</h1>
+    </div>
+   <!--/titulo del juego-->
+
+   <!--formulario-->
+    <div class="formulario">
+
+        <div class="datos">
+            <h1>Correo electrónico</h1>
+            <input type="email" name="" id="">
     
+            <h1>Contraseña</h1>
+            <input type="password">
+            
+        </div>
+
+        <div class="opciones">
+            <a href="">Crear cuenta</a> <br>
+            <a href="">Recuperar contraseña</a>
+         </div>
+
+       <!--boton de envio-->
+        <div class="boton-envio">
+            <div class="boton" id="boton-envio">
+                <input type="submit" value="Iniciar" class="text-boton" >
+            </div>
+        </div>
+    </div>
+
+
+    <!--/formulario-->
+ 
+
+    <!--audio-->
+        <audio id="clickSound">
+            <source src="/audio/clickleo.mp3" type="audio/mp3">
+         </audio>
+    <!--/audio-->
+
+
+    <script src="./js/index.js"></script>
+    <script src="./bootstrap/js/bootstrap.js"></script>
+    <script src="/js/clickleo.js"></script>  
 </body>
 </html>
