@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Crear cuenta</title>
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./bootstrap/css/bootstrap.css">
     <!--Enlaces para fuentes de google-->
@@ -13,8 +13,108 @@
     <link rel="shortcut icon" href="./Assest/ImagenBruja.png" type="image/x-icon">
         <!--enlace para fuente de google-->
     <link href="https://fonts.googleapis.com/css2?family=Koh+Santepheap:wght@100;300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/fontawesome-free-6.6.0-web/css/all.css">
 </head>
 <body>
+
+
+   
+
+             <!--Modal-->
+             <div class="modal fade" id="terminos" tabindex="-1" aria-labelledby="exampleModalLabel"  aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content"  style="background-color:#FBB347;">
+                    <div class="modal-header">
+                      <h1 class="modal-title  text-bt" id="exampleModalLabel" style="font-family:kavoon; font-size: 55px; margin-left: 100px; color: black;">TERMINOS Y CONDICIONES</h1>
+                      <hr style=" margin-top: -12px;height: 10px;background-color: #000000;  margin-right: 42px; margin-left: 42px;">
+                    </div>
+                    <div class="modal-body">
+                      <div class="modal-inicio">
+                        <div class="volumen">
+                          <div>
+                            <label for="" class="text-bt fs-1" style="font-family:kavoon;">VOLUMEN DE EFECTOS</label>
+                            <div class="col-12 modal-slider">
+                              <img src="./Assest/image 3.png" class="col-2"  alt="">
+                              <div class="col-10">
+                              <input class="range col-10" type="range" value="100" name="" min="0" max="100" id="sliderEfecto">
+                              </div>
+                            </div>
+                          </div>
+                          <div>
+                            <label for="" class="text-bt fs-1"style="font-family:kavoon;">VOLUMEN DE MUSICA</label>
+                            <div class="col-12 modal-slider">
+                              <img src="./Assest/image 3.png" class="col-2"  alt="">
+                              <div class="col-10">
+                              <input class="range col-10" type="range" value="100" name="" min="0" max="100" id="sliderVolumen">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+                  <!--Fin de modal-->
+
+
+
+
+       <!--titulo del juego-->
+       <div class="col-12 titulo" >
+        <h1 class="text-titulo" style="margin-left: 70px;"> Mythical Witch Mixes</h1>
+       </div>
+   <!--/titulo del juego-->
+
+   <!--formulario - crear cuenta-->
+   <div class="crearCuenta" style="margin-top: 12px;">
+
+    <form action="">
+
+        <div class="titulo-cuenta">
+            <h2>Crear cuenta</h2>
+            <hr>
+        </div>
+
+        <div class="datos-crear">
+
+            <div class="primera-parte" >
+                <h3>Nombre</h3>
+                <input type="text">
+                <h3>Apellido</h3>
+                <input type="text">
+            </div>
+            <div class="segunda-parte">
+                <h3>Correo electrónico</h3>
+                <input type="text">
+                <h3>Contraseña</h3>
+                <input type="password">
+            </div>
+
+        </div>
+        <div class="terminos">
+            <i class="fa-solid fa-square-check"></i>
+            <a href="" data-bs-toggle="modal" data-bs-target="#terminos"><p>Acepto todo los terminos y condiciones y autorizo el tratamiento de mis datos personales</p></a>
+        </div>
+
+        <div class="boton-envio" style="margin-left: 130px; margin-top: -60px;">
+            <div class="boton" id="boton-envio">
+             <a href="" class="text-boton"><input type="submit" value="Iniciar" ></a>  <!--boton, pero es un input--> 
+            </div>
+        </div>
+    </form>
+
+   </div>
+    <!--/formulario - crear cuenta-->
+
+
+
+
+    
+    <script src="./js/index.js"></script>
+    <script src="./bootstrap/js/bootstrap.js"></script>
+    <script src="/js/clickleo.js"></script>
+    <script src="/fontawesome-free-6.6.0-web/js/all.js"></script>
     
 </body>
 </html>

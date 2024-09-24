@@ -26,7 +26,7 @@ body{
 .titulo h1{
  font-family:kavoon; /*Tipo de texto de titulo*/
  color: #FF9900;
- font-size: 650%;
+ font-size: 620%;
  text-decoration: solid 20px;
  text-align: center;
 }
@@ -147,6 +147,7 @@ a{
     padding-left: 100px;
     padding-top: 25px;
     transform: translate(-50%, -50%);
+    margin-top: 12px;
     
 }
 
@@ -196,6 +197,99 @@ a{
 .opciones a:hover{
     color: #f01111;
 }
+
+.crearCuenta{
+    width: 700px;
+    height: 350px;
+    border: 4px solid black;
+    background-color:#FBB347;
+    border-radius: 30px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.titulo-cuenta{
+    text-align: center;
+}
+
+.titulo-cuenta h2{
+    font-family:kavoon;
+    font-size: 60px;
+}
+
+.titulo-cuenta hr{
+    margin-top: -12px;
+    height: 10px;  /* Grosor de la línea */
+    background-color: #000000; /* Color de la línea */
+    margin-right: 42px;
+    margin-left: 42px;
+
+}
+.datos-crear{
+    padding-left: 30px;
+
+}
+.datos-crear, .primera-parte , .segunda-parte {
+    display: flex;
+}
+
+.primera-parte h3{
+    font-size: 30px;
+    font-family:kavoon;
+}
+
+.segunda-parte h3{
+    font-size: 30px;
+    font-family:kavoon;
+}
+
+.primera-parte, .segunda-parte input{
+  width: 320px;
+  
+}
+
+.primera-parte input{
+    font-size: 20px;
+    font-family:kavoon;
+    border: solid black;
+    background-color: #f52424;
+    border-radius: 10px;
+}
+
+.segunda-parte input{
+    font-size: 20px;
+    font-family:kavoon;
+    border: solid black;
+    background-color: #f52424;
+    border-radius: 10px;
+}
+
+.primera-parte, .segunda-parte {
+    flex-direction: column; /* Coloca los h3 y inputs en columnas */
+    margin-right: 12px;
+}
+
+.terminos{
+    margin-top: 22px;
+    margin-left: 22px;
+    display: flex;
+}
+
+.terminos p{
+    padding-bottom: 0px; /* Espacio entre el texto y la línea */
+    font-size: 18px;
+}
+
+.terminos  a{
+    color: #f01111;
+}
+
+.terminos a:hover {
+    color: #e44242; 
+}
+
 
 
 /*Configuracion de botones*/
