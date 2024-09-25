@@ -45,30 +45,85 @@
                 </div>
             </div>
         </div>
-        
-
     </div>
 
    <div class="contenedorAbajo">
      <div class="contenedorItem">
-        <div class="row">
-            <div class="item col-2"><img src="../Assest/pocionAmarilla.png" alt=""></div>
-            <div class="item col-2"><img src="../Assest/pocionAnaranjado.png" alt=""></div>
-            <div class="item col-2"><img src="../Assest/pocionVerde.png" alt=""></div>
-            <div class="item col-2"><img src="../Assest/pocionRoja.png" alt=""></div>
-            <div class="item col-2"><img src="../Assest/pocionMorada.png" alt=""></div>
-            <div class="item col-2"><img src="../Assest/pocionVerde.png" alt=""></div>
+        <div class="row" id="botellas">
+            <div class="item col-2" id="botellaAmarilla" draggable="true"><img src="../Assest/pocionAmarilla.png" alt=""></div>
         </div>
         
      </div>
 
      <div class="bruja">
-        <div class="tamañoBruja">
-            <div class="colorMezcla">
+        <div class="tamañoBruja" id="arrastreBruja">
+            <div class="colorMezcla" id="colorMezcla">
             </div>
         </div>
      </div>  
    </div>
+   <script>
+    var colorMezcla =document.getElementById('colorMezcla')
+    var botella=document.querySelector('#botellas');
+    var colorBruja=document.querySelector('#arrastreBruja');
+    var botellaAmarilla=document.querySelector('#botellaAmarilla');
+    var botellaAnaranjado=document.querySelector('#botellaAnarajado');
+    var botellaVerde=document.querySelector('#botellaVerde');
+    var botellaRoja=document.querySelector('#botellaRoja');
+    var botellaAzul=document.querySelector('#botellaAzul');
+
+    const imagenes = [
+            '<div class="item col-2" id="botellaAmarilla" draggable="true"><img src="../Assest/pocionAmarilla.png" alt=""></div>', '<div class="item col-2" id="botellaAnaranjado" draggable="true"><img src="../Assest/pocionAnaranjado.png" alt=""></div>', '<div class="item col-2" id="botellaVerde" draggable="true"><img src="../Assest/pocionVerde.png" alt=""></div>',
+            '<div class="item col-2" id="botellaRoja" draggable="true"><img src="../Assest/pocionRoja.png" alt=""></div>', '<div class="item col-2" id="botellaAzul" draggable="true"><img src="../Assest/pocionMorada.png" alt=""></div>', '<div class="item col-2" id="botellaVerde" draggable="true"><img src="../Assest/pocionVerde.png" alt=""></div>'
+        ];
+        let print=""
+        let terminado = imagenes.length;
+    while (imagenes.length) {
+            const index = Math.floor(Math.random() * imagenes.length);
+            const div = document.createElement('div');
+            div.className = 'item col-2';
+            div.id = index;
+            print += imagenes[index];
+            document.getElementById('botellas').innerHTML = print;
+            colorBruja.appendChild(div);
+            imagenes.splice(index, 1);
+        }
+        for (let i = 0; i < terminado; i++) {
+            const div = document.createElement('div');
+            div.className = 'placeholder';
+            div.dataset.id = i;
+        }
+
+
+
+    botella.addEventListener('dragstart', e =>{
+        e.dataTransfer.setData('id', e.target.id);
+    })
+    colorBruja.addEventListener('dragover', e=>{
+        e.preventDefault();
+        console.log('drag enter')
+    });
+    colorBruja.addEventListener('drop', e=>{
+        const id= e.dataTransfer.getData('id')
+        /*let color =  '#daa52061';
+        colorMezcla.style.background=color;*/
+       console.log(id)
+    });
+
+    /*
+    botella.addEventListener('dragstart', e =>{
+        console.log('Drag start');
+    });
+    botella.addEventListener('dragend', e =>{
+        console.log('Drag end');
+    });
+    botella.addEventListener('drag', e =>{
+        console.log('Drag');
+    });*/
+
+
+    
+   </script>
 
     
 </body>

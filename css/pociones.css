@@ -82,7 +82,7 @@ body{
     margin-left: 10%;
     width: 80%;
 	height: 30px;
-	background-color: #daa52061;
+	
 	border-radius: 100%;
 }
 
@@ -146,7 +146,7 @@ body{
         margin-left: 10%;
         width: 80%;
         height: 20px;
-        background-color: #daa52061;
+        
     }
     .bruja{
         bottom: 210px;
@@ -188,7 +188,7 @@ body{
         margin-left: 10%;
         width: 80%;
         height: 20px;
-        background-color: #daa52061;
+        
     }
     .bruja{
         bottom: 121px;
@@ -229,7 +229,7 @@ body{
         margin-left: 10%;
         width: 80%;
         height: 20px;
-        background-color: #daa52061;
+        
     }
     .bruja{
         bottom: 369px;
@@ -272,7 +272,7 @@ body{
         margin-left: 10%;
         width: 80%;
         height: 10px;
-        background-color: #daa52061;
+        
     }
     .bruja{
         bottom: 325px;
