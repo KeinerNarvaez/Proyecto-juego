@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificación</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./bootstrap/css/bootstrap.css">
+    <!--Enlaces para fuentes de google-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <!--icono-->
+    <link rel="shortcut icon" href="./Assest/ImagenBruja.png" type="image/x-icon">
+        <!--enlace para fuente de google-->
+    <link href="https://fonts.googleapis.com/css2?family=Koh+Santepheap:wght@100;300;400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Koh+Santepheap:wght@100;300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/fontawesome-free-6.6.0-web/css/all.css">
+</head>
+<body>
+        
+
+       <!--titulo del juego-->
+       <div class="col-12 titulo" style="display: flex; flex-direction: column; margin-top: -32px;">
+        <h1 class="text-titulo" style="margin-left: 70px;"> Mythical Witch </h1>
+        <h1 class="text-titulo" style="margin-left: 70px;">Mixes</h1>
+       </div>
+     <!--/titulo del juego-->
+     
+
+    <form action="">
+
+        <div class="verificacion-codigo">
+    
+            <div class="titulo-cuenta" style="margin-top: -12px;">
+                <h2 style="font-size: 50px;">Verificación de dos pasos</h2>
+                <hr> 
+            </div>
+    
+            <h6>En el correo electrónico que estas asociado a tu cuenta , te 
+                hemos enviado un código de verificación. Para mayor seguridad de su 
+                cuenta.
+            </h6>
+    
+            <div class="inputs-verificacion">
+                <h6>Ingrese tu código</h6>
+                <input type="text">
+                <input type="text">
+                <input type="text">
+                <p style="margin-left:-1px; margin-right: 5px;">__</p>
+                <input type="text">
+                <input type="text">
+                <input type="text">     
+            </div>
+    
+            <h6>Haz click en el boton de "Verificar" para el inicio de sesión.</h6>
+    
+               <!--boton-->
+            <div class="boton-envio" style="margin-left: 100px; margin-top: -30px;">
+                <div class="boton" id="boton-envio">
+                  <a href="/menu.html" class="text-boton"><input type="submit"  style="font-size: 25px;" value="Verificar" ></a>   <!--boton, pero es un input--> 
+                </div>
+            </div>
+    
+        </div>
+    
+       </form>
+
+     <!--audio-->
+      <audio id="clickSound">
+        <source src="/audio/clickleo.mp3" type="audio/mp3">
+     </audio>
+    <!--/audio-->
+    
+    <script src="./js/index.js"></script>
+    <script src="./bootstrap/js/bootstrap.js"></script>
+    <script src="./js/clickleo.js"></script>
+    <script src="/fontawesome-free-6.6.0-web/js/all.js"></script>
+
+</body>
+</html>

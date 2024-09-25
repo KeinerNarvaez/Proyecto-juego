@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./bootstrap/css/bootstrap.css">
+    <!--Enlaces para fuentes de google-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <!--icono-->
+    <link rel="shortcut icon" href="./Assest/ImagenBruja.png" type="image/x-icon">
+        <!--enlace para fuente de google-->
+    <link href="https://fonts.googleapis.com/css2?family=Koh+Santepheap:wght@100;300;400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Koh+Santepheap:wght@100;300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/fontawesome-free-6.6.0-web/css/all.css">
+</head>
+<body>
+
+     <!--titulo del juego-->
+     <div class="col-12 titulo" style="display: flex; flex-direction: column; margin-top: -32px;">
+        <h1 class="text-titulo" style="margin-left: 70px;"> Mythical Witch </h1>
+        <h1 class="text-titulo" style="margin-left: 70px;">Mixes</h1>
+       </div>
+     <!--/titulo del juego-->
+
+     
+         <!--cerrar sesión y ajueste-->
+        <div class="parte-izquierda" style="margin-top: -250px;">
+
+            <div class="salir">
+                <a class="text-boton" href="/login.html"><i class="fa-solid fa-door-open" style="font-size: 45px; color: white;"></i></a> <br>
+            </div>
+            <div class="configuracion">
+                <i class="fa-solid fa-gear" style="font-size: 50px; color: white;"></i>
+            </div>
+        </div>
+        <!--/cerrar sesión y ajuste-->
+
+
+        <!--como se juega-->
+        <div class="parte-derecha">
+            <div class="tutorial">
+                <i class="fa-solid fa-question" style="font-size: 50px;"></i>
+            </div>
+        </div>
+        <!--/como se juega-->
+
+
+        <!--alias-->
+       <form action="">
+
+        <div class="alias-usuario">
+            <div class="titulo-alias">
+                <h2>¿Como te gustaría ser llamado?</h2>
+                <hr>
+            </div>
+            <div class="input-alias">
+                <input type="text">
+            </div>
+        </div>
+
+       </form>
+
+       <br><br><br><br><br><br><br><br><br>
+  
+        <div class="modos-juego">
+                  <!--boton solitario-->
+                  <div class="boton-envio">
+                    <div class="boton" id="boton-envio">
+                       <a href="" class="text-boton"><input type="button" style="font-size: 25px;" value="Solitario" ></a>   
+                    </div>
+               </div>
+                
+                  <!--boton crear sala-->
+                  <div class="boton-envio">
+                      <div class="boton" id="boton-envio">
+                         <a href="" class="text-boton"><input type="button" style="font-size: 25px;" value="Crear sala" ></a>   
+                      </div>
+                 </div>
+
+                  <!--boton unirse-->
+                  <div class="boton-envio">
+                    <div class="boton" id="boton-envio">
+                      <a href="" class="text-boton"><input type="button" style="font-size: 25px;" value="Unirse" ></a> 
+                    </div>
+                </div>
+        </div>
+
+
+
+    <!--audio-->
+      <audio id="clickSound">
+        <source src="/audio/clickleo.mp3" type="audio/mp3">
+     </audio>
+    <!--/audio-->
+    
+    <script src="./js/index.js"></script>
+    <script src="./bootstrap/js/bootstrap.js"></script>
+    <script src="./js/clickleo.js"></script>
+    <script src="/fontawesome-free-6.6.0-web/js/all.js"></script>
+</body>
+</html>
