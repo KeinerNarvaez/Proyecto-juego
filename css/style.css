@@ -256,6 +256,7 @@ a{
     border: solid black;
     background-color: #f52424;
     border-radius: 10px;
+    box-shadow: 5px 10px 5px rgba(0, 0, 0, 0.5);
 }
 
 .segunda-parte input{
@@ -264,6 +265,7 @@ a{
     border: solid black;
     background-color: #f52424;
     border-radius: 10px;
+    box-shadow: 5px 10px 5px rgba(0, 0, 0, 0.5);
 }
 
 .primera-parte, .segunda-parte {
@@ -290,7 +292,143 @@ a{
     color: #e44242; 
 }
 
+.verificacion-codigo{
+    width: 700px;
+    height: 350px;
+    border: 4px solid black;
+    background-color:#FBB347;
+    border-radius: 30px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin-top: 12px;
+    padding: 22px;
+}
 
+.verificacion-codigo h6{
+    font-size: 25px;
+    font-family:kavoon;
+}
+
+.inputs-verificacion{
+    display: flex;
+    margin-bottom: 30px;
+}
+
+.inputs-verificacion input{
+    width: 42px;
+    height: 42px;
+    margin-right: 12px;
+    border-radius: 10px;
+    font-family:kavoon;
+    border: solid black;
+    background-color: #f52424;
+    font-size: 32px;
+    box-shadow: 5px 10px 5px rgba(0, 0, 0, 0.5);
+    padding-left: 10px;
+}
+
+.inputs-verificacion h6{
+    padding-top: 8px;
+    margin-right: 12px;
+}
+
+.recuperar-contrasena{
+    width: 700px;
+    height: 350px;
+    border: 4px solid black;
+    background-color:#FBB347;
+    border-radius: 30px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin-top: 12px;
+    padding: 22px;
+}
+
+.recuperar-contrasena h6{
+    font-size: 22px;
+    font-family:kavoon;
+}
+
+.correo_electronico {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.correo_electronico input{
+    width: 320px;
+    height: 40px;
+    border-radius: 10px;
+    font-family:kavoon;
+    border: solid black;
+    background-color: #f52424;
+    font-size: 20px;
+    box-shadow: 5px 10px 5px rgba(0, 0, 0, 0.5);
+}
+.correo_electronico h6{
+    padding-top: 3px;
+}
+
+.codigo-recuperacion{
+    width: 700px;
+    height: 350px;
+    border: 4px solid black;
+    background-color:#FBB347;
+    border-radius: 30px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin-top: 12px;
+    padding: 22px;
+}
+
+.codigo-recuperacion h6{
+    font-size: 22px;
+    font-family:kavoon;
+}
+
+.renovacion-contraseña{
+    width: 700px;
+    height: 320px;
+    border: 4px solid black;
+    background-color:#FBB347;
+    border-radius: 30px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin-top: 12px;
+    padding: 22px;
+}
+
+.renovacion-contraseña  h6{
+    font-size: 42px;
+    font-family:kavoon;
+}
+
+.nueva-contraseña input{
+    width: 90%;
+    border-radius: 10px;
+    font-family:kavoon;
+    border: solid black;
+    background-color: #f52424;
+    font-size: 20px;
+    box-shadow: 5px 10px 5px rgba(0, 0, 0, 0.5);
+}
+
+.confirmar-contraseña input{
+    width: 90%;
+    border-radius: 10px;
+    font-family:kavoon;
+    border: solid black;
+    background-color: #f52424;
+    font-size: 20px;
+        box-shadow: 5px 10px 5px rgba(0, 0, 0, 0.5);
+}
 
 /*Configuracion de botones*/
 .boton{

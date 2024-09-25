@@ -16,39 +16,24 @@
     <link rel="stylesheet" href="/fontawesome-free-6.6.0-web/css/all.css">
 </head>
 <body>
-
-
-   
-
              <!--Modal-->
              <div class="modal fade" id="terminos" tabindex="-1" aria-labelledby="exampleModalLabel"  aria-hidden="true">
                 <div class="modal-dialog">
                   <div class="modal-content"  style="background-color:#FBB347;">
-                    <div class="modal-header">
-                      <h1 class="modal-title  text-bt" id="exampleModalLabel" style="font-family:kavoon; font-size: 55px; margin-left: 100px; color: black;">TERMINOS Y CONDICIONES</h1>
-                      <hr style=" margin-top: -12px;height: 10px;background-color: #000000;  margin-right: 42px; margin-left: 42px;">
+                    <div class="modal-header" style="display: flex; flex-direction: column;">
+                      <h1 class="modal-title  text-bt" id="exampleModalLabel" style="font-family:kavoon; font-size: 55px; margin-left: 250px; color: black;">TERMINOS Y CONDICIONES</h1>
+                      <p style="margin-top: -22px; font-weight: bolder; ">____________________________________________________________________________________________________</p>
                     </div>
                     <div class="modal-body">
-                      <div class="modal-inicio">
-                        <div class="volumen">
-                          <div>
-                            <label for="" class="text-bt fs-1" style="font-family:kavoon;">VOLUMEN DE EFECTOS</label>
-                            <div class="col-12 modal-slider">
-                              <img src="./Assest/image 3.png" class="col-2"  alt="">
-                              <div class="col-10">
-                              <input class="range col-10" type="range" value="100" name="" min="0" max="100" id="sliderEfecto">
-                              </div>
-                            </div>
-                          </div>
-                          <div>
-                            <label for="" class="text-bt fs-1"style="font-family:kavoon;">VOLUMEN DE MUSICA</label>
-                            <div class="col-12 modal-slider">
-                              <img src="./Assest/image 3.png" class="col-2"  alt="">
-                              <div class="col-10">
-                              <input class="range col-10" type="range" value="100" name="" min="0" max="100" id="sliderVolumen">
-                              </div>
-                            </div>
-                          </div>
+                      <div class="modal-inicio" >
+                        <div id="terminos" style="margin-top: -32px; margin-left: -12px;">
+                          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt, soluta. Mollitia eius ullam, debitis atque quis iure molestias facere quae quos cupiditate perspiciatis aliquam eveniet hic nulla cumque beatae eos.</p>
+                          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt, soluta. Mollitia eius ullam, debitis atque quis iure molestias facere quae quos cupiditate perspiciatis aliquam eveniet hic nulla cumque beatae eos.</p>
+                          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt, soluta. Mollitia eius ullam, debitis atque quis iure molestias facere quae quos cupiditate perspiciatis aliquam eveniet hic nulla cumque beatae eos.</p>
+                          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt, soluta. Mollitia eius ullam, debitis atque quis iure molestias facere quae quos cupiditate perspiciatis aliquam eveniet hic nulla cumque beatae eos.</p>
+                          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt, soluta. Mollitia eius ullam, debitis atque quis iure molestias facere quae quos cupiditate perspiciatis aliquam eveniet hic nulla cumque beatae eos.</p>
+                          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt, soluta. Mollitia eius ullam, debitis atque quis iure molestias facere quae quos cupiditate perspiciatis aliquam eveniet hic nulla cumque beatae eos.</p>
+                      
                         </div>
                       </div>
                     </div>
@@ -56,9 +41,6 @@
                 </div>
               </div>
                   <!--Fin de modal-->
-
-
-
 
        <!--titulo del juego-->
        <div class="col-12 titulo" >
@@ -93,27 +75,34 @@
 
         </div>
         <div class="terminos">
-            <i class="fa-solid fa-square-check"></i>
+            <i class="fa-solid fa-square-check" style="font-size: 30px; margin-right: 12px;margin-top: 10px;"></i>
             <a href="" data-bs-toggle="modal" data-bs-target="#terminos"><p>Acepto todo los terminos y condiciones y autorizo el tratamiento de mis datos personales</p></a>
         </div>
 
-        <div class="boton-envio" style="margin-left: 130px; margin-top: -60px;">
-            <div class="boton" id="boton-envio">
-             <a href="" class="text-boton"><input type="submit" value="Iniciar" ></a>  <!--boton, pero es un input--> 
-            </div>
-        </div>
+   <!--boton-->
+   <div class="boton-envio" style="margin-left: 130px; margin-top: -60px;">
+    <div class="boton" id="boton-envio">
+      <a href="/codigo_cuenta.html" class="text-boton"><input type="submit" style="font-size: 32px;" value="Siguiente" ></a>   <!--boton, pero es un input--> 
+    </div>
+   </div>
+   </div>
     </form>
 
-   </div>
+
+
     <!--/formulario - crear cuenta-->
 
 
-
+  <!--audio-->
+  <audio id="clickSound">
+    <source src="/audio/clickleo.mp3" type="audio/mp3">
+ </audio>
+<!--/audio-->
 
     
     <script src="./js/index.js"></script>
     <script src="./bootstrap/js/bootstrap.js"></script>
-    <script src="/js/clickleo.js"></script>
+    <script src="./js/clickleo.js"></script>
     <script src="/fontawesome-free-6.6.0-web/js/all.js"></script>
     
 </body>
