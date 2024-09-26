@@ -148,8 +148,7 @@ a{
     padding-left: 100px;
     padding-top: 25px;
     transform: translate(-50%, -50%);
-    margin-top: 12px;
-    
+    margin-top: 42px;
 }
 
 .formulario h1{
@@ -309,7 +308,7 @@ a{
     top: 60%;
     left: 50%;
     transform: translate(-50%, -50%);
-    margin-top: 12px;
+    margin-top: 42px;
     padding: 22px;
 }
 
@@ -351,7 +350,7 @@ a{
     top: 60%;
     left: 50%;
     transform: translate(-50%, -50%);
-    margin-top: 12px;
+    margin-top: 42px;
     padding: 22px;
 }
 
@@ -447,7 +446,7 @@ a{
     top: 60%;
     left: 50%;
     transform: translate(-50%, -50%);
-    margin-top: -45px;
+    margin-top: -30px;
     padding: 22px;
 }
 
@@ -478,8 +477,8 @@ a{
 
 .modos-juego{
     display: flex;
-    margin-left: 145px;
-    margin-top: 150px;
+    margin-left: 25px;
+    margin-top: 140px;
 }
 
 .salir{
@@ -522,6 +521,11 @@ a{
     background-color: rgb(255, 255, 255);
     margin-bottom: 12px;
     cursor: pointer;
+}
+
+
+.configuracion i:hover {
+    background-color: #FBB347;
 }
 
 /*Configuracion de botones*/

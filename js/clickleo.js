@@ -19,5 +19,5 @@ buttons.forEach(button => {
 });
 
 
-const inputs = document.querySelectorAll("inputs");
+
 

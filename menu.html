@@ -17,7 +17,8 @@
     <link rel="stylesheet" href="/fontawesome-free-6.6.0-web/css/all.css">
 </head>
 <body>
-
+     
+    
      <!--titulo del juego-->
      <div class="col-12 titulo" style="display: flex; flex-direction: column; margin-top: -32px;">
         <h1 class="text-titulo" style="margin-left: 70px;"> Mythical Witch </h1>
@@ -25,15 +26,13 @@
        </div>
      <!--/titulo del juego-->
 
-     
-         <!--cerrar sesión y ajueste-->
+         <!--cerrar sesión y ajustes-->
         <div class="parte-izquierda" style="margin-top: -250px;">
-
             <div class="salir">
                 <a class="text-boton" href="/login.html"><i class="fa-solid fa-door-open" style="font-size: 45px; color: white;"></i></a> <br>
             </div>
             <div class="configuracion">
-                <i class="fa-solid fa-gear" style="font-size: 50px; color: white;"></i>
+               <a  class="text-boton" ><i class="fa-solid fa-gear" style="font-size: 50px; color: white;"  data-bs-toggle="modal" data-bs-target="#opciones"></i></a> 
             </div>
         </div>
         <!--/cerrar sesión y ajuste-->
@@ -42,10 +41,72 @@
         <!--como se juega-->
         <div class="parte-derecha">
             <div class="tutorial">
-                <i class="fa-solid fa-question" style="font-size: 50px;"></i>
+                <a class="text-boton"><i class="fa-solid fa-question" style="font-size: 50px; color: black;"  data-bs-toggle="modal" data-bs-target="#tutorial"></i></a>
             </div>
         </div>
         <!--/como se juega-->
+
+
+        <!--Modal de ajustes-->
+        <div class="container">
+          <div class="modal fade" id="opciones" tabindex="-1" aria-labelledby="exampleModalLabel"  aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title  text-bt" id="exampleModalLabel" style="font-family:kavoon; font-size: 80px;">OPCIONES</h1>
+                  </div>
+                  <div class="modal-body">
+                    <div class="modal-inicio">
+                      <div class="volumen">
+                        <div>
+                          <label for="" class="text-bt fs-1" style="font-family:kavoon;">VOLUMEN DE EFECTOS</label>
+                          <div class="col-12 modal-slider">
+                            <img src="./Assest/image 3.png" class="col-2"  alt="">
+                            <div class="col-10">
+                            <input class="range col-10" type="range" value="100" name="" min="0" max="100" id="sliderEfecto">
+                            </div>
+                          </div>
+                        </div>
+                        <div>
+                          <label for="" class="text-bt fs-1"style="font-family:kavoon;">VOLUMEN DE MUSICA</label>
+                          <div class="col-12 modal-slider">
+                            <img src="./Assest/image 3.png" class="col-2"  alt="">
+                            <div class="col-10">
+                            <input class="range col-10" type="range" value="100" name="" min="0" max="100" id="sliderVolumen">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+         
+              </div>
+            </div>
+    <!--/Modal de ajustes-->
+
+        <!--Modal de Tutorial-->
+        <div class="container">
+            <div class="modal fade" id="tutorial" tabindex="-1" aria-labelledby="exampleModalLabel"  aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title  text-bt" id="exampleModalLabel" style="font-family:kavoon; font-size: 80px;">¿Como se juega?</h1>
+                    </div>
+                    <div class="modal-body">
+                      <div class="modal-inicio">
+                        <div class="volumen">
+         
+                  
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+           
+                </div>
+              </div>
+ 
+        <!--Modal de /Tutorial-->
 
 
         <!--alias-->
@@ -63,13 +124,13 @@
 
        </form>
 
-       <br><br><br><br><br><br><br><br><br>
+       <br><br><br><br><br><br><br><br><br><br>
   
         <div class="modos-juego">
                   <!--boton solitario-->
                   <div class="boton-envio">
                     <div class="boton" id="boton-envio">
-                       <a href="" class="text-boton"><input type="button" style="font-size: 25px;" value="Solitario" ></a>   
+                       <a href="/modo solitario/menu_solitaro.html" class="text-boton"><input type="button" style="font-size: 25px;" value="Solitario" ></a>   
                     </div>
                </div>
                 
@@ -98,7 +159,7 @@
     
     <script src="./js/index.js"></script>
     <script src="./bootstrap/js/bootstrap.js"></script>
-    <script src="./js/clickleo.js"></script>
+    <script src="/js/clickleo.js"></script>
     <script src="/fontawesome-free-6.6.0-web/js/all.js"></script>
 </body>
 </html>
