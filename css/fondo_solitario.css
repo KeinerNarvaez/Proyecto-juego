@@ -1,0 +1,59 @@
+
+body{
+        background-image: url(../Assest/fondo_solitario_2.gif);    /*Fondo de pantalla de la bruja*/
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+        background-attachment: fixed;   /*Para que se adapte al tamaño inferior a la pantalla*/
+}
+
+
+.cuadro-opciones{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#modos{
+ height: 185px; 
+ border: 4px #FF9900 solid; 
+ background-color: rgb(49, 49, 49);
+ margin-top: 150px;
+ width: 40%; 
+ margin-left: 250px;
+ border-radius: 12px;
+ padding-left: 5px;
+ padding-top: 5px;
+}
+
+.modo-hechizo{
+   display: flex;
+   border: white 2px solid;
+   border-radius: 10px;
+   margin-bottom: 5px;
+   height: 80px;
+   width: 340px;
+}
+
+.modo-hechizo h3{
+   font-size: 50px;
+   padding-top: 6px;
+   padding-left: 42px;
+}
+
+.modo-pocion{
+   display: flex;
+   border: white 2px solid;
+   border-radius: 10px;
+   height: 80px;
+   width: 340px;
+}
+
+.modo-pocion h3{
+   font-size: 50px;
+   padding-top: 6px;
+   padding-left: 42px;
+}
+
+
