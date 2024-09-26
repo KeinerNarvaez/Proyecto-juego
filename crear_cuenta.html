@@ -14,6 +14,39 @@
         <!--enlace para fuente de google-->
     <link href="https://fonts.googleapis.com/css2?family=Koh+Santepheap:wght@100;300;400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/fontawesome-free-6.6.0-web/css/all.css">
+    <style>
+      .pass{
+        transform: translateX(0px);
+        position: relative;
+        left: 285px;
+        bottom: 30px;
+        width: 30px;
+      }
+      .terminos{
+        position: relative;
+        bottom: 35px;
+      }
+      input[type="checkbox"]{
+        display: none;
+        position: relative;
+      }
+      label{
+        padding-left: 1.3em;
+       
+      }
+      label::before{
+        content: '';
+        border: solid 1px blue;
+        border-radius: 3px;
+        width: 1.4em;
+        height: 1.4em;
+        position:absolute;
+      }
+      input[type="checkbox"]:checked{
+        border-color: blue;
+      }
+      
+    </style>
 </head>
 <body>
              <!--Modal-->
@@ -79,14 +112,20 @@
                 <h3>Correo electrónico</h3>
                 <input type="text">
                 <h3>Contraseña</h3>
-                <input type="password">
+                <input type="password" id="pass">
+                <i class="fa-solid fa-eye pass" id="ojo"></i>   
             </div>
 
         </div>
         <div class="terminos">
+<<<<<<< HEAD
+            <input type="checkbox" id="checkbox" required>
+            <a href="" data-bs-toggle="modal" data-bs-target="#terminos"><label for="checkbox">Acepto todo los terminos y condiciones y autorizo el tratamiento de mis datos personales</label></a>
+=======
             <input type="checkbox" name="" id="" style="margin-right: 12px;margin-top: -20px; width: 20px;">
             <a href="" data-bs-toggle="modal" data-bs-target="#terminos"><p>Acepto todo los terminos y condiciones y autorizo el tratamiento de mis datos personales</p></a>
 
+>>>>>>> b1de27311e17fb88cdcc6532f39fb867adf6e9ac
         </div>
 
    <!--boton-->
@@ -109,11 +148,10 @@
  </audio>
 <!--/audio-->
 
-    
+    <script src="./js/contraseña.js"></script>
     <script src="./js/index.js"></script>
     <script src="./bootstrap/js/bootstrap.js"></script>
     <script src="./js/clickleo.js"></script>
-    <script src="/fontawesome-free-6.6.0-web/js/all.js"></script>
     
 </body>
 </html>
