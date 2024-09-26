@@ -56,4 +56,70 @@ body{
    padding-left: 42px;
 }
 
+#columnas{
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+}
 
+.cuadro-historial{
+   width: 700px;
+   height: 600px;
+   border: 8px #FF9900 solid; 
+   border-radius: 4px;
+   background-color: rgb(26, 23, 23);
+ 
+}
+.titulo-historial{
+   width: 100%;
+   text-align: center;
+   height: 120px; 
+}
+
+.titulo-historial h2{
+   font-size: 100px;
+   color: #FF9900;
+   font-family:kavoon;
+}
+
+.titulo-historial hr{
+   color: #FF9900;
+   margin-top: -12px;
+   height: 120%;
+}
+
+.partidas{
+   display: flex;
+   gap: 52px;
+   border: black 2px solid;
+   width: 95%;
+   height: 150px;
+   
+}
+
+
+
+.partidas h1{
+   padding-top: 30px;
+   padding-left: 12px;
+   font-size: 60px;
+   color: white;
+   font-family:kavoon;
+}
+
+.partidas h3{
+   padding-top: 50px;
+   font-family:kavoon;
+}
+
+.partidas img{
+   width: 200px;
+   padding: 12px;
+}
+
+.scroller{
+   overflow-y: auto; /* Scroll vertical */
+   overflow-x: hidden; /* Evita scroll horizontal */
+   padding-left: 1222px;
+}
