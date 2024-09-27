@@ -28,7 +28,7 @@
             <!--flecha-->
      <div class="parte-izquierda" style="margin-top: -250px;">
         <div class="salir">
-            <a class="text-boton" href="/crear_cuenta.html"><i class="fa-solid fa-arrow-left" style="font-size: 45px; color: white;"></i></a> <br>
+            <a class="text-boton" href="/menu.html"><i class="fa-solid fa-arrow-left" style="font-size: 45px; color: white;"></i></a> <br>
         </div>
      </div>
        <!--/flecha-->
@@ -43,25 +43,23 @@
             <hr> 
         </div>
 
-        <h6>Ingresa el codigo de sala que te brinda el  moderador, para unirte a la sala y que  puedas jugar con otros jugadores.</h6>
+        <h6  style="font-size: 30px;">Ingresa el codigo de sala que te brinda el  moderador, para unirte a la sala y que  puedas jugar con otros jugadores.</h6>
 
 
-        <div class="inputs-verificacion">
-
-            <input type="text">
-            <input type="text">
-            <input type="text">
-            <p style="margin-left:-1px; margin-right: 5px;">__</p>
-            <input type="text">
-            <input type="text">
-            <input type="text">     
+        <div class="inputs-verificacion" id="codigo-unirse">
+            <input type="text" maxlength="1" class="code-input" >
+            <input type="text" maxlength="1" class="code-input" >
+            <input type="text" maxlength="1" class="code-input" >
+            <input type="text" maxlength="1"class="code-input" >
+            <input type="text" maxlength="1" class="code-input" >
+            <input type="text" maxlength="1" class="code-input" >     
         </div>
 
 
            <!--boton-->
-        <div class="boton-envio" style="margin-left: 100px; margin-top: 25px;">
+        <div class="boton-envio" style="margin-left: 100px; ">
             <div class="boton" id="boton-envio">
-              <a href="/index.html" class="text-boton"><input type="submit" style="font-size: 25px;"  value="Verificar" ></a>   <!--boton, pero es un input--> 
+              <a href="/index.html" class="text-boton"><input type="submit" style="font-size: 25px;"  value="Unirse" ></a>   <!--boton, pero es un input--> 
             </div>
         </div>
 
@@ -82,6 +80,7 @@
   <script src="./js/index.js"></script>
   <script src="/boostrap/bootstrap-5.3.2-dist/js/bootstrap.js"></script>
   <script src="/js/clickleo.js"></script>
+  <script src="/js/inputs.js"></script>
   <script src="/fontawesome-free-6.6.0-web/js/all.js"></script> 
     
 </body>
