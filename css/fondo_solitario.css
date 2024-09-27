@@ -75,15 +75,18 @@ body{
    overflow-x: hidden;
 }
 .titulo-historial{
+   display: flex;
    width: 100%;
    text-align: center;
    height: 120px; 
 }
 
+
 .titulo-historial h2{
    font-size: 100px;
    color: #FF9900;
    font-family:kavoon;
+   padding-left: 122px;
 }
 
 .titulo-historial hr{
@@ -122,4 +125,38 @@ body{
    overflow-y: auto; /* Scroll vertical */
    overflow-x: hidden; /* Evita scroll horizontal */
    padding-left: 1222px;
+}
+
+#modal-partidas{
+ width: 550px;
+ height: 350px;
+ border: 4px #FF9900 solid; 
+ background-color: rgb(26, 23, 23);
+ position: absolute;
+ top: 50%;
+ left: 50%;
+ transform: translate(-50%, 32%);
+}
+
+.titulo-partida{
+   text-align: center;
+}
+
+.titulo-partida h2{
+   font-size: 55px;
+   color: #FF9900;
+   font-family:kavoon;
+}
+
+.informe{
+   border: white 2px solid;
+   height: 57%;
+   padding-left: 12px;
+}
+
+
+.informe h3{
+   font-size: 40px;
+   font-family:kavoon;
+   color: white;
 }

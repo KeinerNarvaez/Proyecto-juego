@@ -528,6 +528,38 @@ a{
     background-color: #FBB347;
 }
 
+#terminos-condiciones{
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 25%);
+    height: 420px;
+    width: 850px;
+    overflow: scroll;
+    scrollbar-color: rgb(233, 75, 75) black;
+    scrollbar-width: 5px;
+    overflow-x: hidden;
+}
+
+.titulo-terminos h1{
+    padding-top: 5px;
+    text-align: center;
+    font-size: 55px;
+    font-family:kavoon;
+    color: #f52424;
+}
+.titulo-terminos hr{
+    margin-top: 2px;
+}
+
+.termino h2{
+    font-family:kavoon;
+    color: #f52424;
+}
+
+.termino p{
+    font-family:kavoon;
+}
+
 /*Configuracion de botones*/
 .boton{
 width: 250px;
