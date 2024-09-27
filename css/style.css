@@ -1,7 +1,7 @@
 *{
     font-family:Arial, Helvetica, sans-serif;
     margin: 0;
-    cursor: url("../Assest/varita-magica.png"), auto;
+    cursor: url("../Assest/varita-maica.png"), auto;
 }
 body{
     background-image: url(../Assest/Diseño\ sin\ título.gif);    /*Fondo de pantalla de la bruja*/
@@ -477,8 +477,8 @@ a{
 
 .modos-juego{
     display: flex;
-    margin-left: 25px;
-    margin-top: 140px;
+    margin-left: 100px;
+    margin-top: 460px;
 }
 
 .salir{
@@ -584,4 +584,32 @@ display: flex;
         padding: 0%;
         font-size: 600%;
     }
+}
+@media (max-width:569px){
+    .boton{
+        left: 200px;
+        padding: 30%;
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+    .titulo h1{
+        font-size:450%;
+     }
+}
+
+@media (max-width:448px) {
+    .boton{
+        padding: 60%;
+        margin-left: 0%;
+        margin-right: 0%;
+        left: 10px;
+        position: relative;
+
+    }
+    #izquierda-boton{
+        position: relative;
+        left: 40px;
+    }
+
+
 }

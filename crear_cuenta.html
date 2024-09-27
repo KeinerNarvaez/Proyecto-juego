@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,25 +26,39 @@
         position: relative;
         bottom: 35px;
       }
-      input[type="checkbox"]{
+      input[type="checkbox"] {
         display: none;
         position: relative;
       }
       label{
-        padding-left: 1.3em;
-       
+        padding-left: 2em;
+      }
+      label p{
+        color: red;
+        text-decoration: underline;
       }
       label::before{
         content: '';
-        border: solid 1px blue;
+        cursor: pointer;
+        border: solid 1px #0194FF;
         border-radius: 3px;
-        width: 1.4em;
+        width: 1.5em;
         height: 1.4em;
         position:absolute;
+        background-color: black;
+        box-shadow: 1px 1px 10px 0.4px blue;
       }
-      input[type="checkbox"]:checked{
-        border-color: blue;
+      input[type="checkbox"]:checked + label ::before{
+        color: #0194FF;
+        position: absolute;
+        content: '\f00c';
+        margin-left: 5px;
+        margin-bottom:4px;
+        font-size: large;
+        font-family: FontAwesome;
       }
+
+
       
     </style>
 </head>
@@ -118,14 +132,8 @@
 
         </div>
         <div class="terminos">
-<<<<<<< HEAD
             <input type="checkbox" id="checkbox" required>
-            <a href="" data-bs-toggle="modal" data-bs-target="#terminos"><label for="checkbox">Acepto todo los terminos y condiciones y autorizo el tratamiento de mis datos personales</label></a>
-=======
-            <input type="checkbox" name="" id="" style="margin-right: 12px;margin-top: -20px; width: 20px;">
-            <a href="" data-bs-toggle="modal" data-bs-target="#terminos"><p>Acepto todo los terminos y condiciones y autorizo el tratamiento de mis datos personales</p></a>
-
->>>>>>> b1de27311e17fb88cdcc6532f39fb867adf6e9ac
+            <label for="checkbox" data-bs-toggle="modal" data-bs-target="#terminos"><p> &nbsp&nbsp &nbsp&nbsp Acepto todo los terminos y condiciones y autorizo el tratamiento de mis datos personales</p></label>
         </div>
 
    <!--boton-->
