@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unirse a sala</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.css">
+    <!--Enlaces para fuentes de google-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <!--icono-->
+    <link rel="shortcut icon" href="/Assest/ImagenBruja.png" type="image/x-icon">
+        <!--enlace para fuente de google-->
+    <link href="https://fonts.googleapis.com/css2?family=Koh+Santepheap:wght@100;300;400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Koh+Santepheap:wght@100;300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/fontawesome-free-6.6.0-web/css/all.css">
+</head>
+<body>
+
+        <!--titulo del juego-->
+          <div class="col-12 titulo" style="display: flex; flex-direction: column;margin-top: -32px;">
+            <h1 class="text-titulo" style="margin-left: 70px;"> Mythical Witch </h1>
+            <h1 class="text-titulo" style="margin-left: 70px;">Mixes</h1>
+           </div>
+       <!--/titulo del juego--> 
+
+            <!--flecha-->
+     <div class="parte-izquierda" style="margin-top: -250px;">
+        <div class="salir">
+            <a class="text-boton" href="/menu.html"><i class="fa-solid fa-arrow-left" style="font-size: 45px; color: white;"></i></a> <br>
+        </div>
+     </div>
+       <!--/flecha-->
+
+           <!--verificar código-->
+   <form action="">
+
+    <div class="verificacion-codigo">
+
+        <div class="titulo-cuenta" style="margin-top: -12px;">
+            <h2>Inserte el código</h2>
+            <hr> 
+        </div>
+
+        <h6  style="font-size: 30px;">Ingresa el codigo de sala que te brinda el  moderador, para unirte a la sala y que  puedas jugar con otros jugadores.</h6>
+
+
+        <div class="inputs-verificacion" id="codigo-unirse">
+            <input type="text" maxlength="1" class="code-input" >
+            <input type="text" maxlength="1" class="code-input" >
+            <input type="text" maxlength="1" class="code-input" >
+            <input type="text" maxlength="1"class="code-input" >
+            <input type="text" maxlength="1" class="code-input" >
+            <input type="text" maxlength="1" class="code-input" >     
+        </div>
+
+
+           <!--boton-->
+        <div class="boton-envio" style="margin-left: 100px; ">
+            <div class="boton" id="boton-envio">
+              <a href="/index.html" class="text-boton"><input type="submit" style="font-size: 25px;"  value="Unirse" ></a>   <!--boton, pero es un input--> 
+            </div>
+        </div>
+
+    </div>
+   </form>
+<!--verificar código-->
+
+
+
+
+    
+      <!--audio-->
+      <audio id="clickSound">
+        <source src="/audio/clickleo.mp3" type="audio/mp3">
+     </audio>
+     <!--/audio-->
+
+  <script src="./js/index.js"></script>
+  <script src="/boostrap/bootstrap-5.3.2-dist/js/bootstrap.js"></script>
+  <script src="/js/clickleo.js"></script>
+  <script src="/js/inputs.js"></script>
+  <script src="/fontawesome-free-6.6.0-web/js/all.js"></script> 
+    
+</body>
+</html>

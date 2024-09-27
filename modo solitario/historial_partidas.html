@@ -24,14 +24,21 @@
    <!--cuadro de historial de partidas-->
     <div class="container text-center" id="columnas">
         <div class="row align-items-center">
-          <div class="col">
+          <div class="col">                 
+           <!--flecha-->
+            <div class="parte-izquierda" style="margin-top: -250px;">
+              <div class="salir">
+               <a class="text-boton" href="/modo solitario/menu_solitaro.html"><i class="fa-solid fa-arrow-left" style="font-size: 45px; color: white; padding-right: 22px;"></i></a> <br>
+           </div>
+           </div>
+       <!--/flecha-->
           
           </div>
           <div class="col">
              <div class="cuadro-historial">
                  <div class="titulo-historial">
                     <h2>Partidas</h2>
-                    <hr>
+                    <i class="fa-solid fa-file" style="margin-left: 40px;margin-top: 30px; font-size: 70px; color: white;" data-bs-toggle="modal" data-bs-target="#mejores-partidas"></i>
                  </div>
                  <div class="partidas">
                   <h1>Nivel  1</h1>
@@ -58,14 +65,35 @@
                   <h3>Hechizos</h3>
                   <img src="/Assest/pantallazo.jpeg" alt="" srcset="">
                </div>
-              
              </div>
           </div>
           <div class="col">
+            
           
           </div>
         </div>
       </div>
+
+            <!--Modal de mejores  puntuaciones--> 
+             <div class="container">
+               <div class="modal fade" id="mejores-partidas" tabindex="-1" aria-labelledby="exampleModalLabel"  aria-hidden="true">
+                   <div class="modal-dialog">
+                       <div class="modal-body" id="modal-partidas">
+                        <div class="titulo-partida">
+                           <h2>Informe de partidas</h2>
+                        </div>
+                        <div class="informe">
+                           <h3>Mejor tiempo: 1:20</h3>
+                           <h3>Veces completado: 3</h3>
+                           <h3>Veces derrotado: 12</h3>
+                        </div>       
+                       </div>
+                   </div>
+                 </div>
+              </div>
+          <!--/Modal de mejores  puntuaciones--> 
+
+
 
          <!--audio-->
           <audio id="clickSound">
