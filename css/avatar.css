@@ -1,0 +1,25 @@
+
+*{
+    font-family:kavoon;
+    cursor: url("../Assest/varita-magica.png"), auto;
+    background-color: #0E3032;
+}
+
+
+.salir-menu{
+    margin-top: 52px;
+}
+
+.flecha{
+    margin-left: 92px;
+    border: 2px solid black;
+    border-radius:260%;
+    width: 102px;
+    height: 80px;
+    padding-top: 15px;
+    padding-left: 28px;
+    background-color: red;
+}
+
+
+
