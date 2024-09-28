@@ -1,3 +1,35 @@
 {
-    "git.ignoreLimitWarning": true
+    "git.ignoreLimitWarning": true,
+    "cSpell.words": [
+        "caso",
+        "Comenzar",
+        "Conectar",
+        "Confirmar",
+        "consulta",
+        "consultas",
+        "correcto",
+        "datos",
+        "Ejecutar",
+        "están",
+        "evitar",
+        "exitoso",
+        "fecha",
+        "formato",
+        "formulario",
+        "Generar",
+        "hacer",
+        "insertando",
+        "inyección",
+        "logindate",
+        "Obtener",
+        "preparadas",
+        "Preparar",
+        "primera",
+        "Registro",
+        "segunda",
+        "todos",
+        "transacción",
+        "Usar",
+        "valores"
+    ]
 }

@@ -1,5 +1,9 @@
+<?php 
+    include("./app/controllers/registrar.php");
+    include("./app/config/connection.php")
+?>
 <!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -113,7 +117,7 @@
    <!--formulario - crear cuenta-->
    <div class="crearCuenta" style="margin-top: 42px;">
 
-    <form action="">
+    <form action="./app/controllers/registrar.php" method="POST">
 
         <div class="titulo-cuenta">
             <h2>Crear cuenta</h2>
@@ -124,28 +128,28 @@
 
             <div class="primera-parte" >
                 <h3>Nombre</h3>
-                <input type="text">
+                <input type="text" name="name" placeholder="Registra tu nombre">
                 <h3>Apellido</h3>
-                <input type="text">
+                <input type="text" name="lastName" placeholder="Registra tu apellido">
             </div>
             <div class="segunda-parte">
                 <h3>Correo electrónico</h3>
-                <input type="text">
+                <input type="email" name="email" placeholder="Registra tu correo electronico">
                 <h3>Contraseña</h3>
-                <input type="password" id="pass">
+                <input type="password" name="password" placeholder="Registra una contraseña" id="pass">
                 <i class="fa-solid fa-eye pass" id="ojo"></i>   
             </div>
 
         </div>
         <div class="terminos">
             <input type="checkbox" id="checkbox" required>
-            <label for="checkbox" data-bs-toggle="modal" data-bs-target="#terminos"><p> &nbsp&nbsp &nbsp&nbsp Acepto todo los terminos y condiciones y autorizo el tratamiento de mis datos personales</p></label>
+            <label for="checkbox" data-bs-toggle="modal" data-bs-target="#terminos"><p> &nbsp&nbsp &nbsp&nbsp Aceptar terminos y condiciones</p></label>
         </div>
 
    <!--boton-->
    <div class="boton-envio" style="margin-left: 130px; margin-top: -40px;">
     <div class="boton" id="boton-envio">
-      <a href="/codigo_cuenta.html" class="text-boton"><input type="submit" style="font-size: 27px;" value="Siguiente" ></a>   <!--boton, pero es un input--> 
+    <input type="submit" style="font-size: 27px;" class="text-boton" value="Siguiente" name="register" >  <!--boton, pero es un input--> 
     </div>
    </div>
    </div>
@@ -166,6 +170,5 @@
     <script src="./js/index.js"></script>
     <script src="./bootstrap/js/bootstrap.js"></script>
     <script src="./js/clickleo.js"></script>
-    
-</body>
+
 </html>
