@@ -134,7 +134,7 @@ body{
 }
 
 .formulario{
-    width: 700px;
+    width: 45%;
     height: 350px;
     border: 4px solid black;
     background-color:#FBB347;
@@ -154,7 +154,7 @@ body{
 }
 
 #boton-envio{
-    margin-left: 75px;
+    margin-left: 14%;
     margin-top: -35px;
 }
 
@@ -473,8 +473,8 @@ body{
 
 .modos-juego{
     display: flex;
-    margin-left: 25px;
-    margin-top: 380px;
+    margin-left: 100px;
+    margin-top: 460px;
 }
 
 .salir{
@@ -678,4 +678,32 @@ display: flex;
         padding: 0%;
         font-size: 600%;
     }
+}
+@media (max-width:569px){
+    .boton{
+        left: 200px;
+        padding: 30%;
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+    .titulo h1{
+        font-size:450%;
+     }
+}
+
+@media (max-width:448px) {
+    .boton{
+        padding: 60%;
+        margin-left: 0%;
+        margin-right: 0%;
+        left: 10px;
+        position: relative;
+
+    }
+    #izquierda-boton{
+        position: relative;
+        left: 40px;
+    }
+
+
 }
