@@ -21,5 +21,52 @@
     background-color: red;
 }
 
+.avatar{
+    position: absolute;
+    top: 50%;
+    left: 60%;
+    transform: translate(-50%, -50%);
+}
+
+.boseto {
+    width: 290px;
+    height: 280px;
+    border: 8px solid black;
+    padding-top: 5px;
+    padding-left: 23px;
+    padding-right: 25px;
+    background-color: #A32121;
+    border-radius: 60%;
+    position:relative;
+    margin-left: 222px;
+}
+.boseto img{
+    width: 230px;
+    height: 250px;
+    background-color: white;
+    border-radius: 60%;
+    padding-left: 10px;
+    padding-top: 12px;
+    border: 5px solid black;
+}
 
 
+.nombre-opcion{
+    margin-top: -45px;
+    margin-left: -140px;
+    display: flex;
+    width: 1000px;
+    height: 100px;
+    border: 4px solid black;
+    padding-top: 2px;
+    gap: 145px;
+    background-color: #906767;
+}
+
+.nombre-opcion a{
+    font-size: 40px;
+    padding-left: 12px;
+    text-decoration: none;
+    background-color: #906767;
+
+}
