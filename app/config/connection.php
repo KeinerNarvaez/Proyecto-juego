@@ -1,26 +1,27 @@
 <?php
 class connection {
-    public $host = 'localhost';
-    public $dbname = 'bd_MWM';
-    public $port = "5432";
-    public $user = 'MWM_admin';
-    public $password = 'david2312@';
-    public $driver = 'pgsql';
-    public $connect;
+    private $host = "localhost";
+    private $dbname = "mwm_db";
+    private $user = "root";
+    private $password = "";
+    private $charset = "utf8";
 
-    public static function getConnection() {
-        try {
-            $connection = new connection();
-            $connection->connect = new PDO("{$connection->driver}:host={$connection->host};port={$connection->port};dbname={$connection->dbname}", $connection->user, $connection->password);
-            $connection->connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    function connect(){
+        try{
+            $connection = "mysql:host" . $this->host . "; dbname=" . $this->dbname . "; charset=" . $this->charset;
+            $options =[
+                PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+                PDO::ATTR_EMULATE_PREPARES   => false
+            ];
 
-            return $connection->connect;
-        } catch (PDOException $e) {
-            echo "error: " . $e->getMessage();
+            $pdo = new PDO($connection, $this->user, $this->password, $options);
+            return $pdo;
+
+
+        }catch(Exception $e){
+            echo "error conexion: ". $e->getMessage();
+            exit;
+            }
         }
     }
-}
-
-// Establecer la conexión
-connection::getConnection();
-?>
+    

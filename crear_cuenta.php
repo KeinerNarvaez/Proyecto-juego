@@ -1,6 +1,40 @@
 <?php 
-    include("./app/controllers/registrar.php");
-    include("./app/config/connection.php")
+    require './app/config/connection.php';
+    require './app/controllers/usuarioFunciones.php';
+
+    $db = new connection();
+    $con = $db->connect();
+
+    $errors=[];
+
+    if(isset($_POST["submit"])){
+      // Validar los datos del formulario
+    if (!empty($_POST)){
+
+      $name = trim($_POST['name']);
+      $lastName = trim($_POST['lastName']);
+      $email = trim($_POST['email']);
+      $password = trim($_POST['password']);
+
+      $id =  registerUser([$name,$lastName], $connect);
+      if($id > 0){
+      $idReg = registerLogin([$email,$password,$id], $connect);
+      }if($idReg > 0){
+        $activationCode=generateCode();
+        registerCode([$activationCode], $connect);
+    }else{
+      $errors[] =  " Error al registrarte ";
+    }
+
+    if(count($errors) == 0){
+      echo "Se ha registrado exitosamente.";
+    }else{
+      print_r($errors);
+    }
+
+  } 
+}
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -128,15 +162,15 @@
 
             <div class="primera-parte" >
                 <h3>Nombre</h3>
-                <input type="text" name="name" placeholder="Registra tu nombre">
+                <input type="text" name="name" placeholder="Registra tu nombre" required>
                 <h3>Apellido</h3>
-                <input type="text" name="lastName" placeholder="Registra tu apellido">
+                <input type="text" name="lastName" placeholder="Registra tu apellido" required>
             </div>
             <div class="segunda-parte">
                 <h3>Correo electrónico</h3>
-                <input type="email" name="email" placeholder="Registra tu correo electronico">
+                <input type="email" name="email" placeholder="Registra tu correo electronico" required>
                 <h3>Contraseña</h3>
-                <input type="password" name="password" placeholder="Registra una contraseña" id="pass">
+                <input type="password" name="password" placeholder="Registra una contraseña" id="pass" required>
                 <i class="fa-solid fa-eye pass" id="ojo"></i>   
             </div>
 
@@ -148,11 +182,11 @@
 
    <!--boton-->
    <div class="boton-envio" style="margin-left: 130px; margin-top: -40px;">
-    <div class="boton" id="boton-envio">
+    <div class=""id="boton-envio">
     <input type="submit" style="font-size: 27px;" class="text-boton" value="Siguiente" name="register" >  <!--boton, pero es un input--> 
     </div>
-   </div>
-   </div>
+    </div>
+    </div>
     </form>
 
 
@@ -163,7 +197,7 @@
   <!--audio-->
   <audio id="clickSound">
     <source src="/audio/clickleo.mp3" type="audio/mp3">
- </audio>
+  </audio>
 <!--/audio-->
 
     <script src="./js/contraseña.js"></script>
