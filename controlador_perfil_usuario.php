@@ -1,27 +1,40 @@
 <?php 
-    include('./conexion.php');
+require './app/config/connection.php';
 
-    if (!empty($_POST["button-validar"])){
+$db = new connection();
+$con = $db->connect();
 
-        if (empty($_POST["email"]) and empty($_POST["password"])){
-            echo '<script type="text/javascript">
-            alert("INPUT VACIOS");
-            window.location.assign("./login.html")
-            </script>';
-        } else {
-            $email = $_POST['email'];
-            $password = $_POST['password'];
+if (!empty($_POST["button-validar"])) {
 
-            $sql=$con->query("SELECT * FROm login  WHERE email='$email' AND password='$password' ");
+    if (empty($_POST["email"]) || empty($_POST["password"])) {
+        echo '<script type="text/javascript">
+        alert("INPUT VACIOS");
+        window.location.assign("./login.html");
+        </script>';
+    } else {
+        $email = $_POST['email'];
+        $password = $_POST['password'];
 
-            if ($datos=$sql->fetch_object()) {
+        // Usar consultas preparadas para evitar inyecciones SQL
+        $sql = $con->prepare("SELECT * FROM login WHERE email = :email");
+        $sql->execute([':email' => $email]);
+
+        if ($datos = $sql->fetchObject()) {
+            // Verificar la contraseña
+            if (password_verify($password, $datos->password)) {
                 echo "<script> location.href=\"./verificacion_2pasos.html\" </script>";
             } else {
                 echo '<script type="text/javascript">
                 window.location.assign("./login.html");
-                alert("Email o contraseña no son validas");
+                alert("Email o contraseña no son válidas");
                 </script>';
             }
+        } else {
+            echo '<script type="text/javascript">
+            window.location.assign("./login.html");
+            alert("Email o contraseña no son válidas");
+            </script>';
         }
-    } 
-    ?>
+    }
+}
+?>

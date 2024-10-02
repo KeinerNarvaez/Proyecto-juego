@@ -6,30 +6,47 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $password = $_POST['password'];
     $email = $_POST['email'];
 
-    include('./conexion.php');
+    require './app/config/connection.php';
+    require './app/controllers/usuarioFunciones.php';
 
+    $db = new connection();
+    $con = $db->connect();
 
-    $sql = "INSERT INTO user (lastName, name) VALUES ('$lastName', '$name')";
-    $resultado = mysqli_query($con, $sql);
+ 
+    $sql = "INSERT INTO user (lastName, name) VALUES (:lastName, :name)";
+    $stmt = $con->prepare($sql);
+    $stmt->execute([':lastName' => $lastName, ':name' => $name]);
 
-    if ($resultado) {
-        $userID = mysqli_insert_id($con);
+    if ($stmt) {
+        $userID = $con->lastInsertId();
         $alert = "<div class='alert alert-success content' role='alert'>
             Registro de usuario agregado exitosamente
             </div>";
-        $sql = "INSERT INTO login (userID, password, email) VALUES ('$userID', '$password', '$email')";
-        $resultado = mysqli_query($con, $sql);
 
-        if ($resultado) {
-          echo "<script> location.href=\"./codigo_cuenta.html\" </script>";
+        $sql = "INSERT INTO login (userID, password, email) VALUES (:userID, :password, :email)";
+        $stmt = $con->prepare($sql);
+        $stmt->execute([':userID' => $userID, ':password' => password_hash($password, PASSWORD_DEFAULT), ':email' => $email]);
+
+        if ($stmt) {
+            echo "<script> location.href=\"./codigo_cuenta.html\" </script>";
         } else {
             $alert .= "<div class='alert alert-danger content' role='alert'>
                 Registro de login no ingresado
                 </div>";
         }
-      }
+    }
 }
+$dataOperaciones[] = [
+  $lastName = $_POST['lastName'],
+  $name = $_POST['name'],
+  $password = $_POST['password'],
+  $email = $_POST['email'],
+];
+
+header('Content-Type: application/json');
+echo json_encode($dataOperaciones);
 ?>
+
 
 
 <!DOCTYPE html>
@@ -165,7 +182,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <h3>Correo electrónico</h3>
                 <input type="email" name="email" id="email" placeholder="Registra tu correo electronico" required>
                 <h3>Contraseña</h3>
-                <input type="password" name="password"  placeholder="Registra una contraseña" id="password" required>
+                <input type="password" minlength="6" name="password"  placeholder="Registra una contraseña" id="password" required>
                 <i class="fa-solid fa-eye pass" id="ojo"></i>   
             </div>
 
