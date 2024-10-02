@@ -1,4 +1,4 @@
-let pass = document.getElementById("pass");
+let pass = document.getElementById("password");
 let icono = document.getElementById("ojo");
 
 icono.addEventListener("click", () => {

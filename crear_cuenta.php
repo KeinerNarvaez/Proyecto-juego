@@ -1,41 +1,39 @@
-<?php 
-    require './app/config/connection.php';
-    require './app/controllers/usuarioFunciones.php';
+<?php
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $alert = '';
+    $lastName = $_POST['lastName'];
+    $name = $_POST['name'];
+    $password = $_POST['password'];
+    $email = $_POST['email'];
 
-    $db = new connection();
-    $con = $db->connect();
+    include('./conexion.php');
 
-    $errors=[];
 
-    if(isset($_POST["submit"])){
-      // Validar los datos del formulario
-    if (!empty($_POST)){
+    $sql = "INSERT INTO user (lastName, name) VALUES ('$lastName', '$name')";
+    $resultado = mysqli_query($con, $sql);
 
-      $name = trim($_POST['name']);
-      $lastName = trim($_POST['lastName']);
-      $email = trim($_POST['email']);
-      $password = trim($_POST['password']);
+    if ($resultado) {
+        $userID = mysqli_insert_id($con);
+        $alert = "<div class='alert alert-success content' role='alert'>
+            Registro de usuario agregado exitosamente
+            </div>";
+        $sql = "INSERT INTO login (userID, password, email) VALUES ('$userID', '$password', '$email')";
+        $resultado = mysqli_query($con, $sql);
 
-      $id =  registerUser([$name,$lastName], $connect);
-      if($id > 0){
-      $idReg = registerLogin([$email,$password,$id], $connect);
-      }if($idReg > 0){
-        $activationCode=generateCode();
-        registerCode([$activationCode], $connect);
-    }else{
-      $errors[] =  " Error al registrarte ";
-    }
-
-    if(count($errors) == 0){
-      echo "Se ha registrado exitosamente.";
-    }else{
-      print_r($errors);
-    }
-
-  } 
+        if ($resultado) {
+            $alert .= "<div class='alert alert-success content' role='alert'>
+                Registro de login agregado exitosamente
+                </div>";
+        } else {
+            $alert .= "<div class='alert alert-danger content' role='alert'>
+                Registro de login no ingresado
+                </div>";
+        }
+      }
 }
-
 ?>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -51,7 +49,7 @@
     <link rel="shortcut icon" href="./Assest/ImagenBruja.png" type="image/x-icon">
         <!--enlace para fuente de google-->
     <link href="https://fonts.googleapis.com/css2?family=Koh+Santepheap:wght@100;300;400;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/fontawesome-free-6.6.0-web/css/all.css">
+    <link rel="stylesheet" href="./fontawesome-free-6.6.0-web/css/all.css">
     <style>
       .pass{
         transform: translateX(0px);
@@ -143,7 +141,7 @@
      <!--flecha-->
      <div class="parte-izquierda" style="margin-top: -250px;">
       <div class="salir">
-          <a class="text-boton" href="/login.html"><i class="fa-solid fa-arrow-left" style="font-size: 45px; color: white;"></i></a> <br>
+          <a class="text-boton" href="./login.html"><i class="fa-solid fa-arrow-left" style="font-size: 45px; color: white;"></i></a> <br>
       </div>
    </div>
      <!--/flecha-->
@@ -151,8 +149,7 @@
    <!--formulario - crear cuenta-->
    <div class="crearCuenta" style="margin-top: 42px;">
 
-    <form action="./app/controllers/registrar.php" method="POST">
-
+    <form action=""  method="post" enctype="multipart/form-data">
         <div class="titulo-cuenta">
             <h2>Crear cuenta</h2>
             <hr>
@@ -162,28 +159,30 @@
 
             <div class="primera-parte" >
                 <h3>Nombre</h3>
-                <input type="text" name="name" placeholder="Registra tu nombre" required>
+                <input type="text" id="name" name="name" placeholder="Registra tu nombre" required>
                 <h3>Apellido</h3>
-                <input type="text" name="lastName" placeholder="Registra tu apellido" required>
+                <input type="text" id="lastName" name="lastName" placeholder="Registra tu apellido" required>
             </div>
             <div class="segunda-parte">
                 <h3>Correo electrónico</h3>
-                <input type="email" name="email" placeholder="Registra tu correo electronico" required>
+                <input type="email" name="email" id="email" placeholder="Registra tu correo electronico" required>
                 <h3>Contraseña</h3>
-                <input type="password" name="password" placeholder="Registra una contraseña" id="pass" required>
+                <input type="password" name="password"  placeholder="Registra una contraseña" id="password" required>
                 <i class="fa-solid fa-eye pass" id="ojo"></i>   
             </div>
 
         </div>
         <div class="terminos">
+          <input type="hidden" name="userID" class="form-control" id="userID">
             <input type="checkbox" id="checkbox" required>
             <label for="checkbox" data-bs-toggle="modal" data-bs-target="#terminos"><p> &nbsp&nbsp &nbsp&nbsp Aceptar terminos y condiciones</p></label>
         </div>
 
+
    <!--boton-->
    <div class="boton-envio" style="margin-left: 130px; margin-top: -40px;">
-    <div class=""id="boton-envio">
-    <input type="submit" style="font-size: 27px;" class="text-boton" value="Siguiente" name="register" >  <!--boton, pero es un input--> 
+    <div class="boton" id="boton-envio">
+    <input type="submit" style="font-size: 27px;" class="text-boton" value="Siguiente" name="submit">  <!--boton, pero es un input--> 
     </div>
     </div>
     </div>
@@ -196,7 +195,7 @@
 
   <!--audio-->
   <audio id="clickSound">
-    <source src="/audio/clickleo.mp3" type="audio/mp3">
+    <source src="./audio/clickleo.mp3" type="audio/mp3">
   </audio>
 <!--/audio-->
 
@@ -204,5 +203,4 @@
     <script src="./js/index.js"></script>
     <script src="./bootstrap/js/bootstrap.js"></script>
     <script src="./js/clickleo.js"></script>
-
 </html>
