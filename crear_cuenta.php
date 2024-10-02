@@ -108,8 +108,6 @@ echo json_encode($dataOperaciones);
         font-size: large;
         font-family: FontAwesome;
       }
-
-
       
     </style>
 </head>
@@ -197,7 +195,7 @@ echo json_encode($dataOperaciones);
    <!--boton-->
    <div class="boton-envio" style="margin-left: 130px; margin-top: -40px;">
     <div class="boton" id="boton-envio">
-    <input type="submit" style="font-size: 27px;" class="text-boton" value="Siguiente" name="submit">  <!--boton, pero es un input--> 
+    <input type="submit" style="font-size: 27px;" class="text-boton" value="Siguiente" name="submit" id="boton-envio">  <!--boton, pero es un input--> 
     </div>
     </div>
     </div>
@@ -218,4 +216,6 @@ echo json_encode($dataOperaciones);
     <script src="./js/index.js"></script>
     <script src="./bootstrap/js/bootstrap.js"></script>
     <script src="./js/clickleo.js"></script>
+    <script src="./js/crear_cuenta.js"></script>
+    
 </html>
