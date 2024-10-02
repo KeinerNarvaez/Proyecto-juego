@@ -1,37 +1,3 @@
-<?php
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $alert = '';
-    $lastName = $_POST['lastName'];
-    $name = $_POST['name'];
-    $password = $_POST['password'];
-    $email = $_POST['email'];
-
-    include('./conexion.php');
-
-
-    $sql = "INSERT INTO user (lastName, name) VALUES ('$lastName', '$name')";
-    $resultado = mysqli_query($con, $sql);
-
-    if ($resultado) {
-        $userID = mysqli_insert_id($con);
-        $alert = "<div class='alert alert-success content' role='alert'>
-            Registro de usuario agregado exitosamente
-            </div>";
-        $sql = "INSERT INTO login (userID, password, email) VALUES ('$userID', '$password', '$email')";
-        $resultado = mysqli_query($con, $sql);
-
-        if ($resultado) {
-          echo "<script> location.href=\"./codigo_cuenta.html\" </script>";
-        } else {
-            $alert .= "<div class='alert alert-danger content' role='alert'>
-                Registro de login no ingresado
-                </div>";
-        }
-      }
-}
-?>
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -91,8 +57,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         font-size: large;
         font-family: FontAwesome;
       }
-
-
       
     </style>
 </head>
@@ -180,7 +144,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
    <!--boton-->
    <div class="boton-envio" style="margin-left: 130px; margin-top: -40px;">
     <div class="boton" id="boton-envio">
-    <input type="submit" style="font-size: 27px;" class="text-boton" value="Siguiente" name="submit">  <!--boton, pero es un input--> 
+    <input type="submit" style="font-size: 27px;" class="text-boton" value="Siguiente" name="submit" id="boton-envio">  <!--boton, pero es un input--> 
     </div>
     </div>
     </div>
@@ -201,4 +165,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <script src="./js/index.js"></script>
     <script src="./bootstrap/js/bootstrap.js"></script>
     <script src="./js/clickleo.js"></script>
+    <script src="./js/crear_cuenta.js"></script>
+    
 </html>
