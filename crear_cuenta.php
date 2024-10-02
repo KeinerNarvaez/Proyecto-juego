@@ -21,9 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $resultado = mysqli_query($con, $sql);
 
         if ($resultado) {
-            $alert .= "<div class='alert alert-success content' role='alert'>
-                Registro de login agregado exitosamente
-                </div>";
+          echo "<script> location.href=\"./codigo_cuenta.html\" </script>";
         } else {
             $alert .= "<div class='alert alert-danger content' role='alert'>
                 Registro de login no ingresado
