@@ -2,6 +2,6 @@
 $user='root';
 $pass='';
 $server='localhost';
-$bd='mwmbd';
+$bd='mwm_bd';
 $con=mysqli_connect($server,$user,$pass,$bd);
 ?>
