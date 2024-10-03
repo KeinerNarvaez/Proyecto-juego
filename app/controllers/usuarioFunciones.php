@@ -1,5 +1,4 @@
 <?php
-
         function generateCode(){
             return md5(uniqid(mt_rand(), false));
         }
