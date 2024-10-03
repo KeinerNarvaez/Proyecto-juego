@@ -9,6 +9,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     require './app/config/connection.php';
     require './app/controllers/usuarioFunciones.php';
 
+    $dataOperaciones = [
+      'lastName' => $_POST['lastName'],
+      'name' => $_POST['name'],
+      'password' => $_POST['password'],
+      'email' => $_POST['email'],
+    ];
+    
+    header('Content-Type: application/json');
+    echo json_encode($dataOperaciones);
+    
+
     $db = new connection();
     $con = $db->connect();
 
@@ -37,15 +48,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 
-$dataOperaciones = [
-  'lastName' => $_POST['lastName'],
-  'name' => $_POST['name'],
-  'password' => $_POST['password'],
-  'email' => $_POST['email'],
-];
-
-header('Content-Type: application/json');
-echo json_encode($dataOperaciones);
 
 ?>
 

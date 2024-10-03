@@ -41,7 +41,6 @@
                 <div class="tituloHallar"><h1 class="text-bold">Color objetivo:</h1></div>
                 <hr>
                 <div class="colorHallar">
-
                 </div>
             </div>
         </div>
@@ -50,7 +49,11 @@
    <div class="contenedorAbajo">
      <div class="contenedorItem">
         <div class="row" id="botellas">
-            <div class="item col-2" id="botellaAmarilla" draggable="true"><img src="../Assest/pocionAmarilla.png" alt=""></div>
+            <div class="item col-2" ></div>
+            <div class="item col-2" ></div>
+            <div class="item col-2" ></div>
+            <div class="item col-2" ></div>
+            <div class="item col-2" ></div>
         </div>
         
      </div>
@@ -62,7 +65,7 @@
         </div>
      </div>  
    </div>
-   <script>
+   <!-- <script>
     var colorMezcla =document.getElementById('colorMezcla')
     var botella=document.querySelector('#botellas');
     var colorBruja=document.querySelector('#arrastreBruja');
@@ -103,10 +106,11 @@
         e.preventDefault();
         console.log('drag enter')
     });
+    
     colorBruja.addEventListener('drop', e=>{
         const id= e.dataTransfer.getData('id')
-        /*let color =  '#daa52061';
-        colorMezcla.style.background=color;*/
+        let color =  '#daa52061';
+        colorMezcla.style.background=color;
        console.log(id)
     });
 
@@ -123,8 +127,69 @@
 
 
     
-   </script>
+   </script>-->
+   <script>
+    const imagenes = [
+        'pocionAmarilla.png', 'pocionAnaranjado.png', 'pocionVerde.png',
+        'pocionRoja.png', 'pocionMorada.png'
+    ];
 
+    const colorBruja = document.getElementById('colorBruja');
+    const botellas = document.getElementById('botellas');
+    const mensaje = document.getElementById('mensaje');
+
+    let terminado = imagenes.length;
+    
+    while (imagenes.length) {
+        const index = Math.floor(Math.random() * imagenes.length);
+        const div = document.createElement('div');
+        div.className = 'item col-2';
+        div.id = imagenes[index];
+        div.draggable = true;
+        div.style.backgroundImage = `url("../Assest/${imagenes[index]}.jpg")`;
+        botellas.appendChild(div);
+        imagenes.splice(index, 1);
+    }
+
+    for (let i = 0; i < terminado; i++) {
+        const div = document.createElement('div');
+        div.className = 'placeholder';
+        div.dataset.id = i;
+        colorBruja.appendChild(div);
+    }
+
+
+    botellas.addEventListener('dragstart', e => {
+        e.dataTransfer.setData('id', e.target.id);
+    });
+
+    colorBruja.addEventListener('dragover', e => {
+        e.preventDefault();
+        e.target.classList.add('hover');
+    });
+
+    colorBruja.addEventListener('dragleave', e => {
+        e.target.classList.remove('hover');
+    });
+
+    colorBruja.addEventListener('drop', e => {
+        e.target.classList.remove('hover');
+
+        const id = e.dataTransfer.getData('id');
+        const numero = id.split('-')[1];
+
+        if (e.target.dataset.id === numero) {
+            e.target.appendChild(document.getElementById(id));
+
+            terminado--;
+
+            if (terminado === 0) {
+                document.body.classList.add('ganaste');
+            }
+        }
+    });
+
+    </script>
     
 </body>
 </html>
