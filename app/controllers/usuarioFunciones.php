@@ -1,5 +1,4 @@
 <?php
-
         function generateCode(){
             return md5(uniqid(mt_rand(), false));
         }
@@ -26,10 +25,6 @@
                 return true;
             }
             return false;
-            echo '<script type="text/javascript">
-            alert("INPUT VACIOS");
-            window.location.assign("./index.php")
-            </script>';
         }
 
 
