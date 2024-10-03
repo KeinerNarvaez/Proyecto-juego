@@ -26,10 +26,6 @@
                 return true;
             }
             return false;
-            echo '<script type="text/javascript">
-            alert("INPUT VACIOS");
-            window.location.assign("./index.php")
-            </script>';
         }
 
 
