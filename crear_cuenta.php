@@ -36,15 +36,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     }
 }
-$dataOperaciones[] = [
-  $lastName = $_POST['lastName'],
-  $name = $_POST['name'],
-  $password = $_POST['password'],
-  $email = $_POST['email'],
+
+$dataOperaciones = [
+  'lastName' => $_POST['lastName'],
+  'name' => $_POST['name'],
+  'password' => $_POST['password'],
+  'email' => $_POST['email'],
 ];
 
 header('Content-Type: application/json');
 echo json_encode($dataOperaciones);
+
 ?>
 
 
@@ -162,7 +164,7 @@ echo json_encode($dataOperaciones);
    <!--formulario - crear cuenta-->
    <div class="crearCuenta" style="margin-top: 42px;">
 
-    <form action=""  method="post" enctype="multipart/form-data">
+    <form action=""  method="post" id="crear_cuenta" enctype="multipart/form-data">
         <div class="titulo-cuenta">
             <h2>Crear cuenta</h2>
             <hr>
