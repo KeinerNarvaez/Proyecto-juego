@@ -25,7 +25,7 @@
            <a href=""><img src="../Assest/fechaRetroceso.png" alt=""></a> 
         </div>
         <div class="tiempo col-5">
-            <h1 id="">2:00</h1>
+            <h1 id="cronometro">2:00</h1>
         </div>
     </div>
     
@@ -49,11 +49,7 @@
    <div class="contenedorAbajo">
      <div class="contenedorItem">
         <div class="row" id="botellas">
-            <div class="item col-2" ></div>
-            <div class="item col-2" ></div>
-            <div class="item col-2" ></div>
-            <div class="item col-2" ></div>
-            <div class="item col-2" ></div>
+
         </div>
         
      </div>
@@ -129,67 +125,205 @@
     
    </script>-->
    <script>
-    const imagenes = [
-        'pocionAmarilla.png', 'pocionAnaranjado.png', 'pocionVerde.png',
-        'pocionRoja.png', 'pocionMorada.png'
-    ];
-
-    const colorBruja = document.getElementById('colorBruja');
-    const botellas = document.getElementById('botellas');
-    const mensaje = document.getElementById('mensaje');
-
-    let terminado = imagenes.length;
     
-    while (imagenes.length) {
-        const index = Math.floor(Math.random() * imagenes.length);
-        const div = document.createElement('div');
-        div.className = 'item col-2';
-        div.id = imagenes[index];
-        div.draggable = true;
-        div.style.backgroundImage = `url("../Assest/${imagenes[index]}.jpg")`;
-        botellas.appendChild(div);
-        imagenes.splice(index, 1);
+
+const imagenes = [
+    'pocionAmarilla', 'pocionAnaranjado', 'pocionVerde',
+    'pocionRoja', 'pocionMorada'
+];
+
+
+var colorMezcla = document.getElementById('colorMezcla');
+var botella = document.querySelector('#botellas');
+var colorBruja = document.querySelector('#arrastreBruja');
+
+
+let colorActual = { r: 255, g: 255, b: 255, a: 1 }; 
+
+
+function hexToRgba(hex, alpha = 1) {
+    const r = parseInt(hex.slice(1, 3), 16);
+    const g = parseInt(hex.slice(3, 5), 16);
+    const b = parseInt(hex.slice(5, 7), 16);
+    return { r, g, b, a: alpha };
+}
+
+
+function rgbaToCss({ r, g, b, a }) {
+    return `rgba(${r}, ${g}, ${b}, ${a})`;
+}
+
+
+function mezclarColores(color1, color2) {
+    return {
+        r: Math.floor((color1.r + color2.r) / 2),
+        g: Math.floor((color1.g + color2.g) / 2),
+        b: Math.floor((color1.b + color2.b) / 2),
+        a: (color1.a + color2.a) / 2
+    };
+}
+
+
+function sonColoresIguales(color1, color2) {
+    return (
+        color1.r === color2.r &&
+        color1.g === color2.g &&
+        color1.b === color2.b &&
+        color1.a === color2.a
+    );
+}
+
+
+const colores = {
+    'pocionAmarilla': '#ffff00',
+    'pocionAnaranjado': '#ffa500',
+    'pocionVerde': '#008000',
+    'pocionRoja': '#ff0000',
+    'pocionMorada': '#000080'
+};
+
+
+const coloresGanadores = [
+    { r: 191, g: 63, b: 95, a: 0.4 },  // Color objetivo 1
+    { r: 127, g: 63, b: 127, a: 0.4 }  // Color objetivo 2
+];
+
+
+imagenes.forEach(imagen => {
+    const div = document.createElement('div');
+    div.className = 'item col-2';
+    div.id = imagen;
+    div.draggable = true;
+    div.style.backgroundImage = `url('../Assest/${imagen}.png')`;
+    botella.appendChild(div);
+});
+
+// Añadir placeholders para la zona de mezcla
+imagenes.forEach((_, i) => {
+    const div = document.createElement('div');
+    div.className = 'placeholder';
+    div.dataset.id = i;
+    colorBruja.appendChild(div);
+});
+
+// Evento para comenzar a arrastrar una botella
+botella.addEventListener('dragstart', e => {
+    e.dataTransfer.setData('id', e.target.id);
+});
+
+// Evento para permitir soltar sobre la zona de mezcla
+colorBruja.addEventListener('dragover', e => {
+    e.preventDefault();
+});
+
+// Evento para gestionar el drop y mezclar colores
+colorBruja.addEventListener('drop', e => {
+    const id = e.dataTransfer.getData('id');
+    const nuevoColorHex = colores[id]; 
+
+    if (nuevoColorHex) {
+        // Convertir el color hexadecimal a RGBA
+        const nuevoColorRgba = hexToRgba(nuevoColorHex, 0.2); 
+
+        // Mezclar el color actual con el nuevo
+        colorActual = mezclarColores(colorActual, nuevoColorRgba);
+
+        // Aplicar el nuevo color mezclado al fondo del elemento "colorMezcla"
+        colorMezcla.style.background = rgbaToCss(colorActual); 
+        console.log(`ID arrastrado: ${id}, Color aplicado: ${rgbaToCss(colorActual)}`);
+
+        // Verificar si el color resultante es igual a alguno de los colores ganadores
+        if (coloresGanadores.some(ganador => sonColoresIguales(colorActual, ganador))) {
+            alert('¡GANASTE!');
+        }
     }
 
-    for (let i = 0; i < terminado; i++) {
-        const div = document.createElement('div');
-        div.className = 'placeholder';
-        div.dataset.id = i;
-        colorBruja.appendChild(div);
+    let tiempoRestante = 120; // 2 minutos en segundos
+
+const cronometro = document.getElementById('cronometro');
+
+const intervalo = setInterval(() => {
+    const minutos = Math.floor(tiempoRestante / 60);
+    const segundos = tiempoRestante % 60;
+
+    // Formatear el tiempo
+    cronometro.textContent = `${minutos.toString().padStart(2, '0')}:${segundos.toString().padStart(2, '0')}`;
+
+    if (tiempoRestante <= 0) {
+        clearInterval(intervalo);
+        alert("¡Se acabó el tiempo!");
+    } else {
+        tiempoRestante--;
     }
+}, 1000); // 1000 ms = 1 segundo
+});
+// Almacena la cantidad de corazones
+let corazonesRestantes = 3; // Cambia este número si deseas empezar con más corazones
 
+// Mostrar corazones en la interfaz
+function mostrarCorazones() {
+    const corazonesContainer = document.querySelector('.corazones');
+    corazonesContainer.innerHTML = ''; // Limpiar el contenedor actual
+    for (let i = 0; i < corazonesRestantes; i++) {
+        const corazonDiv = document.createElement('div');
+        corazonDiv.className = 'corazon';
+        corazonDiv.innerHTML = '<img src="../Assest/corazon.png" alt="">';
+        corazonesContainer.appendChild(corazonDiv);
+    }
+}
 
-    botellas.addEventListener('dragstart', e => {
-        e.dataTransfer.setData('id', e.target.id);
-    });
+// Llama a esta función al iniciar el juego
+mostrarCorazones();
 
-    colorBruja.addEventListener('dragover', e => {
-        e.preventDefault();
-        e.target.classList.add('hover');
-    });
+// Evento para gestionar el drop y mezclar colores
+colorBruja.addEventListener('drop', e => {
+    const id = e.dataTransfer.getData('id');
+    const nuevoColorHex = colores[id]; 
 
-    colorBruja.addEventListener('dragleave', e => {
-        e.target.classList.remove('hover');
-    });
+    // Verifica si el color seleccionado es válido
+    if (nuevoColorHex) {
+        const nuevoColorRgba = hexToRgba(nuevoColorHex, 0.2); 
+        colorActual = mezclarColores(colorActual, nuevoColorRgba);
+        colorMezcla.style.background = rgbaToCss(colorActual); 
+        console.log(`ID arrastrado: ${id}, Color aplicado: ${rgbaToCss(colorActual)}`);
 
-    colorBruja.addEventListener('drop', e => {
-        e.target.classList.remove('hover');
-
-        const id = e.dataTransfer.getData('id');
-        const numero = id.split('-')[1];
-
-        if (e.target.dataset.id === numero) {
-            e.target.appendChild(document.getElementById(id));
-
-            terminado--;
-
-            if (terminado === 0) {
-                document.body.classList.add('ganaste');
+        // Verificar si el color resultante es igual a alguno de los colores ganadores
+        if (coloresGanadores.some(ganador => sonColoresIguales(colorActual, ganador))) {
+            alert('¡GANASTE!');
+        } else {
+            // Si no se ganó, verifica si la botella es roja o morada
+            if (id !== 'pocionRoja' && id !== 'pocionMorada') {
+                if (corazonesRestantes > 0) {
+                    corazonesRestantes--;
+                    mostrarCorazones(); // Actualiza la visualización de corazones
+                }
+                // Si no hay corazones restantes
+                if (corazonesRestantes === 0) {
+                    alert("¡No tienes más corazones! Fin del juego.");
+                    clearInterval(intervalo); // Detener el cronómetro
+                }
             }
         }
+    }
+});
+
+
+
+
+
+
+    /*
+    botella.addEventListener('dragstart', e =>{
+        console.log('Drag start');
     });
+    botella.addEventListener('dragend', e =>{
+        console.log('Drag end');
+    });
+    botella.addEventListener('drag', e =>{
+        console.log('Drag');
+    });*/
 
     </script>
-    
+    <script src="../js/cronometro.js"></script>
 </body>
 </html>
