@@ -1,6 +1,4 @@
 window.addEventListener('DOMContentLoaded', ()=>{
-   
-
     //variable de boton
     const boton = document.getElementById('boton-envio');
 
@@ -33,6 +31,7 @@ window.addEventListener('DOMContentLoaded', ()=>{
         .then(result => {
             if (result.status === 'success') {
                 alert('Cuenta creada exitosamente');
+                window.location.href = 'codigo_cuenta.html';
             } else {
                 alert('Error: ' + result.message);
             }

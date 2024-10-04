@@ -1,8 +1,8 @@
 <?php
 class Usuario {
-    private $nombre;
-    private $apellido;
-    private $pdo;
+    private $nombre; //nameUser
+    private $apellido; //lastName
+    private $pdo; //conexion
 
     public function __construct($nombre, $apellido, $pdo) {
         $this->nombre = $nombre;

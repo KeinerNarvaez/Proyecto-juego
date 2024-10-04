@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $usuario = new Usuario($nombreUsuario, $apellidoUsuario, $pdo);
             $userId = $usuario->guardarUsuario(); // Guardar usuario y obtener su ID
 
-            // Crear el objeto Login
+            // Crear el objeto Login sin hashear la contraseña
             $login = new Login($emailUsuario, $contraseñaUsuario, $userId, $pdo);
             $login->guardarLogin(); // Guardar el login asociado al usuario
 
