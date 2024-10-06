@@ -4,8 +4,7 @@ include_once '../app/config/connection.php';
 include_once 'usuario.php';
 include_once 'login.php';
 include_once 'activar_cuenta.php';
-include_once 'parametros.php';
-
+include_once 'parametros.php'; 
 $errors = [];
 
 // Verificar si la solicitud es POST
@@ -25,21 +24,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $conn = new Connection();
         $pdo = $conn->connect();
 
-        // validar que no haya valores nulos en el formulario
-        if (validarNulo([$nombreUsuario, $apellidoUsuario, $emailUsuario, $contraseñaUsuario])) {
-            $errors[] = "Llenar todos los campos";
-        }
-
-        // validar que sea estrictamente email en el formulario
-        if (!validarEmail($emailUsuario)) {
-            $errors[] = "La dirección de correo no es válida";
-        }
-
-        // validar que no exista el mismo email
+        // Verificar si el formato del email es válido
+          if (!validarEmail($emailUsuario)) {
+             $errors[] = "El correo electrónico es inválido";
+          } else {
+         // Verificar si el email ya existe para evitar duplicidad
         if (emailExiste($emailUsuario, $pdo)) {
-            $errors[] = "El correo electrónico $emailUsuario ya existe";
+         $errors[] = "El correo electrónico ya está registrado";
         }
-
+      }
         try {
             // Iniciar la transacción
             $pdo->beginTransaction();
@@ -49,9 +42,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $usuario = new Usuario($nombreUsuario, $apellidoUsuario, $pdo);
                 $userId = $usuario->guardarUsuario(); // Guardar usuario y obtener su ID
 
-                // Crear el objeto Login hasheando la contraseña
-                $contraseñaHasheada = password_hash($contraseñaUsuario, PASSWORD_DEFAULT);
-                $login = new Login($emailUsuario, $contraseñaHasheada, $userId, $pdo);
+                // Crear el objeto Login sin hashear la contraseña (texto plano)
+                $login = new Login($emailUsuario, $contraseñaUsuario, $userId, $pdo);
                 $login->guardarLogin(); // Guardar el login asociado al usuario
 
                 // Crear y guardar el código de activación
@@ -62,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $pdo->commit();
 
                 // Responder con un mensaje de éxito
-                echo json_encode(['status' => 'success', 'message' => 'Cuenta creada exitosamente']);
+                echo json_encode(['status' => 'success', 'message' => 'Se envió el código de verificación a tu correo electrónico, revisa en tu bandeja de entrada']);
             } else {
                 // Si hay errores, devolverlos
                 echo json_encode(['status' => 'error', 'message' => implode(", ", $errors)]);
@@ -76,4 +68,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         echo json_encode(['status' => 'error', 'message' => 'Faltan datos']);
     }
 }
+
 ?>
