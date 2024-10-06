@@ -1,18 +1,24 @@
-let tiempoRestante = 120; // 2 minutos en segundos
-
-    const cronometro = document.getElementById('cronometro');
-
+let minutos = 1; 
+let segundos = 59; 
+const cronometro = document.getElementById('cronometro');
     const intervalo = setInterval(() => {
-        const minutos = Math.floor(tiempoRestante / 60);
-        const segundos = tiempoRestante % 60;
+    if (segundos<10) {
+        cronometro.innerHTML = minutos + ':0' + segundos;
+    }else{
+        cronometro.innerHTML = minutos + ':' + segundos;
+    }
+    if (minutos === 0 && segundos === 0) {
+        reinicioColor()
+        perdio()
+        clearInterval(intervalo); 
+        setTimeout(paginaPerdio,4400);
+    } else if (segundos === 0) {
+        minutos--;
+        segundos = 59;
+    } else {
+        segundos--;
+    }
+}, 1000);
 
-        // Formatear el tiempo
-        cronometro.textContent = `${minutos.toString().padStart(2, '0')}:${segundos.toString().padStart(2, '0')}`;
 
-        if (tiempoRestante <= 0) {
-            clearInterval(intervalo);
-            alert("¡Se acabó el tiempo!");
-        } else {
-            tiempoRestante--;
-        }
-    }, 1000 /*milisegundos por si se me olvida*/);
+
