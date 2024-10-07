@@ -2,14 +2,14 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
-require './activar_cuenta.php';
+
 
 class Mailer {
 
     public function enviarEmail($email, $asunto, $cuerpo) {
-        require './phpMailer/src/PHPMailer.php';
-        require './phpMailer/src/SMTP.php';
-        require './phpMailer/src/exception.php';
+        require '../phpMailer/src/PHPMailer.php';
+        require '../phpMailer/src/SMTP.php';
+        require '../phpMailer/src/Exception.php';
 
         $mail = new PHPMailer(true);
 
@@ -32,7 +32,7 @@ class Mailer {
             $mail->isHTML(true);
             $mail->Subject = $asunto;
             $mail->Body = $cuerpo;
-            $mail->setLanguage('es', '../phpMailer/language/phpmailer.lang-es.php');
+            $mail->setLanguage('es', '.../phpMailer/language/phpmailer.lang-es.php');
 
             // Envío del correo
             if ($mail->send()) {
@@ -42,7 +42,6 @@ class Mailer {
             }
 
         } catch (Exception $e) {
-            echo "Error al enviar el correo: {$mail->ErrorInfo}";
             return false;
         }
     }

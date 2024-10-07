@@ -46,9 +46,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $login = new Login($emailUsuario, $contraseñaUsuario, $userId, $pdo);
                 $login->guardarLogin(); // Guardar el login asociado al usuario
 
-                // Crear y guardar el código de activación
-                $activacion = new ActivarCuenta($pdo, $email);
-                $codigoActivacion = $activacion->guardarCodigo($emailUsuario); // Guardar el código de activación y pasar el correo
+                // Crear y guardar el código de activación  (esto es lo que genera el error asi que 
+                // proviene de las clases activar_cuenta.php)
+                
+                $activacion = new ActivarCuenta($pdo, $emailUsuario);
+                $codigoActivacion = $activacion->guardarCodigo();   // Guardar el código de activación y pasar el correo 
 
                 // Confirmar la transacción
                 $pdo->commit();
