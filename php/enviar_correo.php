@@ -7,15 +7,15 @@ use PHPMailer\PHPMailer\Exception;
 class Mailer {
 
     public function enviarEmail($email, $asunto, $cuerpo) {
-        require '../phpMailer/src/PHPMailer.php';
-        require '../phpMailer/src/SMTP.php';
-        require '../phpMailer/src/Exception.php';
+        require './phpMailer/PHPMailer.php';
+        require './phpMailer/SMTP.php';
+        require './phpMailer/Exception.php';
 
         $mail = new PHPMailer(true);
 
         try {
             // Configuración del servidor SMTP
-            $mail->SMTPDebug = SMTP::DEBUG_SERVER;
+            $mail->SMTPDebug = SMTP::DEBUG_OFF;
             $mail->isSMTP();
             $mail->Host       = 'smtp.gmail.com';
             $mail->SMTPAuth   = true;
@@ -29,10 +29,9 @@ class Mailer {
             $mail->addAddress($email);
 
             // Contenido del correo
-            $mail->isHTML(true);
-            $mail->Subject = $asunto;
-            $mail->Body = $cuerpo;
-            $mail->setLanguage('es', '.../phpMailer/language/phpmailer.lang-es.php');
+            $mail->Subject =$asunto;
+            $mail->Body = mb_convert_encoding($cuerpo, 'ISO-8859-1', 'UTF-8');
+            
 
             // Envío del correo
             if ($mail->send()) {
@@ -42,6 +41,7 @@ class Mailer {
             }
 
         } catch (Exception $e) {
+            echo "No fue posible enviar el correo electronico, error de envio: {$mail->ErrorInfo}";
             return false;
         }
     }

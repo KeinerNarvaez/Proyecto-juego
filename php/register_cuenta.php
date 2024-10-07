@@ -5,7 +5,9 @@ include_once 'usuario.php';
 include_once 'login.php';
 include_once 'activar_cuenta.php';
 include_once 'parametros.php'; 
+include_once 'enviar_correo.php';
 $errors = [];
+$completado =[];
 
 // Verificar si la solicitud es POST
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -24,6 +26,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $conn = new Connection();
         $pdo = $conn->connect();
 
+        $codigoActivacion = $activacion->guardarCodigo(); // Generar código
+        $asunto = "Activa tu cuenta - mythicar witch mixes.";
+        $cuerpo = "Estimado jugador: Para continuar con tu registro ingresa el siguiente código: " . $codigoActivacion;
+
+
         // Verificar si el formato del email es válido
         if (!validarEmail($emailUsuario)) {
             $errors[] = "El correo electrónico es inválido";
@@ -33,11 +40,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $errors[] = "El correo electrónico ya está registrado";
         }
         }
+
         try {
             // Iniciar la transacción
             $pdo->beginTransaction();
 
             if (count($errors) === 0) {
+
+                    if ($mailer->enviarEmail($emailUsuario, $asunto, $cuerpo)) {
+                        $completado[] = "Correo electrónico enviado a $emailUsuario";
+                    } else {
+                        $errors[] = "Error al enviar el correo";
+                    }
+                
                 // Crear el objeto Usuario
                 $usuario = new Usuario($nombreUsuario, $apellidoUsuario, $pdo);
                 $userId = $usuario->guardarUsuario(); // Guardar usuario y obtener su ID
@@ -49,14 +64,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 // Crear y guardar el código de activación  (esto es lo que genera el error asi que 
                 // proviene de las clases activar_cuenta.php)
                 
-                $activacion = new ActivarCuenta($pdo, $emailUsuario);
+                $activacion = new ActivarCuenta($pdo);
                 $codigoActivacion = $activacion->guardarCodigo();   // Guardar el código de activación y pasar el correo 
+
 
                 // Confirmar la transacción
                 $pdo->commit();
 
                 // Responder con un mensaje de éxito
-                echo json_encode(['status' => 'success', 'message' => 'Se envió el código de verificación a tu correo electrónico, revisa en tu bandeja de entrada']);
+                echo json_encode(['status' => 'success', 'message' => implode(", ", $completado)]);
             } else {
                 // Si hay errores, devolverlos
                 echo json_encode(['status' => 'error', 'message' => implode(", ", $errors)]);
@@ -70,5 +86,3 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         echo json_encode(['status' => 'error', 'message' => 'Faltan datos']);
     }
 }
-
-?>
