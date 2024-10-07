@@ -25,14 +25,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $pdo = $conn->connect();
 
         // Verificar si el formato del email es válido
-          if (!validarEmail($emailUsuario)) {
-             $errors[] = "El correo electrónico es inválido";
-          } else {
+        if (!validarEmail($emailUsuario)) {
+            $errors[] = "El correo electrónico es inválido";
+        } else {
          // Verificar si el email ya existe para evitar duplicidad
         if (emailExiste($emailUsuario, $pdo)) {
-         $errors[] = "El correo electrónico ya está registrado";
+            $errors[] = "El correo electrónico ya está registrado";
         }
-      }
+        }
         try {
             // Iniciar la transacción
             $pdo->beginTransaction();
@@ -47,8 +47,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $login->guardarLogin(); // Guardar el login asociado al usuario
 
                 // Crear y guardar el código de activación
-                $activacion = new ActivarCuenta($pdo);
-                $codigoActivacion = $activacion->guardarCodigo(); // Guardar el código de activación
+                $activacion = new ActivarCuenta($pdo, $email);
+                $codigoActivacion = $activacion->guardarCodigo($emailUsuario); // Guardar el código de activación y pasar el correo
 
                 // Confirmar la transacción
                 $pdo->commit();
