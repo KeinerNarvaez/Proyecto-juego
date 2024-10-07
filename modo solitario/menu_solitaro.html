@@ -19,12 +19,19 @@
 </head>
 <body>
 
-  
+  <style>
+    html, body {
+    overflow: hidden; /* Elimina el scroll de la página */
+    height: 100%; /* Asegura que el body ocupe el 100% de la altura */
+    margin: 0;
+    padding: 0;
+    }
+  </style>
 
     <br><br><br><br><br>
 
     <!--modos de juego-->
-    <div class="container text-center" style=" margin-top: -150px;">
+    <div class="container text-center" style="margin-top: -150px; margin-left: 45px;">
         <div class="row">
           <div class="col">
             <div class="boton-envio" style="width: 200%;">
@@ -36,7 +43,7 @@
           <div class="col">
             <div class="boton-envio" style="width: 200%;">
                 <div class="boton" id="boton-envio">
-                   <a href="../modo solitario/historial_partidas.html" class="text-boton"><input type="button" style="font-size: 35px;" value="Historial" ></a>   
+                   <a  href="../modo solitario/historial_partidas.html" class="text-boton"><input type="button" style="font-size: 35px;" value="Historial" ></a>   
                 </div>
            </div>
           </div>
@@ -68,11 +75,13 @@
                     <h3>Hechizos</h3>
                     <i class="fa-solid fa-circle-check" style="margin-top: 20px; margin-left: 12px; font-size: 40px;"></i>
                   </div>
-                  <div class="modo-pocion">
-                    <h3>Pociones</h3>
-                    <i class="fa-solid fa-circle-check" style="margin-top: 20px; margin-left: 12px;font-size: 40px;"></i>
-                  </div>
+                    <div class="modo-pocion">
+                      <!--no funciona la etiqueta a-->
+                      <a href="/nivelesPociones/mapapociones.html" ><h3>Pociones</h3></a>
+                        <i class="fa-solid fa-circle-check" style="margin-top: 20px; margin-left: 12px;font-size: 40px;"></i>
+                      </div>
                 </div>
+
             </div>
           </div>
        </div>
@@ -89,7 +98,7 @@
 
       <!--audio-->
       <audio id="clickSound">
-        <source src="./audio/clickleo.mp3" type="audio/mp3">
+        <source src="../audio/clickleo.mp3" type="audio/mp3">
      </audio>
      <!--/audio-->
 
