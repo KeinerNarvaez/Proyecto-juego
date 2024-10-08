@@ -21,6 +21,17 @@
     </style>
 </head>
 <body>
+  <div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="puntajes" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header" style="background-color: rgb(214, 51, 51);">
+            <strong class="me-auto"><i class="fa-solid fa-triangle-exclamation"></i> Puntuación</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body" style="background-color: rgba(255, 5, 5, 0.502);">
+            <span id="valorPuntaje">Tus puntos: 0</span>
+        </div>
+    </div>
+</div>
     <div class="toast-container position-fixed bottom-0 end-0 p-3">
         <div id="errorOrden" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
           <div class="toast-header" style="background-color: rgb(214, 51, 51);">
@@ -43,7 +54,7 @@
                 <div class="modal-body ">
                   <div class="modal-inicio">
                       <div>
-                        <label for="" class="text-bt fs-1" style="font-family:kavoon;">Puntos: 3,50</label>
+                        <label for="" id="puntaje-ganado" class="text-bt fs-1" style="font-family:kavoon;">Puntos: 3,50</label>
                       </div>
                   </div>
                 </div>
@@ -55,7 +66,7 @@
         </a>
       </div>
       <!--/Modal-->
-    <div class="btn-wsp" onclick="reinicioColor()">
+    <div class="btn-wsp" id="reiniciarMezcla">
 	    <i class="fa-solid fa-rotate-left"></i>
 	</div>
     <div class="row col-12 cabeza">
