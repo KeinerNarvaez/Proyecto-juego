@@ -48,15 +48,16 @@ window.addEventListener('DOMContentLoaded', () => {
 
                 if (result.status === 'success') {
 
-                    /* Mostrar modal de éxito
+                    /*modal de inicio de sesion exitoso
                     mensajeModalBody.innerHTML = `
                         <div class="alert alert-success" style="font-size: 70px;">
-                            Inicio de sesión exitoso
+                         ${result.message}
                             <br>
                             <i class="fa-solid fa-check-circle" style="display: flex; justify-content: center; font-size: 120px; color: green;"></i>
                         </div>
-                    `;
-                    mensajeModal.show(); */
+                    `; 
+                    mensajeModal.show(); 
+                    */
 
                     // Redirigir después de unos segundos
                     setTimeout(() => {
