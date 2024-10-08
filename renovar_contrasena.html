@@ -44,19 +44,19 @@
     
             <div class="nueva-contraseña">
                 <h6>Nueva contraseña</h6>
-                <input type="text">
+                <input type="text" id="contrasena-nueva">
             </div>
             
             <div class="confirmar-contraseña">
                 <h6>Confirmar contraseña</h6>
-                <input type="text">
+                <input type="text" id="contrasena-verificada">
     
             </div>
     
             <!--boton-->
             <div class="boton-envio" style="margin-left: 130px; margin-top: 9px;">
                 <div class="boton" id="boton-envio">
-                  <a href="./index.html" class="text-boton"><input type="submit" style="font-size: 25px;" value="Continuar" ></a>   <!--boton, pero es un input--> 
+                  <input type="submit" style="font-size: 25px;" value="Continuar" id="boton-renovar">   <!--boton, pero es un input--> 
                 </div>
             </div>
 
@@ -70,11 +70,12 @@
 
      <!--audio-->
      <audio id="clickSound">
-        <source src="/audio/clickleo.mp3" type="audio/mp3">
+        <source src="./audio/clickleo.mp3" type="audio/mp3">
      </audio>
     <!--/audio-->
 
 <script src="./js/index.js"></script>
+<script src="./js/renovar_contrasena.js"></script>
 <script src="./bootstrap/js/bootstrap.js"></script>
 <script src="./js/clickleo.js"></script>
 <script src="/fontawesome-free-6.6.0-web/js/all.js"></script>

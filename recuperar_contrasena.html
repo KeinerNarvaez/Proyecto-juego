@@ -25,6 +25,8 @@
        </div>
     <!--/titulo del juego-->
 
+    
+
       <!--flecha-->
    <div class="parte-izquierda" style="margin-top: -250px;">
     <div class="salir">
@@ -47,7 +49,7 @@
 
     <div class="correo_electronico">
         <h6>Ingrese tu correo electrónico:</h6>
-        <input type="text">
+        <input type="text" id="email-usuario">
     </div>
 
     <h6>Haz click en el boton de "Continuar" y revisa tu bandeja (incluso spam), si no llega en unos
@@ -57,7 +59,7 @@
     <!--boton-->
     <div class="boton-envio" style="margin-left: 130px; margin-top: 30px;">
         <div class="boton" id="boton-envio">
-          <a href="./codigo_contrasena.html" class="text-boton"><input type="submit" style="font-size: 25px;" value="Continuar" ></a>   <!--boton, pero es un input--> 
+          <input class="text-boton" type="submit" style="font-size: 25px;" value="Continuar" id="boton-contrasena">   <!--boton, pero es un input--> 
         </div>
     </div>
     
@@ -72,6 +74,7 @@
       <!--/audio-->
 
 <script src="./js/index.js"></script>
+<script src="./js/recuperar_contrasena.js"></script>
 <script src="./bootstrap/js/bootstrap.js"></script>
 <script src="./js/clickleo.js"></script>
 <script src="/fontawesome-free-6.6.0-web/js/all.js"></script>

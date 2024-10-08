@@ -48,13 +48,13 @@
 
         <div class="inputs-verificacion">
             <h6>Ingrese tu código</h6>
-            <input type="text" maxlength="1"  class="code-input">
-            <input type="text" maxlength="1" class="code-input">
-            <input type="text" maxlength="1"  class="code-input">
+            <input type="text" maxlength="1"  class="code-input" id="input1">
+            <input type="text" maxlength="1" class="code-input"  id="input2">
+            <input type="text" maxlength="1"  class="code-input" id="input3">
             <p style="margin-left:-1px; margin-right: 5px;">__</p>
-            <input type="text" maxlength="1"  class="code-input">
-            <input type="text" maxlength="1" class="code-input">
-            <input type="text" maxlength="1" class="code-input">     
+            <input type="text" maxlength="1"  class="code-input" id="input4">
+            <input type="text" maxlength="1" class="code-input"  id="input5">
+            <input type="text" maxlength="1" class="code-input"  id="input6">     
         </div>
 
         <h6>Haz click en el boton de "Verificar" y continua con el proceso.</h6>
@@ -62,7 +62,7 @@
            <!--boton-->
         <div class="boton-envio" style="margin-left: 130px; margin-top: -50px;">
             <div class="boton" id="boton-envio">
-              <a href="./renovar_contrasena.html" class="text-boton"><input type="submit"  style="font-size: 25px;" value="Verificar" ></a>   <!--boton, pero es un input--> 
+             <input type="submit"  style="font-size: 25px;" value="Verificar" id="boton-veriContrasena">   <!--boton, pero es un input--> 
             </div>
         </div>
 
@@ -70,15 +70,14 @@
 
    </form>
 
-
-
       <!--audio-->
       <audio id="clickSound">
-        <source src="/audio/clickleo.mp3" type="audio/mp3">
+        <source src="./audio/clickleo.mp3" type="audio/mp3">
      </audio>
     <!--/audio-->
 
-<script src="./js/index.js"></script>
+<!--<script src="./js/index.js"></script> -->
+<script src="./js/codigo_veri_cuenta.js"></script>
 <script src="./bootstrap/js/bootstrap.js"></script>
 <script src="./js/clickleo.js"></script>
 <script src="./js/inputs.js"></script>
