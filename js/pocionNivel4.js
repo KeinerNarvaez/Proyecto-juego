@@ -1,0 +1,330 @@
+class Cronometro {
+    constructor(minutos, segundos, callback) {
+        this.minutos = minutos;
+        this.segundos = segundos;
+        this.callback = callback;
+        this.intervalo = null;
+        this.elemento = document.getElementById('cronometro');
+    }
+
+    tiempo() {
+        if (this.segundos < 10) {
+            this.elemento.innerHTML = `${this.minutos}:0${this.segundos}`;
+        } else {
+            this.elemento.innerHTML = `${this.minutos}:${this.segundos}`;
+        }
+        if (this.minutos === 0 && this.segundos === 0) {
+            clearInterval(this.intervalo);
+            this.callback();
+        } else if (this.segundos === 0) {
+            this.minutos--;
+            this.segundos = 59;
+        } else {
+            this.segundos--;
+        }
+    }
+
+    iniciar() {
+        this.intervalo = setInterval(() => {
+            this.tiempo();
+        }, 1000);
+    }
+
+
+
+    detenerTiempo() {
+        clearInterval(this.intervalo);
+    }
+}
+
+class Corazon {
+    constructor() {
+        this.corazonesRestantes = 3;
+        this.corazonesContainer = document.querySelector('.corazones');
+    }
+
+    mostrar() {
+        this.corazonesContainer.innerHTML = '';
+        for (let i = 0; i < this.corazonesRestantes; i++) {
+            const corazonDiv = document.createElement('div');
+            corazonDiv.className = 'corazon';
+            corazonDiv.innerHTML = '<img src="../Assest/corazon.png" alt="">';
+            this.corazonesContainer.appendChild(corazonDiv);
+        }
+    }
+
+    perderCorazon() {
+        if (this.corazonesRestantes > 0) {
+            this.corazonesRestantes--;
+            this.mostrar();
+        }
+    }
+
+    estaVivo() {
+        return this.corazonesRestantes > 0;
+    }
+}
+
+class ColorMezcla {
+    constructor() {
+        this.colorMezclado = [0, 0, 0, 0];
+        this.colorMezclaElement = document.getElementById('colorMezcla');
+    }
+
+    mezclar(color1, color2) {
+        const rMezclado = Math.round((color1[0] + color2[0]) / 2);
+        const gMezclado = Math.round((color1[1] + color2[1]) / 2);
+        const bMezclado = Math.round((color1[2] + color2[2]) / 2);
+        const aMezclado = (color1[3] + color2[3]) / 2;
+        this.colorMezclado = [rMezclado, gMezclado, bMezclado, aMezclado];
+        this.actualizarColor();
+    }
+
+    actualizarColor() {
+        this.colorMezclaElement.style.background = `rgba(${this.colorMezclado[0]}, ${this.colorMezclado[1]}, ${this.colorMezclado[2]}, ${this.colorMezclado[3]})`;
+    }
+
+    reiniciar() {
+        this.colorMezclado = [0, 0, 0, 0];
+        this.actualizarColor();
+    }
+    
+}
+
+class Juego {
+    constructor() {
+        const imagen=[0,1,2];
+        this.colorHallar=document.querySelector('.colorHallar');
+        this.imagenes= Math.floor(Math.random()*imagen.length);
+        this.colorGano="";
+        this.colorAlreves="";
+        this.colorAlreves2="";
+        this.colorAlreves3="";
+        this.colorAlreves4="";
+        if (this.imagenes===0) {
+            this.valorImagen = ['pocionAmarilla', 'pocionBlanca', 'pocionVerde', 'pocionRoja', 'pocionAzul'];
+            this.colorGano="rgba(64, 192, 92, 0.96)"; //color verde claro
+            this.colorAlreves="rgba(0, 128, 57, 0.824)";
+            this.colorAlreves2="rgba(64, 64, 177, 0.824)";
+            this.colorAlreves3="rgba(128, 192, 128, 0.824)";
+            this.colorAlreves4="rgba(64, 192, 64, 0.824)";
+            this.colorHallar.style.background="rgba(170, 255, 170, 1.1)";
+        }else if (this.imagenes===1) {
+            this.valorImagen = ['pocionAmarilla', 'pocionAzul', 'pocionRoja', 'pocionBlanca', 'pocionAnaranjado'];
+            this.colorGano="rgba(224, 149, 128, 0.96)"  //color rosa claro
+            this.colorAlreves="rgba(192, 169, 128, 0.824)";
+            this.colorAlreves2="rgba(192, 147, 64, 0.824)";
+            this.colorAlreves3="rgba(192, 64, 64, 0.824)";
+            this.colorAlreves4="rgba(192, 128, 128, 0.824)";
+            this.colorHallar.style.background='rgba(255, 170, 128, 1.1)'; 
+        } else if(this.imagenes===2) {
+            this.valorImagen = ['pocionAmarilla', 'pocionBlanca', 'pocionVerde', 'pocionRoja', 'pocionMorada']; //anaranjado+rojo+blanco
+            this.colorAlreves="rgba(128, 64, 0, 0.824)";
+            this.colorAlreves2="rgba(64, 128, 0, 0.824)";
+            this.colorAlreves3="rgba(192, 128, 128, 0.824)";
+            this.colorAlreves4="rgba(192, 64, 64, 0.824)";
+            this.colorGano="rgba(192, 96, 64, 0.96)"; //color anaranjado claro
+            this.colorHallar.style.background="rgba(255, 128, 128, 1.1)";
+        } else{
+            console.log('error al cargar imagenes',error);
+        }
+        this.cronometro = new Cronometro(1, 59, () => this.perder());
+        this.corazones = new Corazon();
+        this.colorMezcla = new ColorMezcla();
+        this.bruja = document.querySelector('.bruja');
+        this.iniciar();
+    }
+
+    iniciar() {
+        this.cronometro.iniciar();
+        this.corazones.mostrar();
+        this.crearBotellas();
+        this.agregarEventos();
+    }
+
+    crearBotellas() {
+        const botella = document.querySelector('#botellas');
+        while (this.valorImagen.length) {
+            const index = Math.floor(Math.random() * this.valorImagen.length);
+            const div = document.createElement('div');
+            div.className = 'item col-2';
+            div.id = this.valorImagen[index];
+            div.draggable = true;
+            div.style.backgroundImage = `url('../Assest/${this.valorImagen[index]}.png')`;
+            botella.appendChild(div);
+            this.valorImagen.splice(index, 1);
+        }
+    }
+
+    agregarEventos() {
+        const botella = document.querySelector('#botellas');
+        const colorBruja = document.querySelector('#arrastreBruja');
+        const reiniciarMezclaBtn = document.getElementById('reiniciarMezcla');
+        this.contador=0;
+
+        botella.addEventListener('dragstart', e => {
+            e.dataTransfer.setData('id', e.target.id);
+        });
+
+        colorBruja.addEventListener('dragover', e => {
+            e.preventDefault();
+        });
+
+        colorBruja.addEventListener('drop', e => {
+            const id = e.dataTransfer.getData('id');
+            this.contador++
+
+            this.procesarDrop(id);            
+            if (this.contador === 4) {
+                this.colorMezcla.reiniciar(); 
+                console.log("funciona", this.contador);
+                this.contador = 0;
+            }
+        });
+        reiniciarMezclaBtn.addEventListener('click', () => {
+            this.colorMezcla.reiniciar(); 
+        });
+    }
+
+    procesarDrop(id) {
+        const colores = {
+            'pocionAmarilla': [255, 255, 0, 1.1],
+            'pocionAnaranjado': [255, 165, 0, 1.1],
+            'pocionVerde': [0, 255, 0, 1.1],
+            'pocionRoja': [255, 0, 0, 1.1],
+            'pocionAzul': [0, 0, 225, 1.1],
+            'pocionBlanca':[255, 255, 255,1.1],
+            'pocionMorada':[128,0,128,1.1]
+            
+        };
+
+        const colorBotella = colores[id];
+        this.colorMezcla.mezclar(colorBotella, this.colorMezcla.colorMezclado);
+        if (this.imagenes===0) {
+            if (id !== 'pocionVerde' && id !== 'pocionAzul' && id !== 'pocionBlanca') {
+            this.corazones.perderCorazon();
+            setTimeout(() => this.colorMezcla.reiniciar(), 1000);
+            }
+        }else if (this.imagenes===1) {
+            if (id !== 'pocionAnaranjado' && id !== 'pocionRoja' && id !== 'pocionBlanca') {
+                this.corazones.perderCorazon();
+                setTimeout(() => this.colorMezcla.reiniciar(), 1000);
+            }
+        }else if (this.imagenes===2) {
+            if (id !== 'pocionRoja' && id !== 'pocionBlanca' && id !== 'pocionVerde') {
+                this.corazones.perderCorazon();
+                setTimeout(() => this.colorMezcla.reiniciar(), 1000);
+            }
+        }
+
+
+        if (!this.corazones.estaVivo()) {
+            this.perder();
+        } else if (this.colorMezcla.colorMezclaElement.style.background === this.colorGano) {
+            this.ganar();
+        } else if (this.colorMezcla.colorMezclaElement.style.background === this.colorAlreves ||
+            this.colorMezcla.colorMezclaElement.style.background === this.colorAlreves2 ||
+            this.colorMezcla.colorMezclaElement.style.background === this.colorAlreves3 ||
+            this.colorMezcla.colorMezclaElement.style.background === this.colorAlreves4) {
+            this.avisoOrdenColor();
+        }
+    }
+
+    ganar() {
+        const ganas = new bootstrap.Modal(document.getElementById('ganas'), {
+            backdrop: 'static',
+            keyboard: false
+        });
+        
+        const puntuacionGano = document.getElementById('puntaje-ganado');       
+        ganas.show();
+        let puntaje =(this.cronometro.minutos + this.cronometro.segundos)/this.corazones.corazonesRestantes;
+        this.puntajes=puntaje
+        this.cronometro.detenerTiempo();
+
+        let valorMinuto = this.cronometro.minutos;
+        let valorSegundos = this.cronometro.segundos;
+        const dataOperaciones = {
+            puntaje,
+            valorMinuto,
+            valorSegundos
+        };
+    
+        fetch('../php/datosJuegos.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(dataOperaciones)
+        })
+        .then(response => response.json())
+        .then(data => {
+            let puntajePrint = "";   
+            // Recorremos los datos que vienen del servidor
+            data.forEach(oper => {
+                puntajePrint = oper.puntajes
+            });
+            puntuacionGano.innerHTML = puntajePrint ;
+        })
+        .catch(error => {
+            console.log(error);
+        });
+    }
+
+    perder() {
+        this.cronometro.detenerTiempo();
+        this.bruja.style.backgroundImage = 'url("../Assest/brujaPerdio.gif")';
+        this.colorMezcla.reiniciar();
+        this.puntaje();
+    }
+
+    avisoOrdenColor() {
+        const errorOrden = new bootstrap.Toast(document.getElementById('errorOrden'));
+        errorOrden.show();
+        this.colorMezcla.reiniciar(); 
+    }
+
+
+
+    puntaje() {   
+        let puntaje =(this.cronometro.minutos + this.cronometro.segundos)/this.corazones.corazonesRestantes;
+        let valorMinuto = this.cronometro.minutos;
+        let valorSegundos = this.cronometro.segundos;
+        this.puntajes=puntaje;
+        const datosAEnviar = {
+            puntaje,
+            valorMinuto,
+            valorSegundos
+        };
+    
+        fetch('../php/datosJuegos.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(datosAEnviar)
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Error en la respuesta del servidor: ' + response.status);
+            }
+            return response.json();
+        })
+        .then(data => {
+            const print = "10,50"; 
+            const valorPuntaje = document.getElementById('valorPuntaje');
+            valorPuntaje.innerHTML = 'Tus puntos: ' + print;
+    
+            const puntos = new bootstrap.Modal(document.getElementById('puntajes'), {
+                backdrop: 'static',
+                keyboard: false
+            });    
+            puntos.show();
+        })
+        .catch(error => {
+            console.error('Error al enviar los datos:', error);
+        });
+    }
+}
+
+new Juego();

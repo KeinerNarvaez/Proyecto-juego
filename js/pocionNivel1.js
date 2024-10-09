@@ -93,7 +93,29 @@ class ColorMezcla {
 
 class Juego {
     constructor() {
-        this.imagenes = ['pocionAmarilla', 'pocionAnaranjado', 'pocionVerde', 'pocionRoja', 'pocionAzul'];
+        const imagen=[0,1,2];
+        this.colorHallar=document.querySelector('.colorHallar');
+        this.imagenes= Math.floor(Math.random()*imagen.length);
+        this.colorGano=""
+        this.colorAlreves=""
+        if (this.imagenes===0) {
+            this.valorImagen = ['pocionAmarilla', 'pocionAnaranjado', 'pocionVerde', 'pocionRoja', 'pocionAzul'];
+            this.colorGano="rgba(64, 0, 113, 0.824)";//color morado
+            this.colorAlreves="rgba(128, 0, 57, 0.824)";
+            this.colorHallar.style.background=this.colorGano;
+        }else if (this.imagenes===1) {
+            this.valorImagen = ['pocionAmarilla', 'pocionAnaranjado', 'pocionVerde', 'pocionRoja', 'pocionMorada'];
+            this.colorGano="rgba(128, 192, 0, 0.824)"//color verde limon
+            this.colorAlreves="rgba(64, 192, 0, 0.824)"
+            this.colorHallar.style.background=this.colorGano; 
+        } else if(this.imagenes===2) {
+            this.valorImagen = ['pocionAmarilla', 'pocionAnaranjado', 'pocionVerde', 'pocionRoja', 'pocionAzul'];
+            this.colorAlreves="rgba(64, 128, 0, 0.824)";
+            this.colorGano="rgba(128, 64, 0, 0.824)"; //color marron
+            this.colorHallar.style.background="rgba(128, 64, 0, 0)";
+        } else{
+            console.log('error al cargar imagenes',error);
+        }
         this.cronometro = new Cronometro(1, 59, () => this.perder());
         this.corazones = new Corazon();
         this.colorMezcla = new ColorMezcla();
@@ -110,15 +132,15 @@ class Juego {
 
     crearBotellas() {
         const botella = document.querySelector('#botellas');
-        while (this.imagenes.length) {
-            const index = Math.floor(Math.random() * this.imagenes.length);
+        while (this.valorImagen.length) {
+            const index = Math.floor(Math.random() * this.valorImagen.length);
             const div = document.createElement('div');
             div.className = 'item col-2';
-            div.id = this.imagenes[index];
+            div.id = this.valorImagen[index];
             div.draggable = true;
-            div.style.backgroundImage = `url('../Assest/${this.imagenes[index]}.png')`;
+            div.style.backgroundImage = `url('../Assest/${this.valorImagen[index]}.png')`;
             botella.appendChild(div);
-            this.imagenes.splice(index, 1);
+            this.valorImagen.splice(index, 1);
         }
     }
 
@@ -126,6 +148,7 @@ class Juego {
         const botella = document.querySelector('#botellas');
         const colorBruja = document.querySelector('#arrastreBruja');
         const reiniciarMezclaBtn = document.getElementById('reiniciarMezcla');
+        this.contador=0;
 
         botella.addEventListener('dragstart', e => {
             e.dataTransfer.setData('id', e.target.id);
@@ -137,7 +160,14 @@ class Juego {
 
         colorBruja.addEventListener('drop', e => {
             const id = e.dataTransfer.getData('id');
-            this.procesarDrop(id);
+            this.contador++
+
+            this.procesarDrop(id);            
+            if (this.contador === 3) {
+                this.colorMezcla.reiniciar(); 
+                console.log("funciona", this.contador);
+                this.contador = 0;
+            }
         });
         reiniciarMezclaBtn.addEventListener('click', () => {
             this.colorMezcla.reiniciar(); 
@@ -150,22 +180,37 @@ class Juego {
             'pocionAnaranjado': [255, 165, 0, 1.1],
             'pocionVerde': [0, 255, 0, 1.1],
             'pocionRoja': [255, 0, 0, 1.1],
-            'pocionAzul': [0, 0, 225, 1.1]
+            'pocionAzul': [0, 0, 225, 1.1],
+            'pocionBlanca':[255, 255, 255,1.1],
+            'pocionMorada':[128,0,128,1.1]
+            
         };
 
         const colorBotella = colores[id];
         this.colorMezcla.mezclar(colorBotella, this.colorMezcla.colorMezclado);
-
-        if (id !== 'pocionRoja' && id !== 'pocionAzul') {
+        if (this.imagenes===0) {
+            if (id !== 'pocionRoja' && id !== 'pocionAzul') {
             this.corazones.perderCorazon();
             setTimeout(() => this.colorMezcla.reiniciar(), 1000);
+            }
+        }else if (this.imagenes===1) {
+            if (id !== 'pocionAmarilla' && id !== 'pocionVerde') {
+                this.corazones.perderCorazon();
+                setTimeout(() => this.colorMezcla.reiniciar(), 1000);
+            }
+        }else if (this.imagenes===2) {
+            if (id !== 'pocionRoja' && id !== 'pocionVerde') {
+                this.corazones.perderCorazon();
+                setTimeout(() => this.colorMezcla.reiniciar(), 1000);
+            }
         }
+
 
         if (!this.corazones.estaVivo()) {
             this.perder();
-        } else if (this.colorMezcla.colorMezclaElement.style.background === 'rgba(64, 0, 113, 0.824)') {
+        } else if (this.colorMezcla.colorMezclaElement.style.background === this.colorGano) {
             this.ganar();
-        } else if (this.colorMezcla.colorMezclaElement.style.background === 'rgba(128, 0, 57, 0.824)') {
+        } else if (this.colorMezcla.colorMezclaElement.style.background === this.colorAlreves) {
             this.avisoOrdenColor();
         }
     }
@@ -180,12 +225,11 @@ class Juego {
         ganas.show();
         let puntaje =(this.cronometro.minutos + this.cronometro.segundos)/this.corazones.corazonesRestantes;
         this.puntajes=puntaje
-        console.log(this.minutos)
         this.cronometro.detenerTiempo();
 
         let valorMinuto = this.cronometro.minutos;
         let valorSegundos = this.cronometro.segundos;
-        const datosAEnviar = {
+        const dataOperaciones = {
             puntaje,
             valorMinuto,
             valorSegundos
@@ -196,17 +240,20 @@ class Juego {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(datosAEnviar)
+            body: JSON.stringify(dataOperaciones)
         })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Error en la respuesta del servidor: ' + response.status);
-            }
-            return response.json();
-        }).then(data => {
-            console.log(data);
-            puntuacionGano.innerHTML = "Puntos: " + data.puntaje; 
+        .then(response => response.json())
+        .then(data => {
+            let puntajePrint = "";   
+            // Recorremos los datos que vienen del servidor
+            data.forEach(oper => {
+                puntajePrint = oper.puntajes
+            });
+            puntuacionGano.innerHTML = puntajePrint ;
         })
+        .catch(error => {
+            console.log(error);
+        });
     }
 
     perder() {
@@ -219,12 +266,13 @@ class Juego {
     avisoOrdenColor() {
         const errorOrden = new bootstrap.Toast(document.getElementById('errorOrden'));
         errorOrden.show();
+        this.colorMezcla.reiniciar(); 
     }
 
 
 
     puntaje() {   
-        let puntaje = (this.corazones.corazonesRestantes * 100) - (this.cronometro.minutos * 60 + this.cronometro.segundos);
+        let puntaje =(this.cronometro.minutos + this.cronometro.segundos)/this.corazones.corazonesRestantes;
         let valorMinuto = this.cronometro.minutos;
         let valorSegundos = this.cronometro.segundos;
         this.puntajes=puntaje;
@@ -252,8 +300,11 @@ class Juego {
             const valorPuntaje = document.getElementById('valorPuntaje');
             valorPuntaje.innerHTML = 'Tus puntos: ' + print;
     
-            const puntos = new bootstrap.Toast(document.getElementById('puntajes'));
-            puntos.show(); 
+            const puntos = new bootstrap.Modal(document.getElementById('puntajes'), {
+                backdrop: 'static',
+                keyboard: false
+            });    
+            puntos.show();
         })
         .catch(error => {
             console.error('Error al enviar los datos:', error);
