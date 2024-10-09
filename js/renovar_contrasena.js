@@ -1,36 +1,34 @@
-window.addEventListener('DOMContentLoaded' , ()=>{
-    //declaro la variable para el boton de renovar la contraseña del usuario
+window.addEventListener('DOMContentLoaded', () => {
     const botonRenovar = document.getElementById('boton-renovar');
 
-    botonRenovar.addEventListener('click' , function(event){
+    botonRenovar.addEventListener('click', function(event) {
         event.preventDefault();
 
-        const contrasenaNueva = document.getElementById('contrasena-nueva"').value;
+        const contrasenaNueva = document.getElementById('contrasena-nueva').value;
         const contrasenaVerificada = document.getElementById('contrasena-verificada').value;
 
-        if(contrasenaNueva !== contrasenaVerificada){
-            alert ("las contraseñas no son iguales")
-            return; // Detener la ejecución si las contraseñas no son iguales
+        if (contrasenaNueva !== contrasenaVerificada) {
+            alert("Las contraseñas no son iguales");
+            return;
         }
-        
-        //empaquetamos las contraseña a renovar
-        const data = [
-            contrasenaNueva ,
-            contrasenaVerificada
-        ]
 
-        
-        fetch('./php/'),{
+        // Enviar solo la nueva contraseña
+        const data = { contrasenaVerificada };
+
+        fetch('./php/register_renovar_contrasena.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({data})
-            }
-            .then(response => response.json())
-            .then(result => {
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(result => {
             if (result.status === 'success') {
-                alert('Código verificado correctamente');
+                alert('Contraseña renovada correctamente');
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 5000);
             } else {
                 alert(result.message);
             }
@@ -38,7 +36,5 @@ window.addEventListener('DOMContentLoaded' , ()=>{
         .catch(error => {
             console.error('Error:', error);
         });
-
-
-    })
-})
+    });
+});

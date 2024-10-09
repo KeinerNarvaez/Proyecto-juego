@@ -67,26 +67,15 @@ class Corazon {
 
 class ColorMezcla {
     constructor() {
-        this.colorMezclado = [0, 0, 0, 0];
-        this.colorMezclaElement = document.getElementById('colorMezcla');
-    }
 
-    mezclar(color1, color2) {
-        const rMezclado = Math.round((color1[0] + color2[0]) / 2);
-        const gMezclado = Math.round((color1[1] + color2[1]) / 2);
-        const bMezclado = Math.round((color1[2] + color2[2]) / 2);
-        const aMezclado = (color1[3] + color2[3]) / 2;
-        this.colorMezclado = [rMezclado, gMezclado, bMezclado, aMezclado];
-        this.actualizarColor();
     }
 
     actualizarColor() {
-        this.colorMezclaElement.style.background = `rgba(${this.colorMezclado[0]}, ${this.colorMezclado[1]}, ${this.colorMezclado[2]}, ${this.colorMezclado[3]})`;
+
     }
 
     reiniciar() {
-        this.colorMezclado = [0, 0, 0, 0];
-        this.actualizarColor();
+
     }
     
 }
@@ -94,27 +83,17 @@ class ColorMezcla {
 class Juego {
     constructor() {
         const imagen=[0,1,2];
-        this.colorHallar=document.querySelector('.colorHallar');
+        const objetivo=document.getElementById('objetivo');
         this.imagenes= Math.floor(Math.random()*imagen.length);
-        this.colorGano=""
-        this.colorAlreves=""
         if (this.imagenes===0) {
-            this.valorImagen = ['pocionAmarilla', 'pocionAnaranjado', 'pocionVerde', 'pocionRoja', 'pocionAzul'];
-            this.colorGano="rgba(64, 0, 113, 0.824)";//color morado
-            this.colorAlreves="rgba(128, 0, 57, 0.824)";
-            this.colorHallar.style.background=this.colorGano;
+            this.valorImagen = ['cuervo', 'colmillo', 'fenix', 'mano', 'ojo'];
+            objetivo.innerHTML="Elixir de inmortalidad";
         }else if (this.imagenes===1) {
-            this.valorImagen = ['pocionAmarilla', 'pocionAnaranjado', 'pocionVerde', 'pocionRoja', 'pocionMorada'];
-            this.colorGano="rgba(128, 192, 0, 0.824)"//color verde limon
-            this.colorAlreves="rgba(64, 192, 0, 0.824)"
-            this.colorHallar.style.background=this.colorGano; 
+            this.valorImagen = ['cuervo', 'colmillo', 'fenix', 'mano', 'patas']; 
         } else if(this.imagenes===2) {
-            this.valorImagen = ['pocionAmarilla', 'pocionAnaranjado', 'pocionVerde', 'pocionRoja', 'pocionAzul'];
-            this.colorAlreves="rgba(64, 128, 0, 0.824)";
-            this.colorGano="rgba(128, 64, 0, 0.824)"; //color marron
-            this.colorHallar.style.background=this.colorGano;
+            this.valorImagen = ['cuervo', 'colmillo', 'fenix', 'uña', 'ojo'];
         } else{
-            console.log('error al cargar imagenes',error);
+            console.log('error al cargar imagenes');
         }
         this.cronometro = new Cronometro(1, 59, () => this.perder());
         this.corazones = new Corazon();
@@ -126,12 +105,12 @@ class Juego {
     iniciar() {
         this.cronometro.iniciar();
         this.corazones.mostrar();
-        this.crearBotellas();
+        this.crearItem();
         this.agregarEventos();
     }
 
-    crearBotellas() {
-        const botella = document.querySelector('#botellas');
+    crearItem() {
+        const botella = document.querySelector('#item');
         while (this.valorImagen.length) {
             const index = Math.floor(Math.random() * this.valorImagen.length);
             const div = document.createElement('div');
@@ -145,9 +124,8 @@ class Juego {
     }
 
     agregarEventos() {
-        const botella = document.querySelector('#botellas');
+        const botella = document.querySelector('#item');
         const colorBruja = document.querySelector('#arrastreBruja');
-        const reiniciarMezclaBtn = document.getElementById('reiniciarMezcla');
         this.contador=0;
 
         botella.addEventListener('dragstart', e => {
@@ -158,38 +136,18 @@ class Juego {
             e.preventDefault();
         });
 
+        if (this.imagenes===0 && id !=='fenix' && id !=='colmillo') {
+            
+        }
         colorBruja.addEventListener('drop', e => {
             const id = e.dataTransfer.getData('id');
             this.contador++
-
-            this.procesarDrop(id);            
-            if (this.contador === 3) {
-                this.colorMezcla.reiniciar(); 
-                console.log("funciona", this.contador);
-                this.contador = 0;
-            }
-        });
-        reiniciarMezclaBtn.addEventListener('click', () => {
-            this.colorMezcla.reiniciar(); 
         });
     }
 
     procesarDrop(id) {
-        const colores = {
-            'pocionAmarilla': [255, 255, 0, 1.1],
-            'pocionAnaranjado': [255, 165, 0, 1.1],
-            'pocionVerde': [0, 255, 0, 1.1],
-            'pocionRoja': [255, 0, 0, 1.1],
-            'pocionAzul': [0, 0, 225, 1.1],
-            'pocionBlanca':[255, 255, 255,1.1],
-            'pocionMorada':[128,0,128,1.1]
-            
-        };
-
-        const colorBotella = colores[id];
-        this.colorMezcla.mezclar(colorBotella, this.colorMezcla.colorMezclado);
         if (this.imagenes===0) {
-            if (id !== 'pocionRoja' && id !== 'pocionAzul') {
+            if (id !== 'fenix' && id !== 'colmillo') {
             this.corazones.perderCorazon();
             setTimeout(() => this.colorMezcla.reiniciar(), 1000);
             }
