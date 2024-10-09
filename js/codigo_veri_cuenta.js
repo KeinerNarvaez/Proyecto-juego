@@ -14,7 +14,7 @@ window.addEventListener('DOMContentLoaded', () => {
             document.getElementById('input4').value,
             document.getElementById('input5').value,
             document.getElementById('input6').value
-        ].join('');
+        ].join(''); //las unifico los 6
 
         fetch('./php/register_codigo_cuenta.php', {
             method: 'POST',
