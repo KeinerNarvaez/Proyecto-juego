@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mythical Witch Mixes</title>
+    <link rel="stylesheet" href="../css/pociones.css">
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
+    <!--Enlaces para fuentes de google-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <!--icono-->
+    <link rel="shortcut icon" href="../Assest/ImagenBruja.png" type="image/x-icon">
+        <!--enlace para fuente de google-->
+    <link href="https://fonts.googleapis.com/css2?family=Koh+Santepheap:wght@100;300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../fontawesome-free-6.6.0-web/css/all.css">
+    <style>
+        body{
+            background-image: url(../Assest/nivel1.jpg); /*Imagen de nivel*/
+        }
+    </style>
+</head>
+<body>
+    <div class="btn-dr" data-bs-toggle="modal" data-bs-target="#manual">
+        <i class="fa-solid fa-exclamation"></i>
+    </div>
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="errorOrden" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+          <div class="toast-header" style="background-color: rgb(214, 51, 51);">
+            <strong class="me-auto"><i class="fa-solid fa-triangle-exclamation"></i> Reinicie el color </strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+          </div>
+          <div class="toast-body" style="background-color: rgba(255, 5, 5, 0.502);">
+            El orden de las pociones esta mal
+          </div>
+        </div>
+      </div>
+    <!--modal manual-->
+    <div class="modal fade text-center" id="manual" tabindex="-1" aria-labelledby="exampleModalLabel"  aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content" style="background:url(../Assest/modalHechizeria.png);background-repeat: no-repeat;background-size: 100%;height:700px; ">
+            <div class="modal-body">
+                <div class="modal-header">
+                  <h1 class="modal-title  text-bt" id="exampleModalLabel" style="font-family:kavoon; font-size:30px; color: #FF9900; margin-top:10%;" >Receta de hechizo:  &nbsp<i class="fa-regular fa-face-sad-tear"></i></h1>
+                </div>
+                <div style="width:37%;margin-left:31%; padding-top:5px; background:#FF9900"></div>
+                  <div class="modal-inicio">
+                      <div style="width:38%;margin-left:31%; padding-top:5px; text-align:justify;">
+                        <h1 style="font-family:kavoon;font-size:25px;">1. De la muerte nací, pero la vida guardo, mis cenizas renacen cuando todo es amargo.</h1>
+                        <h1 style="font-family:kavoon;font-size:25px;">2. Con colmillo afilado, mi sangre te doy, ni vivo ni muerto, mi existencia es hoy.</h1>
+                      </div>
+                  </div>
+                </div>
+            </div>
+          </div>
+        </div>  
+      <!--/Modal-->
+    <!--modal-->
+    <div class="modal fade text-center" id="ganas" tabindex="-1" aria-labelledby="exampleModalLabel"  aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="cuerpo-modales">
+                <div class="modal-header">
+                  <h1 class="modal-title  text-bt" id="exampleModalLabel" style="font-family:kavoon; font-size: 100px;" >Has ganado  &nbsp<i class="fa-sharp fa-solid fa-circle-check"></i></h1>
+                </div>
+                <div class="modal-body ">
+                  <div class="modal-inicio">
+                      <div>
+                        <label for="" id="puntaje-ganado" class="text-bt fs-1" style="font-family:kavoon;">Puntos: 3,50</label>
+                      </div>
+                  </div>
+                </div>
+            </div>
+          </div>
+        </div>  
+        <a href="./mapaPociones2.html" class="btn-wsp">
+            <i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </div>
+      <!--/Modal-->
+    <!--modal-->
+    <div class="modal fade text-center" id="puntajes" tabindex="-1" aria-labelledby="exampleModalLabel"  aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="cuerpo-modales">
+              <div class="modal-header">
+                <h1 class="modal-title  text-bt" id="exampleModalLabel" style="font-family:kavoon; font-size: 100px; color: brown;" >Has perdido  &nbsp<i class="fa-regular fa-face-sad-tear"></i></h1>
+              </div>
+              <div class="modal-body ">
+                <div class="modal-inicio">
+                    <div>
+                      <label for="" id="valorPuntaje" class="text-bt fs-1" style="font-family:kavoon;">Puntos: 3,50</label>
+                    </div>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>  
+      <a href="" class="btn-wsp">
+        <i class="fa-solid fa-arrow-rotate-left"></i>
+      </a>
+    </div>
+    <!--/Modal-->
+    <div class="btn-wsp" id="reiniciarMezcla">
+	    <i class="fa-solid fa-rotate-left"></i>
+	</div>
+    <div class="row col-12 cabeza">
+        <div class="retroceso col-4">
+           <a href="./mapapociones.html" class="text-boton" ><img src="../Assest/fechaRetroceso.png" alt=""></a> 
+        </div>
+        <div class="tiempo col-5">
+            <h1 id="cronometro">2:00</h1>
+        </div>
+    </div>
+    
+    <div class="col-12 row">
+        <div class="corazones col-4">
+            <div class="corazon"><img src="../Assest/corazon.png" alt=""></div>
+            <div class="corazon"><img src="../Assest/corazon.png" alt=""></div>
+            <div class="corazon"><img src="../Assest/corazon.png" alt=""></div>
+        </div>
+
+        <div class="hallar col-5">
+            <div class="contenedorHallar">
+                <div class="tituloHallar"><h1 class="text-bold">Color objetivo:</h1></div>
+                <hr>
+                    <h1 id="objetivo" style="color: #FFFFFF;"></h1>
+            </div>
+        </div>
+    </div>
+
+   <div class="contenedorAbajo">
+     <div class="contenedorItem">
+        <div class="row" id="item">
+
+        </div>
+        
+     </div> 
+
+     <div class="bruja">
+        <div class="tamañoBruja" id="arrastreBruja">
+            <div class="colorMezcla" id="colorMezcla">
+            </div>
+        </div>
+     </div>  
+   </div>
+
+       <!--audio-->
+       <audio id="clickSound">
+        <source src="../audio/clickleo.mp3" type="audio/mp3">
+     </audio>
+    <!--/audio-->
+    <script src="../js/hechizeriaNivel1.js"></script>
+    <script src="../bootstrap/js/bootstrap.bundle.js"></script>
+    <script src="../js/clickleo.js"></script> 
+</body>
+</html>
