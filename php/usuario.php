@@ -2,7 +2,6 @@
 class Usuario {
     private $nombre; //nameUser
     private $apellido; //lastName
-    
     private $pdo; //conexion
 
     public function __construct($nombre, $apellido, $pdo) {
@@ -18,11 +17,9 @@ class Usuario {
             $stmt->bindParam(':name', $this->nombre);
             $stmt->bindParam(':lastName', $this->apellido);
             $stmt->execute();
-            return $this->pdo->lastInsertId();
+            return $this->pdo->lastInsertId(); // Devuelve el userID generado
         } catch (Exception $e) {
             echo "Error en guardarUsuario: " . $e->getMessage();
         }
     }
 }
-
-?>

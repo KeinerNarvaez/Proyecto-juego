@@ -1,38 +1,46 @@
 window.addEventListener('DOMContentLoaded', () => {
-    const botonVerificar = document.getElementById('botonVerificarCodigo');
+    // Llamamos al botón para verificar el código
+    let botonCodigo = document.getElementById('botonVerificarCodigo');
 
-    botonVerificar.addEventListener('click', function (event) {
+    botonCodigo.addEventListener('click', function(event) {
         event.preventDefault();
 
-        // Obtener el userId desde un elemento en el DOM (puede ser un input oculto o cualquier otro método)
-        const userId = document.getElementById('userId').value; // Asegúrate de tener un input con este ID
-
+        // Unificar los inputs del código que brinda el usuario
         const codigo = [
-            document.getElementById('input1').value,
-            document.getElementById('input2').value,
-            document.getElementById('input3').value,
-            document.getElementById('input4').value,
-            document.getElementById('input5').value,
-            document.getElementById('input6').value
-        ].join('');
+            document.getElementById('input1-codigo').value,
+            document.getElementById('input2-codigo').value,
+            document.getElementById('input3-codigo').value,
+            document.getElementById('input4-codigo').value,
+            document.getElementById('input5-codigo').value,
+            document.getElementById('input6-codigo').value
+        ].join(''); // Unir los 6 inputs
 
+        // Empaquetar el código en un objeto
+        const data = {
+             codigo
+        };
+
+        // Enviar el código al servidor mediante fetch
         fetch('./php/register_codigo_cuenta.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ codigo, userId }) // Ahora incluimos userId
+            body: JSON.stringify(data) // Enviar el código en formato JSON
         })
         .then(response => response.json())
         .then(result => {
             if (result.status === 'success') {
-                alert('Código verificado correctamente, cuenta activada.');
+                alert('Cuenta verificada correctamente, ya puedes iniciar sesion normalmente.');
+                setTimeout(() => {
+                    window.location.href = 'login.html'; // Redirigir después de 3 segundos
+                }, 3000);
             } else {
-                alert(result.message);
+                alert(result.message); // Mostrar mensaje de error
             }
         })
         .catch(error => {
-            console.error('Error:', error);
+            console.error('Error:', error); // Manejo de errores en la consola
         });
     });
 });

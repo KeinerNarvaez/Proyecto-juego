@@ -5,8 +5,7 @@ use PHPMailer\PHPMailer\Exception;
 
 require '../phpMailer/PHPMailer.php';
 require '../phpMailer/SMTP.php';
-require '../phpMailer/Exception.php';
-
+require '../phpMailer/Exception.php';   
 include_once '../app/config/connection.php';
 
 // Deshabilitar la visualización de errores en producción

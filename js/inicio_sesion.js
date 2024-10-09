@@ -26,11 +26,11 @@ window.addEventListener('DOMContentLoaded', () => {
             mensajeModal.show();
             return; // Detener la ejecución si hay campos vacíos
         }
-
+        
         // Empaquetar los datos
         const data = {
-            emailUser,
-            passwordUser
+            email: emailUser, // Cambiar el nombre de la propiedad a 'email'
+            password: passwordUser // Cambiar el nombre de la propiedad a 'password'
         };
 
         // Hacer la petición fetch
@@ -47,18 +47,6 @@ window.addEventListener('DOMContentLoaded', () => {
                 const mensajeModalBody = document.getElementById('mensajeModalBody');
 
                 if (result.status === 'success') {
-
-                    /*modal de inicio de sesion exitoso
-                    mensajeModalBody.innerHTML = `
-                        <div class="alert alert-success" style="font-size: 70px;">
-                         ${result.message}
-                            <br>
-                            <i class="fa-solid fa-check-circle" style="display: flex; justify-content: center; font-size: 120px; color: green;"></i>
-                        </div>
-                    `; 
-                    mensajeModal.show(); 
-                    */
-
                     // Redirigir después de unos segundos
                     setTimeout(() => {
                         window.location.href = 'verificacion_2pasos.html';
