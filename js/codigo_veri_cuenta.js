@@ -1,11 +1,12 @@
-window.addEventListener('DOMContentLoaded',() =>{
-    //declaro la variable del boton para confirmar el código
-    const botonVerificar =  document.getElementById('botonVerificarCodigo');
+window.addEventListener('DOMContentLoaded', () => {
+    const botonVerificar = document.getElementById('botonVerificarCodigo');
 
-    botonVerificar.addEventListener('click', function (event){
+    botonVerificar.addEventListener('click', function (event) {
         event.preventDefault();
 
-        //empaquetamos el código para cumplir con el fetch
+        // Obtener el userId desde un elemento en el DOM (puede ser un input oculto o cualquier otro método)
+        const userId = document.getElementById('userId').value; // Asegúrate de tener un input con este ID
+
         const codigo = [
             document.getElementById('input1').value,
             document.getElementById('input2').value,
@@ -13,27 +14,25 @@ window.addEventListener('DOMContentLoaded',() =>{
             document.getElementById('input4').value,
             document.getElementById('input5').value,
             document.getElementById('input6').value
-        ].join(''); // unir los 6 dígitos en una cadena
-        
-        fetch('./php/'),{
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ codigo })
-        }
+        ].join('');
+
+        fetch('./php/register_codigo_cuenta.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ codigo, userId }) // Ahora incluimos userId
+        })
         .then(response => response.json())
         .then(result => {
-        if (result.status === 'success') {
-            alert('Código verificado correctamente');
-        } else {
-            alert(result.message);
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
+            if (result.status === 'success') {
+                alert('Código verificado correctamente, cuenta activada.');
+            } else {
+                alert(result.message);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
     });
-    })
-
-
-})
+});

@@ -1,10 +1,27 @@
 <?php
-// Incluir la conexión y las clases
+// Incluir la conexión y las clases necesarias
 include_once '../app/config/connection.php';
-include_once 'usuario.php';
-include_once 'login.php';
 include_once 'activar_cuenta.php';
-include_once 'parametros.php'; 
+include_once 'login.php';
+include_once 'usuario.php';
+
+// Funciones adicionales (sin eliminarlas)
+function emailExiste($email, $pdo){
+    $sql = $pdo->prepare("SELECT userID FROM login WHERE email LIKE ? LIMIT 1");
+    $sql->execute([$email]);
+    if ($sql->fetchColumn() > 0) {
+        return true;
+    }
+    return false;
+}
+
+function validarEmail($email){
+    if(filter_var($email, FILTER_VALIDATE_EMAIL)){
+        return true;
+    }
+    return false;
+}
+
 $errors = [];
 
 // Establecer el encabezado de contenido JSON
@@ -47,35 +64,34 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Iniciar la transacción
             $pdo->beginTransaction();
 
-            // Crear el objeto Usuario
+            // Crear el usuario y obtener su ID
             $usuario = new Usuario($nombreUsuario, $apellidoUsuario, $pdo);
-            $userId = $usuario->guardarUsuario(); // Guardar usuario y obtener su ID
+            $userId = $usuario->guardarUsuario();
 
-            // Crear el objeto Login sin hashear la contraseña (texto plano)
+            // Guardar los datos de login
             $login = new Login($emailUsuario, $contraseñaUsuario, $userId, $pdo);
-            $login->guardarLogin(); // Guardar el login asociado al usuario
+            $login->guardarLogin();
 
             // Crear y guardar el código de activación
             $activacion = new ActivarCuenta($pdo);
-            $codigoActivacion = $activacion->guardarCodigo(); // Guardar el código de activación
+            $codigoActivacion = $activacion->guardarCodigo();
 
             // Confirmar la transacción
             $pdo->commit();
 
-            // Devolver una respuesta de éxito
-            echo json_encode(['status' => 'success', 'message' => 'Cuenta creada con éxito']);
-            exit; // Asegúrate de salir después de enviar la respuesta
+            // Enviar respuesta de éxito en formato JSON
+            echo json_encode(['status' => 'success', 'message' => 'Cuenta creada con éxito. Código de activación enviado.', 'codigo' => $codigoActivacion]);
+            exit;
         } catch (Exception $e) {
             // En caso de error, revertir la transacción y devolver el error
             $pdo->rollBack();
             echo json_encode(['status' => 'error', 'message' => 'Error al crear la cuenta: ' . $e->getMessage()]);
-            exit; // Asegúrate de salir después de enviar la respuesta
+            exit;
         }
     } else {
         // Si faltan datos, devolver un mensaje de error
         echo json_encode(['status' => 'error', 'message' => 'Faltan datos']);
-        exit; // Asegúrate de salir después de enviar la respuesta
+        exit;
     }
 }
-
-exit(); // Asegúrate de que no se envíe más contenido después de la respuesta JSON
+exit();

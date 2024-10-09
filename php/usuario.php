@@ -2,6 +2,7 @@
 class Usuario {
     private $nombre; //nameUser
     private $apellido; //lastName
+    
     private $pdo; //conexion
 
     public function __construct($nombre, $apellido, $pdo) {
