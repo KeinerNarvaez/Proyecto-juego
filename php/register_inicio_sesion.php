@@ -25,10 +25,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $stmt->execute();
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            // Si el usuario existe
+            // Verificar si el usuario existe
             if ($user) {
+                // Depuración: muestra los datos del usuario
+                var_dump($user); // Revisa los datos devueltos
+
                 // Verificar la contraseña
-                if ($contrasenaUsuario === $user['password']) { // Comparar sin hashear
+                if (password_verify($contrasenaUsuario, $user['password'])) {
                     // Obtener el userID para verificar el accountActivationID
                     $userId = $user['userID'];
                     $activationCheckSql = "SELECT accountActivationID FROM user WHERE userID = :userID";
@@ -39,33 +42,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                     // Verificar el accountActivationID
                     if ($userActivation && $userActivation['accountActivationID'] == 1) {
-                        // Respuesta de éxito en formato JSON
                         echo json_encode(['status' => 'success', 'message' => 'Inicio de sesión exitoso']);
                     } else {
-                        // La cuenta no está activada
-                        echo json_encode(['status' => 'error', 'message' => 'La cuenta no está activada,verifica el código.']);
+                        echo json_encode(['status' => 'error', 'message' => 'La cuenta no está activada, verifica el código.']);
                     }
                 } else {
-                    // Contraseña incorrecta
                     echo json_encode(['status' => 'error', 'message' => 'Correo o contraseña incorrectos']);
                 }
             } else {
-                // El usuario no existe
                 echo json_encode(['status' => 'error', 'message' => 'Correo o contraseña incorrectos']);
             }
         } catch (PDOException $e) {
-            // Manejo de errores
             echo json_encode(['status' => 'error', 'message' => 'Error al procesar la solicitud: ' . $e->getMessage()]);
         }
 
         // Cerrar la conexión
         $pdo = null;
     } else {
-        // Si faltan datos
         echo json_encode(['status' => 'error', 'message' => 'Faltan datos']);
     }
 } else {
-    // Método de solicitud no permitido
     echo json_encode(['status' => 'error', 'message' => 'Método de solicitud no permitido']);
 }
 ?>
