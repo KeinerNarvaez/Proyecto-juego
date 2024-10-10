@@ -30,8 +30,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 // Hashear la nueva contraseña
                 $hashedPassword = password_hash($nuevaContrasena, PASSWORD_DEFAULT);
 
-                // Actualizar la contraseña en la tabla login
-                $updateQuery = "UPDATE login SET password = :password WHERE loginID = :userID";
+                // Actualizar la contraseña en la tabla login, utilizando el campo userID
+                $updateQuery = "UPDATE login SET password = :password WHERE userID = :userID";
                 $updateStmt = $pdo->prepare($updateQuery);
                 $updateStmt->bindParam(':password', $hashedPassword);
                 $updateStmt->bindParam(':userID', $userID);
