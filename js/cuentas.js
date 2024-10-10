@@ -1,6 +1,6 @@
 window.addEventListener('DOMContentLoaded', () => {
     const boton = document.getElementById('boton-envio');
-
+    
     boton.addEventListener('click', function (event) {
         event.preventDefault();
 
