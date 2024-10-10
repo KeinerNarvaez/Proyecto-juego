@@ -31,7 +31,17 @@ window.addEventListener('DOMContentLoaded', () => {
                     window.location.href = 'codigo_contrasena.html';
                 }, 2000); // Redirigir después de 2 segundos
             } else {
-                alert(result.message);
+            // Mostrar modal de error 
+            const mensajeModal = new bootstrap.Modal(document.getElementById('mensajeModal'));
+            const mensajeModalBody = document.getElementById('mensajeModalBody');
+            mensajeModalBody.innerHTML = `
+              <div class="alert alert-danger" style="font-size: 65px; height: 350px;">
+                  ${result.message}
+                  <br>
+                  <i class="fa-solid fa-xmark" style="display: flex;font-size: 120px; color: red; margin-left:350px;"></i>
+              </div>
+          `;
+          mensajeModal.show();
             }
         })
         .catch(error => {
