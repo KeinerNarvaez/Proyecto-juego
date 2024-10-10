@@ -73,20 +73,20 @@ class Juego {
         this.sub2=document.getElementById('sub2');
         this.imagenes= Math.floor(Math.random()*imagen.length);
         if (this.imagenes===0) {
-            this.valorImagen = ['cuervo', 'colmillo', 'fenix', 'mano', 'ojo'];
-            objetivo.innerHTML="Elixir de inmortalidad";
-            this.sub1.innerHTML="1. De la muerte nací, pero la vida guardo, mis cenizas renacen cuando todo es amargo.";
-            this.sub2.innerHTML="2. Con colmillo afilado, mi sangre te doy,ni vivo ni muerto, mi existencia es hoy.";
+            this.valorImagen = ['cuervo', 'uña', 'patas', 'mano', 'ojo'];
+            objetivo.innerHTML="Poción del Poder Bestial";
+            this.sub1.innerHTML="1. Fuerte y temido, en la sombra acecho.";
+            this.sub2.innerHTML="2. En el charco me escondo, con saltos y brincos.";
         }else if (this.imagenes===1) {
-            this.valorImagen = ['cuervo', 'colmillo', 'ojo', 'mano', 'patas']; 
-            objetivo.innerHTML="Pocima invisibilidad";
-            this.sub1.innerHTML="1. Pequeño y verde, en silencio vigila. Con un salto elegante, su mirada te atrapa.";
-            this.sub2.innerHTML="2. A pesar de su reposo, aún busca lo perdido.";
+            this.valorImagen = ['cuervo', 'patas', 'fenix', 'mano', 'uña']; 
+            objetivo.innerHTML="Poción del Tiempo";
+            this.sub1.innerHTML="1. De la muerte vengo, buscando lo que se ha perdido.";
+            this.sub2.innerHTML="2. En cenizas renazco, en llamas me convierto.";
         } else if(this.imagenes===2) {
-            this.valorImagen = ['cuervo', 'colmillo', 'fenix', 'uña', 'ojo'];
-            objetivo.innerHTML="Elixir de la Visión Clara";
-            this.sub1.innerHTML="1. En lo pequeño y saltarín, su mirada pasa desapercibida.";
-            this.sub2.innerHTML="2. De la bestia feroz provengo, en la noche mi brillo es un fuego.";
+            this.valorImagen = ['cuervo', 'colmillo', 'fenix', 'uña', 'mano'];
+            objetivo.innerHTML="Poción del Despertar";
+            this.sub1.innerHTML="1. Desde lo profundo, vengo a despertar, ¿quién soy que con mi garra, todo puedo cambiar?";
+            this.sub2.innerHTML="2. Oscura mensajera de la noche sin par.";
         } else{
             console.log('error al cargar imagenes');
         }
@@ -139,18 +139,18 @@ class Juego {
     }
     escogerElemento(id){
         if (this.imagenes === 0) {
-            if (id == 'fenix') {
+            if (id == 'uña') {
                 this.sub1.style.textDecoration = "line-through red";
-            } else if (id == 'colmillo') {
+            } else if (id == 'patas') {
                 this.sub2.style.textDecoration = "line-through red";
             } else{
                 this.sub1.style.textDecoration = "";
                 this.sub2.style.textDecoration = "";
             }
         }else if (this.imagenes === 1) {
-            if (id == 'ojo') {
+            if (id == 'mano') {
                 this.sub1.style.textDecoration = "line-through red";
-            } else if (id == 'mano') {
+            } else if (id == 'fenix') {
                 this.sub2.style.textDecoration = "line-through red";
             } else{
                 this.sub1.style.textDecoration = "";
@@ -158,9 +158,9 @@ class Juego {
             }
         }
         else if (this.imagenes === 2) {
-            if (id == 'ojo') {
+            if (id == 'uña') {
                 this.sub1.style.textDecoration = "line-through red";
-            } else if (id == 'colmillo') {
+            } else if (id == 'cuervo') {
                 this.sub2.style.textDecoration = "line-through red";
             } else{
                 this.sub1.style.textDecoration = "";
@@ -172,15 +172,15 @@ class Juego {
 
     procesarDrop(id) {
         if (this.imagenes===0) {
-            if (id !== 'fenix' && id !== 'colmillo') {
+            if (id !== 'uña' && id !== 'patas') {
             this.corazones.perderCorazon();
             }
         }else if (this.imagenes===1) {
-            if (id !== 'ojo' && id !== 'mano') {
+            if (id !== 'mano' && id !== 'fenix') {
                 this.corazones.perderCorazon();
             }
         }else if (this.imagenes===2) {
-            if (id !== 'ojo' && id !== 'colmillo') {
+            if (id !== 'uña' && id !== 'cuervo') {
                 this.corazones.perderCorazon();
             }
         }

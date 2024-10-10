@@ -74,18 +74,18 @@ class Juego {
         this.imagenes= Math.floor(Math.random()*imagen.length);
         if (this.imagenes===0) {
             this.valorImagen = ['cuervo', 'colmillo', 'fenix', 'mano', 'ojo'];
-            objetivo.innerHTML="Elixir de inmortalidad";
-            this.sub1.innerHTML="1. De la muerte nací, pero la vida guardo, mis cenizas renacen cuando todo es amargo.";
-            this.sub2.innerHTML="2. Con colmillo afilado, mi sangre te doy,ni vivo ni muerto, mi existencia es hoy.";
+            objetivo.innerHTML="Elixir de Sombras";
+            this.sub1.innerHTML="1. De la bestia feroz provengo, en la noche mi brillo es un fuego.";
+            this.sub2.innerHTML="2. En lo pequeño y saltarín, su mirada pasa desapercibida.";
         }else if (this.imagenes===1) {
-            this.valorImagen = ['cuervo', 'colmillo', 'ojo', 'mano', 'patas']; 
-            objetivo.innerHTML="Pocima invisibilidad";
-            this.sub1.innerHTML="1. Pequeño y verde, en silencio vigila. Con un salto elegante, su mirada te atrapa.";
-            this.sub2.innerHTML="2. A pesar de su reposo, aún busca lo perdido.";
+            this.valorImagen = ['cuervo', 'patas', 'ojo', 'mano', 'uña']; 
+            objetivo.innerHTML="Poción de la Transformación";
+            this.sub1.innerHTML="1. Con saltos y brincos me muevo en el lodo, con una piel suave que da un gran modo.";
+            this.sub2.innerHTML="2. Negra como la noche, con plumas de misterio.";
         } else if(this.imagenes===2) {
-            this.valorImagen = ['cuervo', 'colmillo', 'fenix', 'uña', 'ojo'];
-            objetivo.innerHTML="Elixir de la Visión Clara";
-            this.sub1.innerHTML="1. En lo pequeño y saltarín, su mirada pasa desapercibida.";
+            this.valorImagen = ['cuervo', 'colmillo', 'fenix', 'uña', 'mano'];
+            objetivo.innerHTML="Elixir de Poder";
+            this.sub1.innerHTML="1. Aunque ya no vive, aún se mueve.";
             this.sub2.innerHTML="2. De la bestia feroz provengo, en la noche mi brillo es un fuego.";
         } else{
             console.log('error al cargar imagenes');
@@ -139,18 +139,18 @@ class Juego {
     }
     escogerElemento(id){
         if (this.imagenes === 0) {
-            if (id == 'fenix') {
+            if (id == 'colmillo') {
                 this.sub1.style.textDecoration = "line-through red";
-            } else if (id == 'colmillo') {
+            } else if (id == 'ojo') {
                 this.sub2.style.textDecoration = "line-through red";
             } else{
                 this.sub1.style.textDecoration = "";
                 this.sub2.style.textDecoration = "";
             }
         }else if (this.imagenes === 1) {
-            if (id == 'ojo') {
+            if (id == 'patas') {
                 this.sub1.style.textDecoration = "line-through red";
-            } else if (id == 'mano') {
+            } else if (id == 'cuervo') {
                 this.sub2.style.textDecoration = "line-through red";
             } else{
                 this.sub1.style.textDecoration = "";
@@ -158,7 +158,7 @@ class Juego {
             }
         }
         else if (this.imagenes === 2) {
-            if (id == 'ojo') {
+            if (id == 'mano') {
                 this.sub1.style.textDecoration = "line-through red";
             } else if (id == 'colmillo') {
                 this.sub2.style.textDecoration = "line-through red";
@@ -172,15 +172,15 @@ class Juego {
 
     procesarDrop(id) {
         if (this.imagenes===0) {
-            if (id !== 'fenix' && id !== 'colmillo') {
+            if (id !== 'colmillo' && id !== 'ojo') {
             this.corazones.perderCorazon();
             }
         }else if (this.imagenes===1) {
-            if (id !== 'ojo' && id !== 'mano') {
+            if (id !== 'patas' && id !== 'cuervo') {
                 this.corazones.perderCorazon();
             }
         }else if (this.imagenes===2) {
-            if (id !== 'ojo' && id !== 'colmillo') {
+            if (id !== 'mano' && id !== 'colmillo') {
                 this.corazones.perderCorazon();
             }
         }
