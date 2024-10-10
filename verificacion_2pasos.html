@@ -33,9 +33,19 @@
     </div>
  </div>
    <!--/flecha-->
-     
 
-    <form action="">
+     <!-- Modal para mensajes de éxito o error -->
+    <div class="modal fade" id="mensajeModal" tabindex="-1" aria-labelledby="mensajeModalLabel" aria-hidden="true">
+    <div class="modal-dialog" >
+        <div class="modal-content"  style="border: black 4px solid; border-radius: 12px; background-color:#FBB347; height: 400px;">
+            <div class="modal-body" id="mensajeModalBody" style="font-size: 50px;">
+                <!-- Aquí se mostrará el mensaje -->
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <form action="" method="post">
 
         <div class="verificacion-codigo">
     
@@ -51,13 +61,13 @@
     
             <div class="inputs-verificacion">
                 <h6>Ingrese tu código</h6>
-                <input type="text" maxlength="1"  class="code-input">
-                <input type="text" maxlength="1"  class="code-input">
-                <input type="text" maxlength="1"class="code-input">
+                <input type="text" maxlength="1"  class="code-input" id="cod-1">
+                <input type="text" maxlength="1"  class="code-input"  id="cod-2">
+                <input type="text" maxlength="1"class="code-input"  id="cod-3">
                 <p style="margin-left:-1px; margin-right: 5px;">__</p>
-                <input type="text" maxlength="1" class="code-input">
-                <input type="text"maxlength="1" class="code-input">
-                <input type="text" maxlength="1" class="code-input">     
+                <input type="text" maxlength="1" class="code-input"  id="cod-4">
+                <input type="text"maxlength="1" class="code-input"  id="cod-5">
+                <input type="text" maxlength="1" class="code-input"  id="cod-6">     
             </div>
     
             <h6>Haz click en el boton de "Verificar" para el inicio de sesión.</h6>
@@ -65,7 +75,7 @@
                <!--boton-->
             <div class="boton-envio" style="margin-left: 100px; margin-top: -30px;">
                 <div class="boton" id="boton-envio">
-                  <a href="./menu.html" class="text-boton"><input type="submit"  style="font-size: 25px;" value="Verificar" ></a>   <!--boton, pero es un input--> 
+                 <input type="submit"  style="font-size: 25px;" value="Verificar" id="boton-veri" > <!--boton, pero es un input--> 
                 </div>
             </div>
     
@@ -79,7 +89,8 @@
      </audio>
     <!--/audio-->
     
-    <script src="./js/index.js"></script>
+    <!--<script src="./js/index.js"></script>-->
+    <script src="./js/veri_2_pasos.js"></script>
     <script src="./bootstrap/js/bootstrap.js"></script>
     <script src="./js/clickleo.js"></script>
     <script src="./js/inputs.js"></script>

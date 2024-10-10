@@ -7,7 +7,6 @@ window.addEventListener('DOMContentLoaded', () => {
 
         // Unificar los inputs del código que brinda el usuario
         const codigo = [
-<<<<<<< HEAD
             document.getElementById('input1-codigo').value,
             document.getElementById('input2-codigo').value,
             document.getElementById('input3-codigo').value,
@@ -15,15 +14,6 @@ window.addEventListener('DOMContentLoaded', () => {
             document.getElementById('input5-codigo').value,
             document.getElementById('input6-codigo').value
         ].join(''); // Unir los 6 inputs
-=======
-            document.getElementById('input1').value,
-            document.getElementById('input2').value,
-            document.getElementById('input3').value,
-            document.getElementById('input4').value,
-            document.getElementById('input5').value,
-            document.getElementById('input6').value
-        ].join(''); //las unifico los 6
->>>>>>> 168af8e860bbf2dd50049d750e278b9a0f516de2
 
         // Empaquetar el código en un objeto
         const data = {
@@ -41,12 +31,35 @@ window.addEventListener('DOMContentLoaded', () => {
         .then(response => response.json())
         .then(result => {
             if (result.status === 'success') {
-                alert('Cuenta verificada correctamente, ya puedes iniciar sesion normalmente.');
+                // Si el código es correcto, mostrar un mensaje de éxito
+                const mensajeModal = new bootstrap.Modal(document.getElementById('mensajeModal'));
+                const mensajeModalBody = document.getElementById('mensajeModalBody');
+                
+                mensajeModalBody.innerHTML = `
+                <div class="alert alert-secondary" style="text-align: center; margin-top:-12px;" >
+                    Cuenta verificada correctamente, ya puedes iniciar sesión normalmente. 
+                    <br> 
+                    <i class="fa-solid fa-check" style="display: block; font-size: 80px; margin: 20px auto;"></i>
+                </div>
+             `;
+
+                mensajeModal.show();
+
                 setTimeout(() => {
                     window.location.href = 'login.html'; // Redirigir después de 3 segundos
                 }, 3000);
             } else {
-                alert(result.message); // Mostrar mensaje de error
+                      // Mostrar modal de error 
+                      const mensajeModal = new bootstrap.Modal(document.getElementById('mensajeModal'));
+                      const mensajeModalBody = document.getElementById('mensajeModalBody');
+                      mensajeModalBody.innerHTML = `
+                        <div class="alert alert-danger" style="font-size: 70px;">
+                            ${result.message}
+                            <br>
+                            <i class="fa-solid fa-xmark" style="display: flex; justify-content: center; font-size: 120px; color: red; margin-left:350px;"></i>
+                        </div>
+                    `;
+                    mensajeModal.show();
             }
         })
         .catch(error => {

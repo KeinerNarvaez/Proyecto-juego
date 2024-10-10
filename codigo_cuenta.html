@@ -32,6 +32,18 @@
         </div>
      </div>
        <!--/flecha-->
+       
+<!-- Modal para mensajes de éxito o error -->
+<div class="modal fade" id="mensajeModal" tabindex="-1" aria-labelledby="mensajeModalLabel" aria-hidden="true">
+    <div class="modal-dialog" >
+        <div class="modal-content"  style="border: black 4px solid; border-radius: 12px; background-color:#FBB347; height: 400px;">
+            <div class="modal-body" id="mensajeModalBody" style="font-size: 50px;">
+                <!-- Aquí se mostrará el mensaje -->
+            </div>
+        </div>
+    </div>
+  </div>
+  
 
     <!--verificar código-->
    <form action="" method="post">
@@ -47,7 +59,6 @@
 
         <div class="inputs-verificacion">
             <h6>Ingrese tu código</h6>
-<<<<<<< HEAD
             <input type="text" maxlength="1"  class="code-input" id="input1-codigo">
             <input type="text" maxlength="1"  class="code-input" id="input2-codigo">
             <input type="text" maxlength="1"  class="code-input" id="input3-codigo">
@@ -55,15 +66,6 @@
             <input type="text" maxlength="1"  class="code-input" id="input4-codigo">
             <input type="text" maxlength="1"  class="code-input" id="input5-codigo">
             <input type="text" maxlength="1"  class="code-input" id="input6-codigo">     
-=======
-            <input type="text" maxlength="1"  class="code-input" id="input1">
-            <input type="text" maxlength="1" class="code-input"  id="input2">
-            <input type="text" maxlength="1"  class="code-input" id="input3">
-            <p style="margin-left:-1px; margin-right: 5px;">__</p>
-            <input type="text" maxlength="1"  class="code-input" id="input4">
-            <input type="text" maxlength="1" class="code-input"  id="input5">
-            <input type="text" maxlength="1" class="code-input"  id="input6">       
->>>>>>> 168af8e860bbf2dd50049d750e278b9a0f516de2
         </div>
 
 
@@ -73,7 +75,7 @@
            <!--boton-->
         <div class="boton-envio" style="margin-left: 100px; margin-top: 25px;">
             <div class="boton" id="boton-envio">
-             <input type="submit" style="font-size: 25px;"  value="Verificar" id="Verificar-contrasena">  <!--boton, pero es un input--> 
+             <input type="submit" style="font-size: 25px;"  value="Verificar" id="botonVerificarCodigo">  <!--boton, pero es un input--> 
             </div>
         </div>
 
