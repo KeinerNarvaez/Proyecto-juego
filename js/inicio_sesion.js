@@ -60,7 +60,7 @@ window.addEventListener('DOMContentLoaded', () => {
                 } else {
                     // Mostrar modal de error con mensaje del servidor
                     mensajeModalBody.innerHTML = `
-                        <div class="alert alert-danger" style="font-size: 70px;">
+                        <div class="alert alert-danger" style="font-size: 58px;">
                             ${result.message}
                             <br>
                             <i class="fa-solid fa-xmark" style="display: flex; justify-content: center; font-size: 120px; color: red;"></i>

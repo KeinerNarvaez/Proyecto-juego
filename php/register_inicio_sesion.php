@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         echo json_encode(['status' => 'success', 'message' => 'Inicio de sesión exitoso']);
                     } else {
                         // La cuenta no está activada
-                        echo json_encode(['status' => 'error', 'message' => 'La cuenta no está activada. Por favor, verifica tu correo.']);
+                        echo json_encode(['status' => 'error', 'message' => 'La cuenta no está activada,verifica el código.']);
                     }
                 } else {
                     // Contraseña incorrecta
