@@ -265,7 +265,7 @@ class Juego {
             return response.json();
         })
         .then(data => {
-            const print = data[0]?.puntajes || 0; 
+            const print = "3,50"
             const valorPuntaje = document.getElementById('valorPuntaje');
             valorPuntaje.innerHTML = 'Tus puntos: ' + print;
     
