@@ -26,11 +26,11 @@ window.addEventListener('DOMContentLoaded', () => {
             mensajeModal.show();
             return; // Detener la ejecución si hay campos vacíos
         }
-        
+
         // Empaquetar los datos
         const data = {
-            email: emailUser, // Cambiar el nombre de la propiedad a 'email'
-            password: passwordUser // Cambiar el nombre de la propiedad a 'password'
+            emailUser: emailUser, // Cambiar el nombre de la propiedad a 'emailUser'
+            passwordUser: passwordUser // Cambiar el nombre de la propiedad a 'passwordUser'
         };
 
         // Hacer la petición fetch
@@ -41,7 +41,13 @@ window.addEventListener('DOMContentLoaded', () => {
             },
             body: JSON.stringify(data)
         })
-            .then(response => response.json())
+            .then(response => {
+                // Verifica si la respuesta es válida
+                if (!response.ok) {
+                    throw new Error('Error en la red');
+                }
+                return response.json();
+            })
             .then(result => {
                 const mensajeModal = new bootstrap.Modal(document.getElementById('mensajeModal'));
                 const mensajeModalBody = document.getElementById('mensajeModalBody');

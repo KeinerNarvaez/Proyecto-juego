@@ -13,6 +13,3 @@ sliderVolumen.addEventListener("mousemove", function(){
     let color =  'linear-gradient(90deg,red '+ valorSliderVolumen+'%,rgb(183, 177, 177) '+valorSliderVolumen+'%)';
     sliderVolumen.style.background=color;
 });
-
-
-
