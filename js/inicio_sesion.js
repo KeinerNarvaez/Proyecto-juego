@@ -53,10 +53,21 @@ window.addEventListener('DOMContentLoaded', () => {
                 const mensajeModalBody = document.getElementById('mensajeModalBody');
 
                 if (result.status === 'success') {
+                // Si el código es correcto, mostrar un mensaje de éxito
+              const mensajeModal = new bootstrap.Modal(document.getElementById('mensajeModal'));
+              const mensajeModalBody = document.getElementById('mensajeModalBody');
+              mensajeModalBody.innerHTML = `
+              <div class="alert alert-secondary" style="text-align: center; margin-top:-12px " >
+              <h1 style="font-size: 65px;"> Inicio de sesión correctamente </h1>
+               <br> 
+               <i class="fa-solid fa-check" style="display: block; font-size: 100px; margin: 20px auto ; margin-top:-12px"></i>
+            </div>
+         `;
+        mensajeModal.show();
                     // Redirigir después de unos segundos
                     setTimeout(() => {
                         window.location.href = 'menu.html';
-                    }, 1000);
+                    }, 2000);
                 } else {
                     // Mostrar modal de error con mensaje del servidor
                     mensajeModalBody.innerHTML = `

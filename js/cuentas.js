@@ -68,11 +68,9 @@ window.addEventListener('DOMContentLoaded', () => {
         })
         .then(result => {
             if (result && result.status === 'success') {
-                // Mostrar mensaje de éxito si el correo se envió correctamente
-                mostrarMensajeModal('El correo se envió correctamente. Por favor, revisa tu bandeja de entrada.', false);
                 setTimeout(() => {
                     window.location.href = 'codigo_cuenta.html';
-                }, 5000); // Redirigir después de 10 segundos
+                }, 2000); // Redirigir después de 2 segundos
 
             } else if (result) {
                 // Mostrar error si el envío del correo falla
