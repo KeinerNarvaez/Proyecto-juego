@@ -114,7 +114,31 @@
     </style>
 </head>
 <body>
-     
+  <div class="btn-wsp" data-bs-toggle="modal" data-bs-target="#activo">
+    <i class="fa-solid fa-users fa-fade"></i>
+  </div>
+
+    <!--modal activos-->
+    <div class="modal fade" id="activo" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header" style="background-color: #FBB347;">
+            <h1 class="modal-title fs-5" id="staticBackdropLabel">Personas jugando</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body"  style="max-height: 400px;">
+            <div id="cuerpo-activos" style="height:200px; width:100%;">
+              <div class="perfil">
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer" style="background-color: #FBB347;">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Understood</button>
+          </div>
+        </div>
+      </div>
+    </div>
     
      <!--titulo del juego-->
      <div class="col-12 titulo" style="display: flex; flex-direction: column; margin-top: -32px;">
@@ -261,7 +285,7 @@
                 <hr>
             </div>
             <div class="input-alias">
-                <input type="text">
+                <input type="text" min="3" required>
             </div>
         </div>
 

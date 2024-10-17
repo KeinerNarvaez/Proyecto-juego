@@ -536,6 +536,78 @@ body{
     overflow-x: hidden;
 }
 
+
+
+/* CHATBOX
+=============== */
+.chatbox {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+}
+
+/* CONTENT IS CLOSE */
+.chatbox__support {
+    display: flex;
+    flex-direction: column;
+    background: #eee;
+    width: 300px;
+    height: 350px;
+    z-index: -123456;
+    opacity: 0;
+    transition: all .5s ease-in-out;
+}
+
+/* CONTENT ISOPEN */
+.chatbox--active {
+    transform: translateY(-40px);
+    z-index: 123456;
+    opacity: 1;
+    
+}
+
+/* BUTTON */
+.chatbox__button {
+    text-align: right;
+}
+
+
+/* HEADER */
+.chatbox__header {
+    position: sticky;
+    top: 0;
+    background: orange;
+}
+
+/* MESSAGES */
+.chatbox__messages {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    flex-direction: column-reverse;
+}
+
+.messages__item {
+    background: orange;
+    max-width: 60.6%;
+    width: fit-content;
+}
+
+.messages__item--operator {
+    margin-left: auto;
+}
+
+.messages__item--visitor {
+    margin-right: auto;
+}
+
+/* FOOTER */
+.chatbox__footer {
+    position: sticky;
+    bottom: 0;
+}
+
 .titulo-terminos h1{
     padding-top: 5px;
     text-align: center;
@@ -640,6 +712,66 @@ display: flex;
     margin-top:0px;
 } 
 /*Responsive*/
+
+.btn-dr {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    line-height: 63px;
+    top: 25px; /* Cambiado de bottom a top */
+    right: 25px;
+    background: #e0bc47;
+    color: #000000;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 35px;
+    box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.3);
+    z-index: 100;
+    transition: all 300ms ease;
+}
+
+.btn-wsp{
+    position:fixed;
+    width:60px;
+    height:60px;
+    line-height: 63px;
+    bottom:25px;
+    right:25px;
+    background:#d32525;
+    color:#FFF;
+    border-radius:50px;
+    text-align:center;
+    font-size:35px;
+    box-shadow: 0px 1px 10px rgba(0,0,0,0.3);
+    z-index:100;
+    transition: all 300ms ease;
+}
+.btn-wsp:hover{
+    background: #ba2020;
+}
+
+#cuerpo-activos{
+    width: 100px;
+    overflow: scroll;
+    scrollbar-color: rgb(233, 75, 75) black;
+    scrollbar-width: 5px;
+    overflow-x: hidden;
+}
+
+.perfil{
+    height: 80px;
+    width: 100%;
+    border-radius: 0.3pc;
+    background: #080807;
+}
+
+@media only screen and (min-width:320px) and (max-width:768px){
+    .btn-wsp{
+        width:63px;
+        height:63px;
+        line-height: 66px;
+	}
+}
 
 @media (max-width: 1200px) {
     /*tamaño de botones*/
