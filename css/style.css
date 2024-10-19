@@ -536,7 +536,10 @@ body{
     overflow-x: hidden;
 }
 
-
+/* Deshabilitar el botón de mostrar contraseña en Edge */
+input[type="password"]::-ms-reveal {
+    display: none;
+}
 
 /* CHATBOX
 =============== */
