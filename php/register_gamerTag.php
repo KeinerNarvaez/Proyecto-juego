@@ -5,11 +5,11 @@ include_once '../app/config/connection.php';
 // Establecer el encabezado de contenido JSON
 header('Content-Type: application/json');
 
+// Manejar solicitud POST para guardar el alias
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Decodificar los datos recibidos
+    // Obtener el contenido de la solicitud
     $data = json_decode(file_get_contents('php://input'), true);
 
-    // Verificar si se recibió el alias (gamerTag)
     if (!empty($data['alias'])) {
         $alias = trim($data['alias']);
 
@@ -18,9 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $pdo = $conn->connect();
 
         try {
-            // Obtener el userID de la tabla user (sin recibir el userID ni el correo en el post)
-            // Seleccionamos el userID basado en algún criterio (por ejemplo, el código de activación de cuenta ya verificado)
-            // Aquí se asume que el último usuario con código de activación verificado es el correcto
+            // Obtener el userID basado en el último usuario con cuenta activada
             $query = "SELECT userID FROM user WHERE accountActivationID IS NOT NULL ORDER BY accountActivationID DESC LIMIT 1";
             $stmt = $pdo->prepare($query);
             $stmt->execute();
@@ -62,13 +60,47 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             } else {
                 echo json_encode(['status' => 'error', 'message' => 'No se encontró el userID válido']);
             }
-
         } catch (Exception $e) {
             echo json_encode(['status' => 'error', 'message' => 'Error en el servidor: ' . $e->getMessage()]);
         }
-
     } else {
         echo json_encode(['status' => 'error', 'message' => 'Alias no proporcionado']);
+    }
+} 
+// Manejar solicitud GET para consultar el alias
+elseif ($_SERVER['REQUEST_METHOD'] == 'GET') {
+    // Crear instancia de conexión
+    $conn = new Connection();
+    $pdo = $conn->connect();
+
+    try {
+        // Obtener el userID basado en el último usuario con cuenta activada
+        $query = "SELECT userID FROM user WHERE accountActivationID IS NOT NULL ORDER BY accountActivationID DESC LIMIT 1";
+        $stmt = $pdo->prepare($query);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($result) {
+            $userID = $result['userID'];
+
+            // Consultar si existe un gamerTag asociado a este userID
+            $checkQuery = "SELECT gamerTag FROM user WHERE userID = :userID";
+            $checkStmt = $pdo->prepare($checkQuery);
+            $checkStmt->bindParam(':userID', $userID);
+            $checkStmt->execute();
+            $gamerTag = $checkStmt->fetchColumn();
+
+            if ($gamerTag) {
+                // Devolver el gamerTag si existe
+                echo json_encode(['status' => 'success', 'gamerTag' => $gamerTag]);
+            } else {
+                echo json_encode(['status' => 'error', 'message' => 'No se encontró un gamerTag para el usuario']);
+            }
+        } else {
+            echo json_encode(['status' => 'error', 'message' => 'No se encontró el userID válido']);
+        }
+    } catch (Exception $e) {
+        echo json_encode(['status' => 'error', 'message' => 'Error en el servidor: ' . $e->getMessage()]);
     }
 } else {
     echo json_encode(['status' => 'error', 'message' => 'Método de solicitud no permitido']);

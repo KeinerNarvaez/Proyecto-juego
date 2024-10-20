@@ -758,15 +758,36 @@ display: flex;
     overflow: scroll;
     scrollbar-color: rgb(233, 75, 75) black;
     scrollbar-width: 5px;
+    border-radius: 10px;
     overflow-x: hidden;
 }
 
 .perfil{
+    display: flex;
+    flex-wrap: wrap;
     height: 80px;
-    width: 100%;
+    width: 31.33%;
+    margin-left:2%;
+    margin-top: 2%;
+    border: 4px rgb(52, 49, 16) solid;
     border-radius: 0.3pc;
-    background: #080807;
+    background: rgb(244,90,101);
+    background: linear-gradient(94deg, rgba(244,90,101,1) 0%, rgba(233,109,64,1) 35%, rgba(255,55,75,1) 100%);
+    -webkit-box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.36);
+    -moz-box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.36);
+    box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.36);
+    
 }
+
+#texto_perfil{
+    padding: 5%;
+    color:#ffffff;
+}
+
+#activo_perfil{
+    padding-top: 5%;
+}
+
 
 @media only screen and (min-width:320px) and (max-width:768px){
     .btn-wsp{
