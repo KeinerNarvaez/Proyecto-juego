@@ -1,4 +1,6 @@
 <?php
+session_start(); // Inicia la sesión al principio del script
+
 include_once '../app/config/connection.php'; // Incluye la conexión a la base de datos
 
 // Establecer el encabezado de contenido JSON
@@ -39,6 +41,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                     // Verificar el accountActivationID
                     if ($userActivation && $userActivation['accountActivationID'] > 0) {
+                        // Asignar variables de sesión
+                        $_SESSION['userID'] = $user['userID'];
+                        $_SESSION['emailUser'] = $user['email'];
+
                         // Respuesta de éxito en formato JSON
                         echo json_encode(['status' => 'success', 'message' => 'Inicio de sesión exitoso']);
                     } else {

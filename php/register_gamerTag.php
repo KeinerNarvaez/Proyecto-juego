@@ -1,4 +1,6 @@
 <?php
+session_start(); // Iniciar la sesión
+
 // Incluir la conexión a la base de datos
 include_once '../app/config/connection.php';
 
@@ -13,20 +15,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (!empty($data['alias'])) {
         $alias = trim($data['alias']);
 
-        // Crear instancia de conexión
-        $conn = new Connection();
-        $pdo = $conn->connect();
+        // Verificar si existe `userID` en la sesión
+        if (isset($_SESSION['userID'])) {
+            $userID = $_SESSION['userID']; // Leer el userID desde la sesión
 
-        try {
-            // Obtener el userID basado en el último usuario con cuenta activada
-            $query = "SELECT userID FROM user WHERE accountActivationID IS NOT NULL ORDER BY accountActivationID DESC LIMIT 1";
-            $stmt = $pdo->prepare($query);
-            $stmt->execute();
-            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            // Crear instancia de conexión
+            $conn = new Connection();
+            $pdo = $conn->connect();
 
-            if ($result) {
-                $userID = $result['userID'];
-
+            try {
                 // Verificar si ya existe un `gamerTag` para este usuario
                 $checkQuery = "SELECT COUNT(*) FROM user WHERE userID = :userID AND gamerTag IS NOT NULL";
                 $checkStmt = $pdo->prepare($checkQuery);
@@ -57,11 +54,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         echo json_encode(['status' => 'error', 'message' => 'Error al guardar el alias']);
                     }
                 }
-            } else {
-                echo json_encode(['status' => 'error', 'message' => 'No se encontró el userID válido']);
+            } catch (Exception $e) {
+                echo json_encode(['status' => 'error', 'message' => 'Error en el servidor: ' . $e->getMessage()]);
             }
-        } catch (Exception $e) {
-            echo json_encode(['status' => 'error', 'message' => 'Error en el servidor: ' . $e->getMessage()]);
+        } else {
+            echo json_encode(['status' => 'error', 'message' => 'No se encontró el userID en la sesión']);
         }
     } else {
         echo json_encode(['status' => 'error', 'message' => 'Alias no proporcionado']);
@@ -69,20 +66,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 } 
 // Manejar solicitud GET para consultar el alias
 elseif ($_SERVER['REQUEST_METHOD'] == 'GET') {
-    // Crear instancia de conexión
-    $conn = new Connection();
-    $pdo = $conn->connect();
+    // Verificar si existe `userID` en la sesión
+    if (isset($_SESSION['userID'])) {
+        $userID = $_SESSION['userID']; // Leer el userID desde la sesión
 
-    try {
-        // Obtener el userID basado en el último usuario con cuenta activada
-        $query = "SELECT userID FROM user WHERE accountActivationID IS NOT NULL ORDER BY accountActivationID DESC LIMIT 1";
-        $stmt = $pdo->prepare($query);
-        $stmt->execute();
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        // Crear instancia de conexión
+        $conn = new Connection();
+        $pdo = $conn->connect();
 
-        if ($result) {
-            $userID = $result['userID'];
-
+        try {
             // Consultar si existe un gamerTag asociado a este userID
             $checkQuery = "SELECT gamerTag FROM user WHERE userID = :userID";
             $checkStmt = $pdo->prepare($checkQuery);
@@ -96,11 +88,11 @@ elseif ($_SERVER['REQUEST_METHOD'] == 'GET') {
             } else {
                 echo json_encode(['status' => 'error', 'message' => 'No se encontró un gamerTag para el usuario']);
             }
-        } else {
-            echo json_encode(['status' => 'error', 'message' => 'No se encontró el userID válido']);
+        } catch (Exception $e) {
+            echo json_encode(['status' => 'error', 'message' => 'Error en el servidor: ' . $e->getMessage() ]);
         }
-    } catch (Exception $e) {
-        echo json_encode(['status' => 'error', 'message' => 'Error en el servidor: ' . $e->getMessage()]);
+    } else {
+        echo json_encode(['status' => 'error', 'message' => 'No se encontró el userID en la sesión']);
     }
 } else {
     echo json_encode(['status' => 'error', 'message' => 'Método de solicitud no permitido']);
