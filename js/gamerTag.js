@@ -17,6 +17,17 @@ document.addEventListener('DOMContentLoaded', function() {
             const clientId = `client-${Date.now()}`;
 
             socket.onopen = () => {
+                socket.send(JSON.stringify({
+                    accion: 'conectados'
+                }))
+                socket.onmessage = (event) => {
+                    let data = JSON.parse(event.data);
+                    let text = document.createElement('div');
+                    text.classList.add('other');
+                    text.innerText = data.message;
+                
+                    document.getElementById('messages').appendChild(text);
+                };
                 console.log("Connected");
                 // Crear el bloque de HTML del perfil
                 let perfil = document.createElement('div');
@@ -27,6 +38,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 <img src="./Assest/personasActivas.png" class="fa-flip" id="activo_perfil" style="width: 20%; height:80%;" alt="">`;
                 // Insertar el perfil en el elemento con id 'cuerpo-activos'
                 document.getElementById('cuerpo-activos').appendChild(perfil);
+
+
 };
         } else {
             const clientId = `client-${Date.now()}`;

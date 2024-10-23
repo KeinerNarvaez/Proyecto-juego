@@ -20,7 +20,7 @@ echo "El servidor está corriendo...\n";
 class Chat implements MessageComponentInterface
 {
     protected $clients; // No es necesario especificar el tipo aquí
-
+    protected $activos;
     public function __construct()
     {
         $this->clients = new SplObjectStorage();
@@ -41,6 +41,12 @@ class Chat implements MessageComponentInterface
             if ($from !== $client) {
                 $client->send(json_encode(['message' => $data['message']]));
             }
+        }
+
+        $conectadas = 0;
+
+        if ($data['accion'] == 'conectados'){
+            $from->send(json_encode(['conectados'=> $conectadas]));
         }
     }
 
