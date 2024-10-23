@@ -70,8 +70,7 @@ body{
 }
 /* para evitar el error al tomar las botellas (toma el div total)*/
 #botellas, #arrastreBruja {
-    position: relative;
-    z-index: 10;  
+ 
 }
 
 #item{

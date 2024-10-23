@@ -1,0 +1,82 @@
+h1 {
+    text-align: center;
+    font-size: 50px;
+}
+
+.chat {
+    width: 200px;
+    height: 200px;
+    border: 1px solid black;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+    overflow:scroll;
+    overflow-x: hidden;
+    padding: 10px;
+}
+
+.messages {
+    width: 100%;
+    height: 90%;
+
+    display: flex;
+    flex-direction: column;
+
+    font-size: 25px;
+}
+
+.messages div {
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.send-message {
+    width: 100%;
+    height: 10%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: stretch;
+}
+
+.message {
+    width: 80%;
+
+    border-radius: 50px;
+
+    border: 0;
+
+    background-color: green;
+    color: black;
+    font-size: 15px;
+}
+
+.send {
+    width: 15%;
+
+    border-radius: 50px;
+    border: 0;
+
+    background-color: greenyellow;
+}
+
+.me {
+    background-color: rgb(74, 121, 74);
+    width: auto;
+    max-width: 70%;
+    height: auto;
+
+
+    align-self: end;
+}
+
+.other {
+    background-color: rgb(85, 85, 130);
+    width: auto;
+    max-width: 70%;
+    height: auto;
+
+    align-self: start;
+}

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sala</title>
+    <link rel="stylesheet" href="./css/chat.css">
     <link rel="stylesheet" href="./css/fondo_sala.css">
     <link rel="stylesheet" href="./bootstrap/css/bootstrap.css">
     <!--Enlaces para fuentes de google-->
@@ -16,9 +17,24 @@
       <!--enlace -->
       <link href="https://fonts.googleapis.com/css2?family=Koh+Santepheap:wght@100;300;400;700;900&display=swap" rel="stylesheet">
       <link rel="stylesheet" href="./fontawesome-free-6.6.0-web/css/all.css">
+      <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
 </head>
-<body>
+<body id="body">
+    <div class="btn-wsp fa-bounce" id="chatButton" data-bs-toggle="popover" title="Chat">
+        <i class="fa-solid fa-comments"></i>
+    </div>
 
+    <div id="chatContent" style="display:none;">
+        <div class="chat">
+            <div class="messages" id="messages"></div>
+            <div class="send-message">
+                <input type="text" class="message" id="message" placeholder="Escribe un mensaje...">
+                <button class="send" type="button" id="send">Enviar</button>
+            </div>
+        </div>
+    </div>
+    
+    
     <!--flecha-->
     <div class="salir-menu" >
         <div class="flecha">
@@ -26,7 +42,7 @@
         </div>
        </div>
     <!--/flecha-->
-
+ 
     <!--sala-->
     <div class="sala">
         
@@ -167,9 +183,10 @@
     <!--/audio-->
 
 
-    <!--El fondo toca buscar una forma de optimizarlo para que cargue con mas velocidad y sirva en cualquier dispositivo-->
+    <script src="./js/socket.js"></script>
+    <script src="./js/popover.js"></script>
     <script src="./js/index.js"></script>
-    <script src="./bootstrap/js/bootstrap.js"></script>
+    <script src="./bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="./js/clickleo.js"></script>
 </body>
 </html>
