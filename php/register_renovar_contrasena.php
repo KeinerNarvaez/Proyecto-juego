@@ -37,7 +37,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $updateStmt->bindParam(':userID', $userID);
 
                 if ($updateStmt->execute()) {
-                    echo json_encode(['status' => 'success', 'message' => 'Contraseña renovada correctamente']);
+                    // Eliminar el código de verificación de la tabla recoverpassword después de renovar la contraseña
+                    $deleteQuery = "DELETE FROM recoverpassword WHERE userID = :userID";
+                    $deleteStmt = $pdo->prepare($deleteQuery);
+                    $deleteStmt->bindParam(':userID', $userID);
+                    $deleteStmt->execute();
+
+                    echo json_encode(['status' => 'success', 'message' => 'Contraseña renovada y código de verificación eliminado correctamente']);
                 } else {
                     echo json_encode(['status' => 'error', 'message' => 'Error al actualizar la contraseña']);
                 }
@@ -53,3 +59,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 } else {
     echo json_encode(['status' => 'error', 'message' => 'Método de solicitud no permitido']);
 }
+?>

@@ -50,6 +50,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     $updateUserStmt->bindParam(':userID', $userID);
                     $updateUserStmt->execute();
 
+                    // Eliminar el código de activación verificado de la base de datos
+                    $deleteQuery = "DELETE FROM accountactivation WHERE accountActivationID = :accountActivationID";
+                    $deleteStmt = $pdo->prepare($deleteQuery);
+                    $deleteStmt->bindParam(':accountActivationID', $accountActivationID);
+                    $deleteStmt->execute();
+
                     // Respuesta de éxito en formato JSON
                     echo json_encode(['status' => 'success', 'message' => 'Código verificado y usuario actualizado correctamente']);
                 } else {
