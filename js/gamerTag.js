@@ -1,134 +1,94 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const socket = new WebSocket("ws://localhost:8080");
+
     // Consultar el alias al cargar la página
     fetch('./php/register_gamerTag.php', {
         method: 'GET',
-        headers: {
-            'Content-Type': 'application/json'
-        }
+        headers: { 'Content-Type': 'application/json' }
     })
     .then(response => response.json())
     .then(data => {
-        if (data.status === 'success') {
-            // Asignar el alias al input si existe
-            const aliasInput = document.getElementById('alias-usuario');
-            aliasInput.value = data.gamerTag;
+        const aliasInput = document.getElementById('alias-usuario');
+        aliasInput.value = data.gamerTag || 'Desconocido';
+        conectarSocket(aliasInput.value);
+    });
 
-            const clientId = `client-${Date.now()}`;
+    function conectarSocket(gamerTag) {
+        socket.onopen = () => {
+            console.log("Connected");
+            socket.send(JSON.stringify({
+                message: 'Nuevo usuario conectado',
+                gamerTag: gamerTag
+            }));
+        };
 
-            socket.onopen = () => {
-                socket.send(JSON.stringify({
-                    accion: 'conectados'
-                }))
-                socket.onmessage = (event) => {
-                    let data = JSON.parse(event.data);
-                    let text = document.createElement('div');
-                    text.classList.add('other');
-                    text.innerText = data.message;
-                
-                    document.getElementById('messages').appendChild(text);
-                };
-                console.log("Connected");
-                // Crear el bloque de HTML del perfil
-                let perfil = document.createElement('div');
-                perfil.classList.add('perfil');
-                perfil.id = clientId; // Usamos el clientId como identificador único
-                perfil.innerHTML = `
-                <h1 id="texto_perfil">${data.gamerTag}</h1>
-                <img src="./Assest/personasActivas.png" class="fa-flip" id="activo_perfil" style="width: 20%; height:80%;" alt="">`;
-                // Insertar el perfil en el elemento con id 'cuerpo-activos'
-                document.getElementById('cuerpo-activos').appendChild(perfil);
+        socket.onmessage = (event) => {
+            const data = JSON.parse(event.data);
 
-
-};
-        } else {
-            const clientId = `client-${Date.now()}`;
-
-            socket.onopen = () => {
-             console.log("Connected");
-
-    // Crear el bloque de HTML del perfil
-            let perfil = document.createElement('div');
-            perfil.classList.add('perfil');
-            perfil.id = clientId; // Usamos el clientId como identificador único
-            perfil.innerHTML = `
-            <h1 id="texto_perfil">Desconocido</h1>
-            <img src="./Assest/personasActivas.png" class="fa-flip" id="activo_perfil" style="width: 20%; height:80%;" alt="">`;
-
-    // Insertar el perfil en el elemento con id 'cuerpo-activos'
-        document.getElementById('cuerpo-activos').appendChild(perfil);
-};
-        }
-
-// Generar un ID único para cada cliente para identificar el perfil
-
-
-socket.onclose = (event) => {
-    if (event.wasClean) {
-        console.log('Closed by the client');
-    } else {
-        console.log('Closed by the server');
-    }
-
-    // Eliminar el bloque de HTML del perfil al desconectarse
-    let perfil = document.getElementById(clientId);
-    if (perfil) {
-        perfil.remove(); // Eliminar el perfil del DOM
-    }
-};
-
-socket.onerror = (error) => {
-    console.error(error);
-};
-
-});
-});
-
-document.getElementById('alias-usuario').addEventListener('input', function() {
-    const alias = this.value;
-    const aliasMessage = document.getElementById('aliasMessage');
-
-    // Definir la longitud mínima del alias
-    const longitudMinima = 5;
-
-    // Verificar si el alias no está vacío y cumple con la longitud mínima
-    if (alias.trim().length < longitudMinima) {
-        aliasMessage.textContent = `El alias debe tener al menos ${longitudMinima} caracteres.`;
-        aliasMessage.style.color = "red";
-        return;
-    } else {
-        // Limpiar el mensaje si la longitud es suficiente
-        aliasMessage.textContent = "";
-
-        // Enviar alias al servidor usando fetch
-        fetch('./php/register_gamerTag.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ alias })
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.status === 'success') {
-                aliasMessage.textContent = "Alias guardado correctamente";
-                aliasMessage.style.color = "green";
-
-                // Si se guardó correctamente, actualizar el valor en el input
-                document.getElementById('alias-usuario').value = alias;
-            } else {
-                aliasMessage.textContent = "Error al guardar el alias";
-                aliasMessage.style.color = "red";
+            if (data.message === 'Nuevo usuario conectado') {
+                // Agregar la tarjeta del nuevo usuario solo si es el propio
+                if (data.sender) {
+                    agregarPerfil(data.gamerTag); // Agrega la tarjeta del propio usuario
+                } else {
+                    agregarPerfil(data.gamerTag); // Agrega la tarjeta de otros usuarios
+                }
             }
-        })
-        .catch(error => {
-            console.error('Error en la solicitud:', error);
-            aliasMessage.textContent = "Ocurrió un error al intentar guardar el alias. Detalles: " + error.message;
-            aliasMessage.style.color = "red";
-        });
+
+            // Manejar la lista de usuarios conectados
+            if (data.message === 'Lista de usuarios') {
+                // Opcional: limpiar y mostrar todos los perfiles
+                document.getElementById('cuerpo-activos').innerHTML = ''; // Limpiar antes de mostrar
+                data.users.forEach(user => agregarPerfil(user));
+            }
+        };
+
+        socket.onclose = (event) => {
+            if (!event.wasClean) console.log('Closed by server');
+        };
+
+        socket.onerror = (error) => console.error(error);
     }
+
+    function agregarPerfil(gamerTag) {
+        const clientId = `client-${Date.now()}`;
+        let perfil = document.createElement('div');
+        perfil.classList.add('perfil');
+        perfil.id = clientId;
+        perfil.innerHTML = `
+            <h1 id="texto_perfil">${gamerTag}</h1>
+            <img src="./Assest/personasActivas.png" class="fa-flip" id="activo_perfil" style="width: 20%; height:80%;" alt="">
+        `;
+        document.getElementById('cuerpo-activos').appendChild(perfil);
+    }
+
+    document.getElementById('alias-usuario').addEventListener('input', function () {
+        const alias = this.value;
+        const aliasMessage = document.getElementById('aliasMessage');
+        const minLong = 5;
+
+        if (alias.trim().length < minLong) {
+            aliasMessage.textContent = `El alias debe tener al menos ${minLong} caracteres.`;
+            aliasMessage.style.color = "red";
+            return;
+        } else {
+            aliasMessage.textContent = "";
+            fetch('./php/register_gamerTag.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ alias })
+            })
+            .then(response => response.json())
+            .then(data => {
+                aliasMessage.textContent = data.status === 'success' ? "Alias guardado correctamente" : "Error al guardar el alias";
+                aliasMessage.style.color = data.status === 'success' ? "green" : "red";
+                if (data.status === 'success') document.getElementById('alias-usuario').value = alias;
+            })
+            .catch(error => {
+                console.error('Error en la solicitud:', error);
+                aliasMessage.textContent = `Ocurrió un error al intentar guardar el alias. Detalles: ${error.message}`;
+                aliasMessage.style.color = "red";
+            });
+        }
+    });
 });
-
-
-
 

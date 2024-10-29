@@ -20,22 +20,39 @@ socket.onmessage = (event) => {
     let data = JSON.parse(event.data);
     let text = document.createElement('div');
     text.classList.add('other');
-    text.innerText = data.message;
+    text.innerText = data.mensajes; // Asegúrate de que data.mensajes está definido
 
+    // Agregar el elemento al DOM
     document.getElementById('messages').appendChild(text);
+
+    // Agregar el evento click al nuevo elemento
+    text.addEventListener("click", e => {
+        e.preventDefault();
+        textoVoz(text.innerText); // Usar el texto correcto
+    });
 };
 
 document.getElementById('send').addEventListener('click', () => {
-    let message = document.getElementById('message').value;
-    document.getElementById('message').value = '';
+    let mensajes = document.getElementById('message').value;
+    document.getElementById('message').value = ''; // Limpiar el campo de entrada
 
     let text = document.createElement('div');
     text.classList.add('me');
-    text.innerText = message;
+    text.innerText = mensajes;
 
+    // Agregar el mensaje del usuario al DOM
     document.getElementById('messages').appendChild(text);
 
+    // Enviar el mensaje a través del WebSocket
     socket.send(JSON.stringify({
-        message
+        mensajes
     }));
 });
+
+function textoVoz(texto) {
+    let utterance = new SpeechSynthesisUtterance(texto);
+    window.speechSynthesis.speak(utterance); // Cambia Synth por window.speechSynthesis
+}
+
+
+
