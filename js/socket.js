@@ -18,18 +18,20 @@ socket.onerror = (error) => {
 
 socket.onmessage = (event) => {
     let data = JSON.parse(event.data);
-    let text = document.createElement('div');
-    text.classList.add('other');
-    text.innerText = data.mensajes; // Asegúrate de que data.mensajes está definido
+    if (data.mensajes) { // Asegúrate de que mensajes está definido
+        let text = document.createElement('div');
+        text.classList.add('other');
+        text.innerText = data.mensajes;
 
-    // Agregar el elemento al DOM
-    document.getElementById('messages').appendChild(text);
+        // Agregar el elemento al DOM
+        document.getElementById('messages').appendChild(text);
 
-    // Agregar el evento click al nuevo elemento
-    text.addEventListener("click", e => {
-        e.preventDefault();
-        textoVoz(text.innerText); // Usar el texto correcto
-    });
+        // Agregar el evento click al nuevo elemento
+        text.addEventListener("click", e => {
+            e.preventDefault();
+            textoVoz(text.innerText);
+        });
+    }
 };
 
 document.getElementById('send').addEventListener('click', () => {
