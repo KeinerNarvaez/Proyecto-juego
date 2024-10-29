@@ -269,7 +269,7 @@ class Juego {
         this.colorMezcla.reiniciar(); 
     }
 
-
+//perder
 
     puntaje() {   
         let puntaje =(this.cronometro.minutos + this.cronometro.segundos)/this.corazones.corazonesRestantes;
