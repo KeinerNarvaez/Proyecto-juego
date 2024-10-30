@@ -6,6 +6,8 @@
     <title>Sala</title>
     <link rel="stylesheet" href="./css/chat.css">
     <link rel="stylesheet" href="./css/fondo_sala.css">
+    
+    
     <link rel="stylesheet" href="./bootstrap/css/bootstrap.css">
     <!--Enlaces para fuentes de google-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,19 +22,36 @@
       <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
 </head>
 <body id="body">
-    <div class="btn-wsp fa-bounce" id="chatButton" data-bs-toggle="popover" title="Chat">
+    <div class="btn-wsp fa-bounce" data-bs-toggle="modal" data-bs-target="#manual">
         <i class="fa-solid fa-comments"></i>
     </div>
 
-    <div id="chatContent" style="display:none;">
-        <div class="chat">
-            <div class="messages" id="messages"></div>
-            <div class="send-message">
-                <input type="text" class="message" id="message" placeholder="Escribe un mensaje...">
-                <button class="send" type="button" id="send">Enviar</button>
+
+    <div class="modal fade text-center" id="manual" tabindex="-1" aria-labelledby="exampleModalLabel"  aria-hidden="true">
+        <div class="modal-dialog moda-chat">
+          <div class="modal-content" style="background:url(./Assest/modalHechizeria.png);background-repeat: no-repeat;background-size: 800px;    background-position: center center; height:600px; ">
+            <div class="modal-body">
+                <div class="">
+                  <h1 class="modal-title" id="exampleModalLabel" style="font-family:kavoon; padding-left: 2%; padding-top:10%; font-size:30px; color: #FF9900; margin-top:10%;" >Chat de usuarios  &nbsp<i class="fa-solid fa-broom fa-fade"></i></i></h1>
+                </div>
+                <div style="width:57%;margin-left:21%; padding-top:5px; background:#FF9900"></div>
+                  <div class="modal-inicio">
+                      <div style="width:62%;margin-left:20%; padding-top:5px; text-align:justify;">
+                        <div id="chatContent" >
+                            <div class="chat">
+                                <div class="messages" id="messages"></div>
+                                <div class="send-message">
+                                    <input type="text" class="message" id="message">
+                                    <button class="send" type="button" id="send">Send</button>
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                  </div>
+                </div>
             </div>
-        </div>
-    </div>
+          </div>
+        </div>  
     
     
     <!--flecha-->

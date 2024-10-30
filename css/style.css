@@ -38,6 +38,17 @@ body{
     display:flex;
     text-shadow: 5px 10px 5px rgba(0, 0, 0, 0.5);
 }
+.moda-chat {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    color: #FFF;
+    text-shadow: 3px  0px 0px black,
+    0px  1.4px 0px black,
+   -1.5px  0px 0px black,
+    0px -1.6px 0px black;
+}
 
 @font-face{
     font-family:Kavoon;

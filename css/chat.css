@@ -4,22 +4,34 @@ h1 {
 }
 
 .chat {
-    width: 200px;
-    height: 200px;
+    max-width: 100%;
+    height: 330px;
     border: 1px solid black;
     margin: auto;
     display: flex;
     flex-direction: column;
     border-radius: 20px;
-    overflow:scroll;
+}
+
+.inputs{
+    max-width: 100%;
+    height: 30;
+    border: 1px solid black;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+    overflow:hidden;
     overflow-x: hidden;
     padding: 10px;
 }
 
 .messages {
-    width: 100%;
-    height: 90%;
-
+    max-width: 100%;
+    height: 330px;
+    overflow:scroll;
+    overflow-x: hidden;
+    padding: 10px;
     display: flex;
     flex-direction: column;
 
@@ -43,7 +55,7 @@ h1 {
 
 .message {
     width: 80%;
-
+    
     border-radius: 50px;
 
     border: 0;
@@ -67,12 +79,13 @@ h1 {
     width: auto;
     max-width: 70%;
     height: auto;
-
+    cursor: pointer;
 
     align-self: end;
 }
 
 .other {
+    cursor: pointer;
     background-color: rgb(85, 85, 130);
     width: auto;
     max-width: 70%;
