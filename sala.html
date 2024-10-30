@@ -41,6 +41,9 @@
                             <div class="chat">
                                 <div class="messages" id="messages"></div>
                                 <div class="send-message">
+                                    <div class="voz" id="voz">
+                                        <button class="voz" style="background-color: rgb(33, 209, 33);position: absolute;width: 9.6%;height:5%;" type="button" id="vozActivo"><i class="fa-solid fa-microphone" style="color: #ffffff;"></i></button>
+                                    </div>
                                     <input type="text" class="message" id="message">
                                     <button class="send" type="button" id="send"><i class="fa-solid fa-paper-plane" style="color: #a93d3d;cursor: pointer;"></i></button>
                                 </div>
@@ -203,7 +206,7 @@
 
 
     <script src="./js/socket.js"></script>
-    <script src="./js/popover.js"></script>
+    <script src="./js/voz.js"></script>
     <script src="./js/index.js"></script>
     <script src="./bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="./js/clickleo.js"></script>
