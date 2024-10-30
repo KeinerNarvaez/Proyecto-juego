@@ -63,7 +63,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 // Contenido del correo
                 $mail->isHTML(true);
                 $mail->Subject = 'Código de Verificación para Recuperación de Contraseña';
-                $mail->Body    = "Hola, tu código de verificación es: $codigoVerificacion. Utilízalo para restablecer tu contraseña.";
+                $mail->Body = "
+                <div style='font-family: Arial, sans-serif; color: #333; padding: 20px; border: 1px solid #ddd;'>
+                    <h2 style='color: #4CAF50;'>Recuperación de Contraseña</h2>
+                    <p>Hola,</p>
+                    <p>Has solicitado restablecer tu contraseña. Utiliza el siguiente código de verificación para continuar con el proceso:</p>
+                    <div style='font-size: 24px; font-weight: bold; color: #FF5722; margin: 20px 0;'>$codigoVerificacion</div>
+                    <p style='margin-bottom: 20px;'>Si no solicitaste esta recuperación, ignora este correo.</p>
+                    <p style='font-size: 12px; color: #999;'>Atentamente,<br>Soporte MWM</p>
+                </div>
+            ";
                 $mail->CharSet = 'UTF-8'; // Establece la codificación a UTF-8
 
                 // Enviar el correo

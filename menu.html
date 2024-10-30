@@ -166,40 +166,31 @@
 
         <!--Modal de ajustes-->
         <div class="container">
-          <div class="modal fade" id="opciones" tabindex="-1" aria-labelledby="exampleModalLabel"  aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h1 class="modal-title  text-bt" id="exampleModalLabel" style="font-family:kavoon; font-size: 80px;">OPCIONES</h1>
-                  </div>
-                  <div class="modal-body">
-                    <div class="modal-inicio">
-                      <div class="volumen">
-                        <div>
-                          <label for="" class="text-bt fs-1" style="font-family:kavoon;">VOLUMEN DE EFECTOS</label>
-                          <div class="col-12 modal-slider">
-                            <img src="./Assest/image 3.png" class="col-2"  alt="">
-                            <div class="col-10">
-                            <input class="range col-10" type="range" value="100" name="" min="0" max="100" id="sliderEfecto">
-                            </div>
-                          </div>
-                        </div>
-                        <div>
-                          <label for="" class="text-bt fs-1"style="font-family:kavoon;">VOLUMEN DE MUSICA</label>
-                          <div class="col-12 modal-slider">
-                            <img src="./Assest/image 3.png" class="col-2"  alt="">
-                            <div class="col-10">
-                            <input class="range col-10" type="range" value="100" name="" min="0" max="100" id="sliderVolumen">
-                            </div>
-                          </div>
+          <div class="modal fade" id="opciones" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title text-bt" id="exampleModalLabel" style="font-family: kavoon; font-size: 80px;">OPCIONES</h1>
+                </div>
+                <div class="modal-body">
+                  <div class="modal-inicio">
+                    <!-- Control de volumen de música -->
+                    <div class="volumen">
+                      <label for="sliderEfecto" class="text-bt fs-1" style="font-family: kavoon;">VOLUMEN DE MÚSICA</label>
+                      <div class="col-12 modal-slider">
+                        <div class="col-10">
+                          <input class="range col-10" type="range" value="100" min="0" max="100" id="sliderEfecto">
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-         
               </div>
             </div>
+          </div>
+        </div>
+        <audio id="backgroundMusic" src="./musica/musica_fondo.mp3" loop autoplay></audio>
+        
     <!--/Modal de ajustes-->
 
      <!-- Modal de Tutorial -->
@@ -290,7 +281,7 @@
 
     
   
-        <div class="modos-juego">
+        <div class="modos-juego" style="margin-left: 220px;">
                   <!--boton solitario-->
                   <div class="boton-envio">
                     <div class="boton" id="boton-envio">
@@ -322,6 +313,7 @@
     <!--/audio-->
     
     <script src="./js/index.js"></script>
+    <script src="./js/musica_fondo.js"></script>
     <script src="./js/gamerTag.js"></script>
     <script src="./bootstrap/js/bootstrap.js"></script>
     <script src="./js/clickleo.js"></script>

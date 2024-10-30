@@ -55,7 +55,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             $mail->isHTML(true);
             $mail->Subject = 'Código de Activación';
-            $mail->Body    = "Hola $nombreUsuario, tu código de activación es: $codigoActivacion. Este código expira en 1 minuto.";
+            $mail->Body = "
+            <div style='font-family: Arial, sans-serif; color: #333; padding: 20px; border: 1px solid #ddd; max-width: 600px; margin: auto;'>
+                <h2 style='text-align: center; color: #4CAF50;'>Activación de Cuenta en MWM</h2>
+                <p>Hola <strong>$nombreUsuario $apellidoUsuario</strong>,</p>
+                <p>Gracias por registrarte. Para activar tu cuenta, utiliza el siguiente código de activación:</p>
+                <div style='text-align: center; font-size: 24px; font-weight: bold; color: #FF5722; margin: 20px 0;'>$codigoActivacion</div>
+                <p style='margin: 10px 0;'>Este código expirará en <strong>1 minuto</strong>, así que por favor úsalo lo antes posible.</p>
+                <p>Si tienes alguna pregunta, no dudes en contactarnos.</p>
+                <p style='font-size: 12px; color: #999; margin-top: 20px;'>Atentamente,<br>Soporte MWM</p>
+                <hr style='border: none; border-top: 1px solid #ddd; margin: 20px 0;'>
+                <p style='text-align: center; font-size: 12px; color: #777;'>© 2024 Mythical Witch Mixes. Todos los derechos reservados.</p>
+            </div>
+        ";
             $mail->CharSet = 'UTF-8'; // Establece la codificación a UTF-8
 
             if ($mail->send()) {
