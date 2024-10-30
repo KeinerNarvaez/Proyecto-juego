@@ -6,32 +6,23 @@ h1 {
 .chat {
     max-width: 100%;
     height: 330px;
-    border: 1px solid black;
     margin: auto;
     display: flex;
     flex-direction: column;
     border-radius: 20px;
 }
 
-.inputs{
-    max-width: 100%;
-    height: 30;
-    border: 1px solid black;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    border-radius: 20px;
-    overflow:hidden;
-    overflow-x: hidden;
-    padding: 10px;
-}
+
 
 .messages {
     max-width: 100%;
     height: 330px;
     overflow:scroll;
+    scrollbar-color: rgba(233, 75, 75, 0) rgba(0, 0, 0, 0);
+    scrollbar-width: thin;
+    
     overflow-x: hidden;
-    padding: 10px;
+
     display: flex;
     flex-direction: column;
 
@@ -47,6 +38,8 @@ h1 {
     width: 100%;
     height: 10%;
 
+    background-color: white;
+    border-radius: 0.6pc;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -56,40 +49,74 @@ h1 {
 .message {
     width: 80%;
     
-    border-radius: 50px;
-
     border: 0;
+    border-top-left-radius: 0.4pc;
+    border-bottom-left-radius: 0.4pc;
+    background-color:none;
 
-    background-color: green;
-    color: black;
     font-size: 15px;
 }
 
 .send {
-    width: 15%;
-
-    border-radius: 50px;
+    width: 20%;
+    cursor: pointer;
+    border-top-right-radius: 0.4pc;
+    border-bottom-right-radius: 0.4pc;
     border: 0;
 
-    background-color: greenyellow;
+    background-color: rgb(209, 133, 33);
 }
-
 .me {
-    background-color: rgb(74, 121, 74);
+    background-color: rgb(209, 133, 33);
     width: auto;
     max-width: 70%;
     height: auto;
     cursor: pointer;
 
+    color: white;
+
+    padding: 1rem;
+    position: relative;
     align-self: end;
+    margin-bottom: 11px;
+    &::after {
+        --size: 10px;
+    
+        content: "";
+        display: block;
+        width: var(--size);
+        height: var(--size);
+        position: absolute;
+        background: rgb(209, 133, 33);
+        bottom: calc(var(--size)* -0.7);
+        right: 0; /* Añadido para que se posicione a la derecha */
+        clip-path: polygon(0 0, 80% 66%, 80% 0);/* Invertido para que mire hacia el otro lado */
+
+    }
 }
+
 
 .other {
     cursor: pointer;
-    background-color: rgb(85, 85, 130);
+    color: white;
+    background-color: rgb(31, 29, 29);
     width: auto;
     max-width: 70%;
     height: auto;
-
+    margin-bottom: 11px;
     align-self: start;
+    padding: 1rem;
+    position: relative;
+    &::after {
+        --size: 10px;
+    
+        content: "";
+        display: block;
+        width: var(--size);
+        height: var(--size);
+        position: absolute;
+        background: rgb(31, 29, 29);
+        bottom: calc(var(--size) * -1);
+        clip-path: polygon(0% 0%, 0 66%, 100% 0); 
+      }
 }
