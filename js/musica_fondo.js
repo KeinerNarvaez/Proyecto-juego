@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
-  const backgroundMusic = document.getElementById('backgroundMusic');
+  var backgroundMusic = new Audio();
+  backgroundMusic.src = './musica/musica_fondo.mp3'
 
   // Carga volumen y tiempo de reproducción
   const savedVolume = localStorage.getItem('musicVolume') || 1.0;
@@ -10,10 +11,12 @@ document.addEventListener("DOMContentLoaded", function() {
   backgroundMusic.play();
 
   // Guarda el tiempo de reproducción actual antes de salir de la página
-  window.addEventListener('beforeunload', () => {
+  window.addEventListener('beforeunloqad', () => {
       localStorage.setItem('musicTime', backgroundMusic.currentTime);
       localStorage.setItem('musicVolume', backgroundMusic.volume);
   });
+
+  
 
   // Ajuste de volumen con el slider (en caso de que esté en la página)
   const volumeSlider = document.getElementById('sliderEfecto');
