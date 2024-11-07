@@ -37,24 +37,29 @@
 
       <div class="container text-center" style="margin-top: 20px; margin-left: -120px;">
         <div class="row align-items-center">
-          <div class="col">
-            <div class="boton-envio" style="width: 350%;">
-                <div class="boton" id="boton-envio">
-                   <a  href="../nivelesHechizo/mapaHechizo.html" class="text-boton"><input type="button" style="font-size: 45px;" value="Hechizos"></a>   
-                </div>
-           </div>
-          </div>
-          <div class="col">
-          </div>
-          <div class="col">
-            <div class="boton-envio" style="width: 350%;">
-                <div class="boton" id="boton-envio">
-                   <a  href="../nivelesPociones/mapapociones.html" class="text-boton"><input type="button" style="font-size: 45px;" value="Pociones"></a>   
-                </div>
-           </div>
-          </div>
+            <div class="col">
+                <div class="boton-envio" style="width: 350%;">
+                    <div class="boton" id="boton-envio">
+                        <a href="../nivelesHechizo/mapaHechizo.html" class="text-boton" data-game-mode-id="1">
+                            <input type="button" style="font-size: 45px;" value="Hechizos">
+                        </a>   
+                    </div>
+               </div>
+            </div>
+            <div class="col">
+            </div>
+            <div class="col">
+                <div class="boton-envio" style="width: 350%;">
+                    <div class="boton" id="boton-envio">
+                        <a href="../nivelesPociones/mapapociones.html" class="text-boton" data-game-mode-id="2">
+                            <input type="button" style="font-size: 45px;" value="Pociones">
+                   
+                    </div>
+               </div>
+            </div>
         </div>
-      </div>
+    </div>
+    
 
       
       <!--audio-->
@@ -63,13 +68,14 @@
      </audio>
      <!--/audio-->
 
-     <audio id="backgroundMusic" src="../musica/musica_fondo.mp3" loop autoplay></audio>
+     <!--<audio id="backgroundMusic" src="../musica/musica_fondo.mp3" loop autoplay></audio>
 
 
 
 <!--<script src="../js/index.js"></script>-->
+<script src="./js/modo_juego.js"></script>
 <script src="../boostrap/bootstrap-5.3.2-dist/js/bootstrap.js"></script>
-<script src="../js/musica_fondo.js"></script>
+<!--<script src="../js/musica_fondo.js"></script> ->   <!--/audio-->
 <script src="../js/clickleo.js"></script>
 <script src="../fontawesome-free-6.6.0-web/js/all.js"></script> 
 </body>
