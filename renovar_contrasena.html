@@ -46,7 +46,7 @@
 
    <form action="" method="post">
 
-    <div class="renovacion-contraseña"  style="margin-top: 30px;">
+    <div class="renovacion-contraseña"  style="margin-top: 30px; height: 350px;">
 
         <div class="titulo-cuenta" style="margin-top: -15px;">
             <h2>Renovar Contraseña</h2>
@@ -63,9 +63,13 @@
                 <input type="text" id="contrasena-verificada">
     
             </div>
+
+           <!-- Aquí se mostrará el mensaje de validación -->
+            <div id="respuesta" style="font-size: 20px; color: red; text-align: center; margin-top: 10px; margin-bottom: -22px; position: absolute;"></div>
+
     
             <!--boton-->
-            <div class="boton-envio" style="margin-left: 130px; margin-top: 9px;">
+            <div class="boton-envio" style="margin-left: 130px; margin-top: 40px; ">
                 <div class="boton" id="boton-envio">
                   <input type="submit" style="font-size: 25px;" value="Continuar" id="boton-renovar">   <!--boton, pero es un input--> 
                 </div>

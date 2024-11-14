@@ -37,7 +37,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
         // Validar que los campos no estén vacíos
         if (!nombreUsuario || !apellidoUsuario || !emailUsuario || !contraseñaUsuario) {
-            mostrarMensajeModal('¿Sabías que es obligatorio llenar todos los campos requeridos para crear tu cuenta?', true);
+        mostrarMensajeModal('¿Sabías que es obligatorio llenar todos los campos requeridos para crear tu cuenta?', true);
             return;
         }
 

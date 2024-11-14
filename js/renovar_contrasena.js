@@ -34,14 +34,14 @@ window.addEventListener('DOMContentLoaded', () => {
 
         // Verificar que las contraseñas coincidan
         if (contrasenaNueva !== contrasenaVerificada) {
-            mostrarMensajeModal('Las contraseñas no son iguales', true);
+            mostrarMensaje("Las contraseñas no son iguales", true);
             return;
         }
 
         // Validar la contraseña nueva
         const resultadoValidacion = validarContraseña(contrasenaNueva);
         if (resultadoValidacion !== "valida") {
-            mostrarMensajeModal(resultadoValidacion, true);
+            mostrarMensaje(resultadoValidacion, true);
             return;
         }
 
@@ -58,13 +58,13 @@ window.addEventListener('DOMContentLoaded', () => {
         .then(response => response.json())
         .then(result => {
             if (result.status === 'success') {
-                mostrarMensajeModal('Contraseña renovada correctamente', false);
-
+                // Mostrar el modal de éxito
+                mostrarModalExito('Contraseña renovada correctamente');
                 setTimeout(() => {
                     window.location.href = 'index.html';
                 }, 3000);
             } else {
-                mostrarMensajeModal(result.message, true);
+                mostrarMensaje(result.message, true);
             }
         })
         .catch(error => {
@@ -72,23 +72,27 @@ window.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Función para mostrar el modal con mensaje
-    function mostrarMensajeModal(mensaje, esError) {
-        const mensajeModal = new bootstrap.Modal(document.getElementById('mensajeModal'));
-        const mensajeModalBody = document.getElementById('mensajeModalBody');
-
-        const alertType = esError ? 'alert-danger' : 'alert-secondary';
-        const icon = esError
-            ? '<i class="fa-solid fa-xmark" style="display: flex; justify-content: center; font-size: 120px; color: red; margin: 0 auto;"></i>'
-            : '<i class="fa-solid fa-check" style="display: block; font-size: 80px; margin: 0 auto; margin-top: -12px;"></i>';
-
-        mensajeModalBody.innerHTML = `
-            <div class="alert ${alertType}" style="font-size: 70px; text-align: center;">
-                ${mensaje}
-                <br>
-                ${icon}
-            </div>
-        `;
-        mensajeModal.show();
+    // Función para mostrar el mensaje en el div "respuesta"
+    function mostrarMensaje(mensaje, esError) {
+        const respuestaDiv = document.getElementById('respuesta');
+        respuestaDiv.style.color = esError ? 'red' : 'green';
+        respuestaDiv.innerHTML = `<p>${mensaje}</p>`;
+        respuestaDiv.style.visibility = "visible";
     }
+
+   // Función para mostrar el modal de éxito con el mensaje personalizado
+   function mostrarModalExito() {
+    const mensajeModal = new bootstrap.Modal(document.getElementById('mensajeModal'));
+    const mensajeModalBody = document.getElementById('mensajeModalBody');
+    
+    mensajeModalBody.innerHTML = `
+       <div class="alert alert-secondary" style="text-align: center; margin-top:-12px; " >
+            <h1 style="font-size: 55px; ">Contraseña renovada correctamente</h1>
+           <br> 
+           <i class="fa-solid fa-check" style="display: block; font-size: 80px; margin-left: -12px auto;"></i>
+       </div>
+    `;
+    
+    mensajeModal.show();
+}
 });
