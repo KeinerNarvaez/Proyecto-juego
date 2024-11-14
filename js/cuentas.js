@@ -1,3 +1,28 @@
+function validarContraseña(contraseñaUsuario) {
+    const longitudMinima = 8;
+    const tieneMayuscula = /[A-Z]/.test(contraseñaUsuario);
+    const tieneMinuscula = /[a-z]/.test(contraseñaUsuario);
+    const tieneNumero = /[0-9]/.test(contraseñaUsuario);
+    const tieneEspecial = /[!@#$%^&*(),.?":{}|<>]/.test(contraseñaUsuario);
+
+    if (contraseñaUsuario.length < longitudMinima) {
+        return "La contraseña debe tener al menos 8 caracteres.";
+    }
+    if (!tieneMayuscula) {
+        return "La contraseña debe contener al menos una letra mayúscula.";
+    }
+    if (!tieneMinuscula) {
+        return "La contraseña debe contener al menos una letra minúscula.";
+    }
+    if (!tieneNumero) {
+        return "La contraseña debe contener al menos un número.";
+    }
+    if (!tieneEspecial) {
+        return "La contraseña debe contener al menos un carácter especial.";
+    }
+    return "valida";
+}
+
 window.addEventListener('DOMContentLoaded', () => {
     const boton = document.getElementById('boton-envio');
     
@@ -13,7 +38,14 @@ window.addEventListener('DOMContentLoaded', () => {
         // Validar que los campos no estén vacíos
         if (!nombreUsuario || !apellidoUsuario || !emailUsuario || !contraseñaUsuario) {
             mostrarMensajeModal('¿Sabías que es obligatorio llenar todos los campos requeridos para crear tu cuenta?', true);
-            return; // Detener la ejecución si hay campos vacíos
+            return;
+        }
+
+        // Validar la contraseña
+        const resultadoValidacion = validarContraseña(contraseñaUsuario);
+        if (resultadoValidacion !== "valida") {
+            mostrarMensajeModal(resultadoValidacion, true);
+            return;
         }
 
         const data = {
@@ -32,7 +64,6 @@ window.addEventListener('DOMContentLoaded', () => {
             body: JSON.stringify(data)
         })
         .then(response => {
-            // Verificar si la respuesta es válida
             if (!response.ok) {
                 throw new Error('Error en la respuesta del servidor');
             }
@@ -40,10 +71,8 @@ window.addEventListener('DOMContentLoaded', () => {
         })
         .then(result => {
             if (result.status === 'error') {
-                // Mostrar error si el registro falla
                 mostrarMensajeModal(result.message, true);
             } else {
-                // Si el registro es exitoso, enviar el correo
                 return fetch('./php/register_envioCorreo.php', {
                     method: 'POST',
                     headers: {
@@ -58,7 +87,6 @@ window.addEventListener('DOMContentLoaded', () => {
             }
         })
         .then(response => {
-            // Verificar si la respuesta del envío del correo es válida
             if (response) {
                 if (!response.ok) {
                     throw new Error('Error en la respuesta del servidor');
@@ -70,10 +98,8 @@ window.addEventListener('DOMContentLoaded', () => {
             if (result && result.status === 'success') {
                 setTimeout(() => {
                     window.location.href = 'codigo_cuenta.html';
-                }, 2000); // Redirigir después de 2 segundos
-
+                }, 2000);
             } else if (result) {
-                // Mostrar error si el envío del correo falla
                 mostrarMensajeModal(result.message, true);
             }
         })

@@ -55,19 +55,44 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             $mail->isHTML(true);
             $mail->Subject = 'Código de Activación';
-            $mail->Body = "
-            <div style='font-family: Arial, sans-serif; color: #333; padding: 20px; border: 1px solid #ddd; max-width: 600px; margin: auto;'>
-                <h2 style='text-align: center; color: #4CAF50;'>Activación de Cuenta en MWM</h2>
-                <p>Hola <strong>$nombreUsuario $apellidoUsuario</strong>,</p>
-                <p>Gracias por registrarte. Para activar tu cuenta, utiliza el siguiente código de activación:</p>
-                <div style='text-align: center; font-size: 24px; font-weight: bold; color: #FF5722; margin: 20px 0;'>$codigoActivacion</div>
-                <p style='margin: 10px 0;'>Este código expirará en <strong>1 minuto</strong>, así que por favor úsalo lo antes posible.</p>
+$mail->Body = "
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Correo de Activación</title>
+    <link rel='preconnect' href='https://fonts.googleapis.com'>
+    <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
+    <link href='https://fonts.googleapis.com/css2?family=Kavoon&display=swap' rel='stylesheet'>
+</head>
+<body style='margin: 0; padding: 0; font-family: Arial, sans-serif; background-color: #f4f4f4;'>
+    <table style='max-width: 600px; margin: 20px auto; background-color: #ffffff; border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden;'>
+        <tr>
+            <td style='background-color: #2b2e4a; padding: 20px; text-align: center;'>
+                <h1 style='font-size: 26px; font-family: Kavoon, Arial, serif; color: #FF9900; margin: 0;'>Mythical Witch Mixes</h1>
+            </td>
+        </tr>
+        <tr>
+            <td style='padding: 20px; font-size: 16px; line-height: 1.6; color: #333333;'>
+                <p>Hola <strong>{$nombreUsuario} {$apellidoUsuario}</strong>,</p>
+                <p>Gracias por registrarte. Para activar tu cuenta en <strong>Mythical Witch Mixes</strong>, usa el siguiente código de activación:</p>
+                <div style='text-align: center; padding: 15px; background-color: #2b2e4a; color: #fffb00; font-size: 24px; font-weight: bold; border-radius: 8px; margin: 20px 0;'>{$codigoActivacion}</div>
+                <p>Este código expirará en <strong>1 minuto</strong>, así que por favor úsalo lo antes posible.</p>
                 <p>Si tienes alguna pregunta, no dudes en contactarnos.</p>
-                <p style='font-size: 12px; color: #999; margin-top: 20px;'>Atentamente,<br>Soporte MWM</p>
-                <hr style='border: none; border-top: 1px solid #ddd; margin: 20px 0;'>
-                <p style='text-align: center; font-size: 12px; color: #777;'>© 2024 Mythical Witch Mixes. Todos los derechos reservados.</p>
-            </div>
-        ";
+                <p style='font-size: 16px; color: #666666; margin-top: 20px;'>Atentamente,<br>Soporte de Mythical Witch Mixes</p>
+            </td>
+        </tr>
+        <tr>
+            <td style='padding: 15px; text-align: center; background-color: #f4f4f4; color: #999999; font-size: 14px;'>
+                <p style='margin: 0;'>© 2024 Mythical Witch Mixes. Todos los derechos reservados.</p>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>";
+
+
             $mail->CharSet = 'UTF-8'; // Establece la codificación a UTF-8
 
             if ($mail->send()) {
