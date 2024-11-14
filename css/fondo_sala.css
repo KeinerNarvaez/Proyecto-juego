@@ -6,8 +6,12 @@
 } 
 
 #body{
-    background: #0E3032;
+    background-image: url('../Assest/fondo_sala.png');
     background-size: cover;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
 }
 .salir-menu{
     margin-top: 25px;
@@ -27,10 +31,11 @@
 .sala{
     position: absolute;
     top: 50%;
+    background-color: #0E3032;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 970px;
-    height: 630px;
+    height: 590px;
     border: 4px solid black;
     display: flex;
     gap: 22px;
@@ -38,23 +43,28 @@
 
 .parte-admin{
     width: 280px;
-    height: 600px;
-    border: 4px solid black;
-    background-color: #FF7A00;
+    height: auto;
+    border: 1px solid black;
+    border-radius: 0.3pc;
+    background:linear-gradient(#FF7A00,#8d4400) ;
     margin-left: 12px;
-    margin-top: 12px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .acciones-admin h2{
+    color: #fffcf9;
+    -webkit-text-stroke: 0.5px black;
     font-size: 35px;
     text-align: center;
     font-weight: bolder;
-    background-color: #FF7A00;
 }
 
 .acciones-admin h3{
+    color: #fffcf9;
+    padding-left: 4%;
+    -webkit-text-stroke: 0.5px black;
     font-size: 20px;
-    background-color: #FF7A00;
     font-weight: bolder;
     margin-top: -12px;
 }
@@ -86,14 +96,34 @@
     justify-content: space-between;
     padding: 10px;
     border: 2px solid black;
-    background-color: #631D4F;
+    background:linear-gradient(#631D4F,rgb(172, 46, 46)) ;
     gap: 20px;
+    color: #FF7A00;
     border-radius: 8px; 
+
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
 }
 
+@keyframes colores {
+    0%{
+        color: yellow;
+    }
+    25%{
+        color:#ffa407;
+    }
+    50%{
+        color:rgb(255, 0, 0);
+    }
+    75%{
+        color: deeppink;
+    }
+    100%{
+        color: rgb(17, 255, 0);
+    }
+    
+}
+
 .jugador h3{
-    background-color: #631D4F;
     font-weight: bolder;
 }
 
@@ -105,46 +135,45 @@
  
 }
 .jugador h2{
-    background-color: #631D4F;
-    color: #FF7A00;
+    animation: colores 1s linear infinite;
 }
 
 .modos-juego{
     margin-top: -12px;
     display: flex;
     justify-content: center;
-    background-color: #FF7A00;
+
 }
 
 .modos-juego select{
     font-size: 18px;
-    background-color: red;
-    color: white;
+    background-color: rgb(255, 36, 36);
+    color: rgb(255, 255, 255);
     padding-left: 22px;
-    width: 200px;
+    width: 92%;
     height: 40px;
     border-radius: 12px;
 }
 
 .modos-juego option{
-    background-color: red;
+    background-color: rgb(255, 36, 36);
     color: white;
 }
 
-.tiempo{
-    background-color: #FF7A00;
-}
+
 
 .tiempo h1 {
-    background-color: #FF7A00;
     text-align: center;
+    color: #fffcf9;
+    -webkit-text-stroke: 0.5px black;
     font-size:30px;
     font-weight: bolder;
     margin-top: -12px;
 }
 
 .tiempo h3 {
-    background-color: #FF7A00;
+    color: #fffcf9;
+    -webkit-text-stroke: 0.5px black;
     margin-left: 12px;
 }
 
@@ -153,38 +182,41 @@
     display: flex;
 
     align-items: center;
-    background-color: #FF7A00;
+
     gap: 5px;
 }
 
-.boton-inicio{
-    background-color: #FF7A00;
-}
 
-.boton-baneo{
-    background-color: #FF7A00;
-}
+
+
 
 .boton-inicio input{
     width: 110px;
     height: 40px;
-    background-color: red;
+    background-color: #1B140B;
     color: white;
+    border-style: none;
+    border-radius: 2pc;
+    border:3px solid #FF9900;
     font-size: 20px;
     margin-left: 22px;
 }
 
 .boton-baneo input{
-    width: 110px; 
+    width: 110px;
     height: 40px;
-    background-color: #784810;
+    background-color: #1B140B;
     color: white;
+    border-style: none;
+    border-radius: 2pc;
+    border:3px solid #FF9900;
     font-size: 20px;
 }
 
 .codigo-sala h2{
     font-size: 80px;
     color: #FF9900;
+    text-shadow: 0 0 15px  #FF9900;
 }
 
 .codigo-sala hr{
@@ -197,12 +229,14 @@
 .codigo-sala h1{
     font-size: 65px;
     color: white;
+    text-shadow: 0 0 15px  #ffffff;
 }
 
 .jugadores-sala{
     width: 115%;
-    height: 66%;
+    height: 64.3%;
     border: 5px solid #3C5721;
+    background-color: #51fd12c2;
     overflow-y: auto;
     overflow-x: hidden;
 }
@@ -225,8 +259,11 @@
     grid-template-columns: 1fr 1fr 1fr 1fr; /* 4 columnas de igual tamaño */
 }
 .perfil-jugador{
-    background-color: #631D4F;
+    border: 1px solid;
+    border-radius: 0.2pc;
+    background:linear-gradient(#631D4F,rgb(172, 46, 46)) ;
     margin-top: 12px;
+    box-shadow: 0 0 15px  #631D4F;
     margin-left: 12px;
     width: 120px;
     height: 160px;
@@ -243,8 +280,10 @@
 }
 
 .perfil-jugador h1{
-    background-color: #631D4F;
+    color: white;
     font-size: 45px;
+    text-shadow: 0 0 15px  #ffffff;
+
 }
 .btn-wsp{
     position:fixed;
@@ -253,17 +292,17 @@
     line-height: 63px;
     bottom:25px;
     right:25px;
+    box-shadow: 0 0 15px  #25d366;
     background:#25d366;
     color:#FFF;
     border-radius:50px;
     text-align:center;
     font-size:35px;
-    box-shadow: 0px 1px 10px rgba(0,0,0,0.3);
     z-index:100;
     transition: all 300ms ease;
 }
 .btn-wsp:hover{
-    background: #20ba5a;
+    background: #048836;
 }
 @media only screen and (min-width:320px) and (max-width:768px){
     .btn-wsp{
