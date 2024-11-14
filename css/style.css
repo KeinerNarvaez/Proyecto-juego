@@ -16,6 +16,9 @@ body{
     justify-content: center;
     align-items: center;
 }
+.input-alias ::placeholder{
+    color: rgba(255, 255, 255, 0.47);
+}
 .text-boton{
     text-decoration: none;
     font-family: kavoon; 

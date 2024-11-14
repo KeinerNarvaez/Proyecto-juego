@@ -104,6 +104,30 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
 }
 
+@keyframes sombra {
+    0%{
+        text-shadow: 0 0 20px  yellow;
+        color: yellow;
+    }
+    25%{
+        text-shadow: 0 0 20px  #ffa407;
+        color:#ffa407;
+    }
+    50%{
+        text-shadow: 0 0 20px  rgb(255, 0, 0);
+        color:rgb(255, 0, 0);
+    }
+    75%{
+        color: deeppink;
+        text-shadow: 0 0 20px  deeppink;
+    }
+    100%{
+        text-shadow: 0 0 20px  rgb(17, 255, 0);
+        color: rgb(17, 255, 0);
+    }
+    
+}
+
 @keyframes colores {
     0%{
         color: yellow;
@@ -125,6 +149,7 @@
 
 .jugador h3{
     font-weight: bolder;
+    animation: colores 1s linear infinite;
 }
 
 .jugador i{
@@ -282,6 +307,8 @@
 .perfil-jugador h1{
     color: white;
     font-size: 45px;
+    animation: colores 1s linear infinite;
+    animation: sombra 1s linear infinite;
     text-shadow: 0 0 15px  #ffffff;
 
 }

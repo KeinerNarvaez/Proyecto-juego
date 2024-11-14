@@ -22,7 +22,7 @@ class Chat implements MessageComponentInterface {
     } 
     public function onMessage(ConnectionInterface $from, $msg) { 
         $data = json_decode($msg, true); 
-        $gamerTag = $data['gamerTag'] ?? 'Desconocido'; 
+        $gamerTag = $data['gamerTag'] ?? ''; 
         // Guardar el gamertag 
         $this->usernames[$from->resourceId] = $gamerTag; 
         $dataChat= json_decode($msg,true); 

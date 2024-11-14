@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
     .then(response => response.json())
     .then(data => {
         const aliasInput = document.getElementById('alias-usuario');
-        aliasInput.value = data.gamerTag || 'Desconocido';
+        aliasInput.value = data.gamerTag || '';
         conectarSocket(aliasInput.value);
     });
 
