@@ -112,12 +112,12 @@
             <!--tiempo de juego-->
             <div class="tiempo">
                 <h3> Tiempo de juego:</h3>
-                <h1>10:00</h1>
+                <h1 id="cronometro">10:00</h1>
             </div>
             <!--boton de iniciar-->
-            <div class="botones">
+            <div class="botones" id="botones">
                 <div class="boton-inicio">
-                    <input type="button" value="Iniciar">
+                    <input type="button" value="Iniciar" id="iniciar_juego">
                 </div>
                 <div class="boton-baneo">
                     <input type="button" value="Expulsar">
@@ -131,7 +131,7 @@
             <div class="codigo-sala">
                 <h2>Código de sala</h2>
                 <hr>
-                <h1>4BZ64D</h1>
+                <h1 id="codigo-sala">4BZ64D</h1>
             </div>
 
             <div class="jugadores-sala">
@@ -157,7 +157,7 @@
         <source src="./audio/clickleo.mp3" type="audio/mp3">
      </audio>
     <!--/audio-->
-
+    <script src="./js/funcionalidad_sala.js"></script>
     <script src="./js/sala.js"></script>
     <script src="./js/socket.js"></script>
     <script src="./js/voz.js"></script>

@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () { 
     const socket = new WebSocket("ws://localhost:8080"); 
-
     // Consultar el alias al cargar la página 
     fetch('./php/register_gamerTag.php', { 
         method: 'GET', 
@@ -46,17 +45,5 @@ document.addEventListener('DOMContentLoaded', function () {
         socket.onerror = (error) => console.error(error); 
     } 
 
-    function agregarPerfil(gamerTag) { 
-        const clientId = `client-${Date.now()}`; 
-        let perfil = document.createElement('div'); 
-        perfil.classList.add('perfil'); 
-        perfil.id = clientId; 
-        perfil.innerHTML = ` 
-            <div class="perfil-jugador"> 
-                <i class="fa-solid fa-user"></i> 
-                <h1>${gamerTag}</h1> 
-            </div> 
-        `; 
-        document.getElementById('personasConectadas').appendChild(perfil); 
-    } 
+
 });
