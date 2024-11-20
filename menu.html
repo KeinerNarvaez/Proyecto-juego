@@ -123,7 +123,7 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header col-12" style="background-color: #FBB347;">
-            <h1 class="modal-title fs-5" id="staticBackdropLabel">Personas jugando</h1> <i class="fa-solid fa-circle fa-fade" style="margin-left:75% ;color: green;"></i>
+            <h1 class="modal-title fs-5" id="staticBackdropLabel"  data-translate-key="conectados">Personas jugando</h1> <i class="fa-solid fa-circle fa-fade" style="margin-left:75% ;color: green;"></i>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body"  style="max-height: 400px;">
@@ -183,6 +183,23 @@
                         </div>
                       </div>
                     </div>
+                        <!---Opciones de lenguaje-->
+                        <div class="language-selector" id="languageSelector">
+                          <div class="language-trigger" onclick="toggleLanguageDropdown()">
+                              <img src="./Assest/colombua.jpg" alt="Language" id="currentFlag">
+                              <span id="currentLanguage">Español</span>
+                          </div>
+                          <div class="language-dropdown">
+                              <div class="language-dropdown-item" onclick="changeLanguage('es')">
+                                  <img src="./Assest/colombua.jpg" alt="Spanish">
+                                  <span>Español</span>
+                              </div>
+                              <div class="language-dropdown-item" onclick="changeLanguage('en')">
+                                  <img src="./Assest/estados unidos.jpg" alt="English">
+                                  <span>English</span>
+                              </div>
+                          </div>
+                      </div>
                   </div>
                 </div>
               </div>
@@ -201,34 +218,34 @@
               <div class="modal-body" id="cuerpo-tutorial">
                   <div id="tutorial-pasos">
                       <div class="titulo-tutorial">
-                          <h2>¿Cómo se juega</h2>
-                          <h2>Mythical Witch Mixes?</h2>
+                          <h2 data-translate-key="tutorial">¿Cómo se juega</h2>
+                          <h2 >Mythical Witch Mixes?</h2>
                           <hr>
                       </div>
                       <div class="pasos">
-                          <p>¡Bienvenido a Mythical Witch Mixes! Esta guía te ayudará a entender las mecánicas básicas del juego para que puedas comenzar tu aventura en el mundo de la alquimia y hechicería.
+                          <p data-translate-key="saludo">¡Bienvenido a Mythical Witch Mixes! Esta guía te ayudará a entender las mecánicas básicas del juego para que puedas comenzar tu aventura en el mundo de la alquimia y hechicería.
                           </p>
                       </div>
                       <div class="pasos">
-                         <h2>Mecanicas del juego </h2>
-                         <p>En este juego, el jugador se adentra en un mundo repleto de desafíos, donde debe combinar diversos objetos en una caldera mágica que pertenece a una bruja. La clave está en elegir los ingredientes adecuados para cada combinación, ya que cada mezcla tiene un propósito específico.</p> 
-                         <p>Si la combinación resulta incorrecta, la caldera de la bruja explota, lo que indica que es necesario intentarlo de nuevo y encontrar la fórmula correcta. Este sistema de prueba y error añade un nivel de estrategia y emoción, incentivando al jugador a experimentar hasta descubrir la mezcla perfecta.</p>
+                         <h2 data-translate-key="mecanicas">Mecanicas del juego </h2>
+                         <p data-translate-key="mecanicas1">En este juego, el jugador se adentra en un mundo repleto de desafíos, donde debe combinar diversos objetos en una caldera mágica que pertenece a una bruja. La clave está en elegir los ingredientes adecuados para cada combinación, ya que cada mezcla tiene un propósito específico.</p> 
+                         <p data-translate-key="mecanicas2">Si la combinación resulta incorrecta, la caldera de la bruja explota, lo que indica que es necesario intentarlo de nuevo y encontrar la fórmula correcta. Este sistema de prueba y error añade un nivel de estrategia y emoción, incentivando al jugador a experimentar hasta descubrir la mezcla perfecta.</p>
                       </div>
                       <div class="pasos">
-                        <h2>Modos de juego</h2>
-                        <p>
+                        <h2 data-translate-key="mecanicas3">Modos de juego</h2>
+                        <p data-translate-key="mecanicas4">
                           En un mundo lleno de magia y misterio, existen dos modos de juego, las
-                          <span style="color: red;">pociones de color</span> y los
-                          <span style="color: red;">hechizos</span>. Aunque su jugabilidad difiere, ambos comparten el mismo objetivo, combinar ingredientes para crear mezclas exitosas.   
+                          <span style="color: red;" data-translate-key="mecanicas4.1">pociones de color</span> y los
+                          <span style="color: red;" data-translate-key="mecanicas4.2">hechizos</span>. Aunque su jugabilidad difiere, ambos comparten el mismo objetivo, combinar ingredientes para crear mezclas exitosas.   
                       </p>
                      </div>
                      <div class="pasos">
-                      <h2>Pociones de color</h2>
-                      <p>
+                      <h2 data-translate-key="mecanicas5">Pociones de color</h2>
+                      <p data-translate-key="mecanicas6">
                         En este modo de juego, el jugador debe combinar diversas pociones de colores, como rojo, azul o blanco. Cada poción debe ser seleccionada cuidadosamente según el
                         <span style="text-decoration: underline; color: red;">color específico que se necesita </span> para avanzar en el desafío.
                       </p>
-                      <p>
+                      <p  data-translate-key="mecanicas7">
                         La clave está en mezclar los colores correctos para obtener la poción requerida, lo que pondrá a prueba tu habilidad para reconocer patrones y tomar decisiones rápidas.
                       </p>
                       <div class="pociones">
@@ -239,10 +256,10 @@
                       </div>
                    </div>
                    <div class="pasos">
-                    <h2>Hechizos</h2>
-                    <p> En el modo de <span style="text-decoration: underline; color: red;">hechizos</span>, el jugador se enfrenta a una <span style="text-decoration: underline; color: red;">serie de  adivinanzas</span> que ocultan los ingredientes clave para realizar poderosos conjuros. A medida que descubras los elementos mediante las  adivinanza ,  podrás crear el hechizo que se te esta requieriendo . </p>
+                    <h2 data-translate-key="mecanicas8">Hechizos</h2>
+                    <p data-translate-key="mecanicas8.1"> En el modo de <span style="text-decoration: underline; color: red;" data-translate-key="mecanicas8.3">hechizos</span>, el jugador se enfrenta a una <span style="text-decoration: underline; color: red;"  data-translate-key="mecanicas8.2">serie de  adivinanzas</span> que ocultan los ingredientes clave para realizar poderosos conjuros. A medida que descubras los elementos mediante las  adivinanza ,  podrás crear el hechizo que se te esta requieriendo . </p>
 
-                    <p>
+                    <p data-translate-key="mecanicas9">
                       Solo al seleccionar correctamente los ingredientes podrás crear el hechizo y desbloquear el siguiente nivel de desafío, avanzando más en tu travesía mágica. Este modo pone a prueba no solo tus habilidades de lógica, sino también tu intuición en un mundo lleno de misterios y encantamientos.
                     </p>
                     <div class="pociones">
@@ -268,11 +285,11 @@
 
         <div class="alias-usuario">
             <div class="titulo-alias">
-                <h2>¿Como te gustaría ser llamado?</h2>
+                <h2 data-translate-key="mecanicas10" style="font-size: 40px;">¿Como te gustaría ser llamado?</h2>
                 <hr>
             </div>
             <div class="input-alias">
-                <input type="text" placeholder="ingresa un alias"  id="alias-usuario" required>
+                <input type="text" placeholder="ingresa un alias"  id="alias-usuario" required data-translate-key="alias">
                 <small id="aliasMessage"></small>
             </div>
         </div>
@@ -313,6 +330,7 @@
     <!--/audio-->
     
     <script src="./js/index.js"></script>
+    <script src="./js/idiomas.js"></script>
     <script src="./js/musica_fondo.js"></script>
     <script src="./js/gamerTag.js"></script>
     <script src="./bootstrap/js/bootstrap.js"></script>

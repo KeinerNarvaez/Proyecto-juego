@@ -68,24 +68,24 @@
                     <!--modal header eliminado-->
                     <div class="modal-body" >
                       <div class="titulo-terminos" >
-                        <h1>Terminos y condiciones</h1>
+                        <h1 data-translate-key="titulo-termino">Terminos y condiciones</h1>
                         <hr>
                       </div>
                       <div class="termino">
-                        <h2>1. Aceptación de los Términos</h2>
-                         <p>Al crear una cuenta en Mythical Witch Mixes , aceptas cumplir y estar sujeto a los siguientes Términos y Condiciones de Uso. Estos términos pueden ser modificados ocasionalmente, por lo que te recomendamos revisarlos periódicamente. El uso continuado del Juego después de cualquier cambio se considerará como aceptación de dichos cambios.</p>
+                        <h2 data-translate-key="terminos-1">1. Aceptación de los Términos</h2>
+                         <p data-translate-key="terminos-2">Al crear una cuenta en Mythical Witch Mixes , aceptas cumplir y estar sujeto a los siguientes Términos y Condiciones de Uso. Estos términos pueden ser modificados ocasionalmente, por lo que te recomendamos revisarlos periódicamente. El uso continuado del Juego después de cualquier cambio se considerará como aceptación de dichos cambios.</p>
                       </div>
                       <div class="termino">
-                        <h2>2.Creación de la Cuenta</h2>
-                         <p>2.1. Para acceder a ciertos servicios y funciones del Juego, deberás crear una cuenta proporcionando información exacta, completa y actualizada.</p> 
-                          <p>2.2. Debes ser mayor de edad según la legislación local para crear una cuenta, o contar con el consentimiento de tus padres o tutores legales si eres menor de edad. </p>
-                          <p>
+                        <h2 data-translate-key="terminos-3">2.Creación de la Cuenta</h2>
+                         <p data-translate-key="terminos-4">2.1. Para acceder a ciertos servicios y funciones del Juego, deberás crear una cuenta proporcionando información exacta, completa y actualizada.</p> 
+                          <p data-translate-key="terminos-5">2.2. Debes ser mayor de edad según la legislación local para crear una cuenta, o contar con el consentimiento de tus padres o tutores legales si eres menor de edad. </p>
+                          <p data-translate-key="terminos-6">
                             2.3. Eres responsable de la confidencialidad de tu cuenta y contraseña, así como de todas las actividades que ocurran bajo tu cuenta.
                           </p>
                       </div>
                       <div class="termino">
-                        <h2>3.Contacto</h2>
-                         <p>Si tienes alguna duda o inquietud sobre estos términos y condiciones, puedes contactarnos a través de mythicalsuport@gmail.com .</p>
+                        <h2 data-translate-key="terminos-7">3.Contacto</h2>
+                         <p data-translate-key="terminos-8" >Si tienes alguna duda o inquietud sobre estos términos y condiciones, puedes contactarnos a través de mythicalsuport@gmail.com .</p>
                       </div>
                     </div>
                   </div>
@@ -126,31 +126,31 @@
 
     <form action=""  method="post" id="crear_cuenta" enctype="multipart/form-data">
         <div class="titulo-cuenta">
-            <h2>Crear cuenta</h2>
+            <h2  data-translate-key="crear_cuenta">Crear cuenta</h2>
             <hr>
         </div>
 
         <div class="datos-crear">
 
             <div class="primera-parte" >
-                <h3>Nombre</h3>
-                <input type="text" id="name" name="name" placeholder="Registra tu nombre" required>
-                <h3>Apellido</h3>
-                <input type="text" id="lastName" name="lastName" placeholder="Registra tu apellido" required>
+                <h3 data-translate-key="nombre">Nombre</h3>
+                <input type="text" id="name" name="name" placeholder="Registra tu nombre" required data-translate-key="nombre-placholder">
+                <h3 data-translate-key="apellido">Apellido</h3>
+                <input type="text" id="lastName" name="lastName" placeholder="Registra tu apellido" required  data-translate-key="apellido-placholder">
             </div>
             <div class="segunda-parte">
-                <h3>Correo electrónico</h3>
-                <input type="email" name="email" id="email" placeholder="Registra tu correo electronico" required>
-                <h3>Contraseña</h3>
-                <input type="password" minlength="6" name="password"  placeholder="Registra una contraseña" id="password" required>
+                <h3 data-translate-key="correo">Correo electrónico</h3>
+                <input type="email" name="email" id="email" placeholder="Registra tu correo electronico" required  data-translate-key="correo-placholder">
+                <h3 data-translate-key="contrasena">Contraseña</h3>
+                <input type="password" minlength="6" name="password"  placeholder="Registra una contraseña" id="password" required  data-translate-key="contrasena-placholder">
                 <i class="fa-solid fa-eye pass" id="ojo"></i>   
             </div>
 
         </div>
         <div class="terminos">
           <input type="hidden" name="userID" class="form-control" id="userID">
-            <input type="checkbox" id="checkbox" required>
-            <label for="checkbox" data-bs-toggle="modal" required data-bs-target="#terminos"><p> &nbsp&nbsp &nbsp&nbsp Aceptar terminos y condiciones</p></label>
+            <input type="checkbox" id="checkbox" required >
+            <label for="checkbox" data-bs-toggle="modal" required data-bs-target="#terminos"><p  data-translate-key="terminos-condiciones"> &nbsp&nbsp &nbsp&nbsp Aceptar terminos y condiciones</p></label>
         </div>
 
 
@@ -175,6 +175,7 @@
 <!--/audio-->
 
     <script src="./js/contraseña.js"></script>
+    <script src="./js/idiomas.js"></script>
     <!-- <script src="./js/index.js"></script> -->
     <script src="./bootstrap/js/bootstrap.js"></script>
     <script src="./js/clickleo.js"></script>

@@ -17,7 +17,7 @@ window.addEventListener('DOMContentLoaded', () => {
             // Mostrar modal si faltan campos
             mensajeModalBody.innerHTML = `
                 <div class="alert alert-danger" style="display: flex; flex-direction: column; margin-top:1px; align-items: center; padding-left: 25px; height: 340px;">
-                    ¡Todos los campos son obligatorios para iniciar sesión!
+                  <h1 style="font-size: 55px;" >  ¡Todos los campos son obligatorios para iniciar sesión!      </h1>
                     <div style="display: flex; align-items: center; margin-top: 2px;">
                         <img src="./Assest/emoji.png" style="width: 90px; margin-right: 10px;" alt="emoji" />
                     </div>

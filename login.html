@@ -174,7 +174,7 @@
 <div class="modal fade" id="mensajeModal" tabindex="-1" aria-labelledby="mensajeModalLabel" aria-hidden="true">
     <div class="modal-dialog" >
         <div class="modal-content"  style="border: black 4px solid; border-radius: 12px; background-color:#FBB347; height: 400px;">
-            <div class="modal-body" id="mensajeModalBody" style="font-size: 50px;">
+            <div class="modal-body" id="mensajeModalBody" style="font-size: 50px;" >
                 <!-- Aquí se mostrará el mensaje -->
             </div>
         </div>
@@ -193,7 +193,7 @@
 <div class="modal fade" id="mensajeModal" tabindex="-1" aria-labelledby="mensajeModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content" style="border: black 4px solid; border-radius: 12px; background-color:#FBB347; height: 400px;">
-            <div class="modal-body" id="mensajeModalBody" style="font-size: 50px; ">
+            <div class="modal-body" id="mensajeModalBody" style="font-size: 50px; " >
                 <!-- Aquí se mostrará el mensaje -->
             </div>
         </div>
@@ -206,22 +206,22 @@
 <!---formulario-->
 
             <div class="datos">
-                <h1>Correo electrónico</h1>
+                <h1 data-translate-key="correo">Correo electrónico</h1>
                 <input type="email" name="email" id="email" required>
             
-                <h1>Contraseña</h1>
+                <h1 data-translate-key="contrasena">Contraseña</h1>
                 <input type="password" id="password" name="password" required>
                 <i class="fa-solid fa-eye pass" id="ojo"></i>            
                 
             </div>
             
             <div class="opciones">
-                <a href="./crear_cuenta.html">Crear cuenta</a> <br>
-                <a href="./recuperar_contrasena.html">Recuperar contraseña</a>
+                <a href="./crear_cuenta.html" data-translate-key="crear_cuenta">Crear cuenta</a> <br>
+                <a href="./recuperar_contrasena.html" data-translate-key="recuperar_contrasena">Recuperar contraseña</a>
              </div>
         <div class="boton-envio ">
             <div class="boton" id="boton-envio">
-             <input type="submit" name="button-validar" value="Iniciar" id="boton-verificar"> 
+             <input type="submit" name="button-validar" value="Iniciar" id="boton-verificar" data-translate-key="boton_iniciar"> 
             </div>
         </div>
        
@@ -244,6 +244,7 @@
     <audio id="backgroundMusic" src="./musica/musica_fondo.mp3" loop></audio>
     
     <script src="./js/musica_fondo.js"></script>
+    <script src="./js/idiomas.js"></script>
     <script src="./js/contraseña.js"></script>
     <!--<script src="./js/index.js"></script>-->
     <script src="./bootstrap/js/bootstrap.js"></script>

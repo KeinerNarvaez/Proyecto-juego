@@ -58,7 +58,68 @@ body{
     src: url(../Kavoon-Regular.ttf);
 }
 
+.language-selector {
+    position: relative;
+    display: inline-block;
+    font-family: Arial, sans-serif;
+   margin-top: 30px;
+}
 
+.language-trigger {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    background-color: #f8f8f8;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.language-trigger img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.language-dropdown {
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: none;
+    min-width: 180px;
+    z-index: 10;
+    margin-bottom: 10px;
+}
+
+.language-selector.open .language-dropdown {
+    display: block;
+}
+
+.language-dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 12px 15px;
+    transition: background-color 0.2s ease;
+    cursor: pointer;
+}
+
+.language-dropdown-item:hover {
+    background-color: #f5f5f5;
+}
+
+.language-dropdown-item img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+}
 
 .contenedor-bt{
     align-content: center;
@@ -67,6 +128,7 @@ body{
     display: flex;
     flex-wrap: wrap;
 }
+
 /* input volumen*/
 .range {
     margin-top: 20px;

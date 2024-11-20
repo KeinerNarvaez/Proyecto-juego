@@ -86,13 +86,13 @@ window.addEventListener('DOMContentLoaded', () => {
     const mensajeModalBody = document.getElementById('mensajeModalBody');
     
     mensajeModalBody.innerHTML = `
-       <div class="alert alert-secondary" style="text-align: center; margin-top:-12px; " >
-            <h1 style="font-size: 55px; ">Contraseña renovada correctamente</h1>
-           <br> 
-           <i class="fa-solid fa-check" style="display: block; font-size: 80px; margin-left: -12px auto;"></i>
-       </div>
-    `;
-    
+    <div class="alert alert-secondary" style="text-align: center; margin-top:-12px; font-size: 55px;" >
+        Contraseña renovada correctamente.
+        <br> 
+        <i class="fa-solid fa-check" style="display: block; font-size: 80px; margin: 20px auto;"></i>
+    </div>
+ `;
+
     mensajeModal.show();
 }
 });

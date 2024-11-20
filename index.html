@@ -6,70 +6,85 @@
     <title>Mythical Witch Mixes</title>
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./bootstrap/css/bootstrap.css">
-    <!--Enlaces para fuentes de google-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <!--icono-->
     <link rel="shortcut icon" href="./Assest/ImagenBruja.png" type="image/x-icon">
-        <!--enlace para fuente de google-->
     <link href="https://fonts.googleapis.com/css2?family=Koh+Santepheap:wght@100;300;400;700;900&display=swap" rel="stylesheet">
-      <!--enlace -->
-      <link href="https://fonts.googleapis.com/css2?family=Koh+Santepheap:wght@100;300;400;700;900&display=swap" rel="stylesheet">
-      <link rel="stylesheet" href="./fontawesome-free-6.6.0-web/css/all.css">
+    <link rel="stylesheet" href="./fontawesome-free-6.6.0-web/css/all.css">
 </head>
 <body>
     <div class="container">
-          <!--Modal-->
-         <div class="container">
-          <div class="modal fade" id="opciones" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h1 class="modal-title text-bt" id="exampleModalLabel" style="font-family: kavoon; font-size: 80px;">OPCIONES</h1>
-                </div>
-                <div class="modal-body">
-                  <div class="modal-inicio">
-                    <!-- Control de volumen de música -->
-                    <div class="volumen">
-                      <label for="sliderEfecto" class="text-bt fs-1" style="font-family: kavoon;">VOLUMEN DE MÚSICA</label>
-                      <div class="col-12 modal-slider">
-                        <div class="col-10">
-                          <input class="range col-10" type="range" value="100" min="0" max="100" id="sliderEfecto">
+        <div class="container">
+            <div class="modal fade" id="opciones" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title text-bt" id="exampleModalLabel" style="font-family: kavoon; font-size: 80px;" data-translate-key="optionsTitle">OPCIONES</h1>
                         </div>
-                      </div>
+                        <div class="modal-body">
+                            <div class="modal-inicio">
+                                <div class="volumen">
+                                    <label for="sliderEfecto" class="text-bt fs-1" style="font-family: kavoon;" data-translate-key="musicVolume">VOLUMEN DE MÚSICA</label>
+                                    <div class="col-12 modal-slider">
+                                        <div class="col-10">
+                                            <input class="range col-10" type="range" value="100" min="0" max="100" id="sliderEfecto">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!---Opciones de lenguaje-->
+                                <div class="language-selector" id="languageSelector">
+                                    <div class="language-trigger" onclick="toggleLanguageDropdown()">
+                                        <img src="./Assest/colombua.jpg" alt="Language" id="currentFlag">
+                                        <span id="currentLanguage">Español</span>
+                                    </div>
+                                    <div class="language-dropdown">
+                                        <div class="language-dropdown-item" onclick="changeLanguage('es')">
+                                            <img src="./Assest/colombua.jpg" alt="Spanish">
+                                            <span>Español</span>
+                                        </div>
+                                        <div class="language-dropdown-item" onclick="changeLanguage('en')">
+                                            <img src="./Assest/estados unidos.jpg" alt="English">
+                                            <span>English</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                  </div>
                 </div>
-              </div>
             </div>
-          </div>
         </div>
-              <!--Fin de modal-->
-              
+
         <div class="col-12 titulo">
-            <h1 class="text-titulo" style="margin-left: 80px;">Mythical Witch Mixes</h1>
+            <h1 class="text-titulo" style="margin-left: 80px;" data-translate-key="mainTitle">Mythical Witch Mixes</h1>
         </div>
-            <!--botones-->
+
         <div class="col-12 contenedor-bt">
-          <div class="col-6 botones">
-            <a href="./login.html" class="text-boton"><div class="boton"><h5 class="text-boton">JUGAR</h5></div></a>
-          </div>
-          <div class="col-6 botones">
-            <a class="text-boton" id="izquierda-boton"><div class="boton" data-bs-toggle="modal" data-bs-target="#opciones"><h5 class="text-boton">OPCIONES</h5></div></a>
-          </div>
+            <div class="col-6 botones">
+                <a href="./login.html" class="text-boton">
+                    <div class="boton">
+                        <h5 class="text-boton" data-translate-key="playButton">JUGAR</h5>
+                    </div>
+                </a>
+            </div>
+            <div class="col-6 botones">
+                <a class="text-boton" id="izquierda-boton">
+                    <div class="boton" data-bs-toggle="modal" data-bs-target="#opciones">
+                        <h5 class="text-boton" data-translate-key="optionsButton">OPCIONES</h5>
+                    </div>
+                </a>
+            </div>
         </div>
     </div>
 
-    <!--audio-->
     <audio id="clickSound">
-      <source src="./audio/clickleo.mp3" type="audio/mp3">
-     </audio>
-    <!--/audio-->
+        <source src="./audio/clickleo.mp3" type="audio/mp3">
+    </audio>
 
     <audio id="backgroundMusic" src="./musica/musica_fondo.mp3" loop></audio>
   
-        <!--El fondo toca buscar una forma de optimizarlo para que cargue con mas velocidad y sirva en cualquier dispositivo-->
     <script src="./js/index.js"></script>
+    <script src="./js/idiomas.js"></script>
     <script src="./js/musica_fondo.js"></script>
     <script src="./bootstrap/js/bootstrap.js"></script>
     <script src="./js/clickleo.js"></script>

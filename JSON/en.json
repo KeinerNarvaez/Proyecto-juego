@@ -1,0 +1,70 @@
+{
+    "playButton": "PLAY",
+    "optionsButton": "OPTIONS",
+    "correo": "Email",
+    "contrasena": "Password",
+    "crear_cuenta": "Create Account",
+    "recuperar_contrasena": "Recover Password",
+    "boton_iniciar": "Login" ,
+    "nombre" : "Name" ,
+    "apellido" :"Lastname",
+    "nombre-placholder": "Enter your first name",
+    "apellido-placholder": "Enter your last name",
+    "correo-placholder": "Enter your email address",
+    "contrasena-placholder": "Enter a password",
+    "terminos-condiciones" : "  Accept Terms and Conditions" ,
+    "titulo-termino": "Terms and Conditions",
+    "terminos-1": "1. Acceptance of the Terms",
+    "terminos-2": "By creating an account in Mythical Witch Mixes, you agree to comply with and be bound by the following Terms and Conditions of Use. These terms may be modified occasionally, so we recommend reviewing them periodically. Continued use of the Game after any changes will be considered as acceptance of those changes.",
+    "terminos-3": "2. Account Creation",
+    "terminos-4": "2.1. To access certain services and features of the Game, you must create an account by providing accurate, complete, and up-to-date information.",
+    "terminos-5": "2.2. You must be of legal age according to local legislation to create an account, or have the consent of your parents or legal guardians if you are a minor.",
+    "terminos-6": "2.3. You are responsible for the confidentiality of your account and password, as well as all activities that occur under your account.",
+    "terminos-7": "3. Contact",
+    "terminos-8": "If you have any questions or concerns about these terms and conditions, you can contact us at mythicalsuport@gmail.com.",
+    "textoCodigo-1": "Enter the code",
+    "textoCodigo-2": "Enter the code you received in your Gmail inbox.",
+    "textoCodigo-3": "Enter your code",
+    "textoCodigo-4": "Click the 'Verify' button and continue the experience",
+    "titulo-recuperacion": "Recover Password",
+    "recuperar-1": "Enter the code you received in your Gmail inbox.",
+    "recuperar-2": "Your email address:",
+    "recuperar-3": "Click the 'Continue' button and check your inbox (including spam). If it doesn't arrive within a few minutes, verify your email address and correct any possible errors.",
+    "titulo-recuperacionContrasena": "Insert the code", 
+    "codigoContrasena1": "Insert the code you received in your email inbox to continue the password recovery process", 
+    "codigoContrasena2": "Enter your code", 
+    "codigoContrasena3": "Click the 'Verify' button and continue with the process." ,
+    "titulo-renovacion": "Renew Password",
+    "renovacion1": "New Password",
+    "renovacion2": "Confirm Password",
+
+    "conectados": "Players online",
+    "tutorial": "How to play",
+    "saludo": "Welcome to Mythical Witch Mixes! This guide will help you understand the basic mechanics of the game so you can begin your adventure in the world of alchemy and witchcraft.",
+    "mecanicas": "Game mechanics",
+    "mecanicas1": "In this game, players dive into a world full of challenges, where they must combine various items in a magical cauldron owned by a witch. The key is to choose the right ingredients for each combination, as each mix has a specific purpose.",
+    "mecanicas2": "If the combination is incorrect, the witch's cauldron explodes, signaling the need to try again and find the correct formula. This trial-and-error system adds a level of strategy and excitement, encouraging players to experiment until they discover the perfect mix.",
+    "mecanicas3": "Game modes",
+    "mecanicas4": "In a world filled with magic and mystery, there are two game modes: potions of color and spells. While their gameplay differs, both share the same goal of combining ingredients to create successful mixtures.",
+    "mecanicas4.1": "Potions of Color",
+    "mecanicas4.2": "Spells",
+    "mecanicas5": "Potions of Color",
+    "mecanicas6": "In this game mode, players must combine various colored potions, such as red, blue, or white. Each potion must be carefully selected based on the specific color needed to progress in the challenge.",
+    "mecanicas6.1": "specific color needed",
+    "mecanicas7": "The key is to mix the correct colors to obtain the required potion, testing your ability to recognize patterns and make quick decisions.",
+    "mecanicas8": "Spells",
+    "mecanicas8.1": "In the spells mode, players face a series of riddles that hide the key ingredients needed to perform powerful spells. As you uncover the elements through riddles, you can create the spell required.",
+    "mecanicas8.2": "series of riddles",
+    "mecanicas8.3": "Spells",
+    "mecanicas9": "Only by selecting the correct ingredients will you be able to create the spell and unlock the next level of challenges, progressing further in your magical journey. This mode tests not only your logic skills but also your intuition in a world filled with mysteries and enchantments.",
+    "mecanicas10": "What would you like to be called?"
+    
+    
+
+
+
+    
+    
+
+    
+}
