@@ -1,49 +1,62 @@
-document.addEventListener('DOMContentLoaded', function () { 
-    const socket = new WebSocket("ws://localhost:8080"); 
-    // Consultar el alias al cargar la página 
-    fetch('./php/register_gamerTag.php', { 
-        method: 'GET', 
-        headers: { 'Content-Type': 'application/json' } 
-    })
-    .then(response => response.json()) 
-    .then(data => { 
-        const usuario = data.gamerTag; 
-        conectarSocket(usuario); 
-    });
+window.addEventListener('DOMContentLoaded', () => {
+    // Llamamos al botón para verificar el código
+    let botonVerificarCodigo = document.getElementById('botonVerificarCodigo');
 
-    function conectarSocket(gamerTag) { 
-        socket.onopen = () => { 
-            console.log("Conectado al servidor WebSocket"); 
-            // Enviar solo el mensaje de conexión una vez
-            socket.send(JSON.stringify({ 
-                message: 'Nuevo usuario conectado', 
-                gamerTag: gamerTag 
-            })); 
+    botonVerificarCodigo.addEventListener('click', function(event) {
+        event.preventDefault();
+
+        const codigo = [
+            document.getElementById('input1-codigo').value,
+            document.getElementById('input2-codigo').value,
+            document.getElementById('input3-codigo').value,
+            document.getElementById('input4-codigo').value,
+            document.getElementById('input5-codigo').value,
+            document.getElementById('input6-codigo').value
+        ].join(''); 
+        const data = {
+            codigoGenerado: codigo 
         };
-
-        socket.onmessage = (event) => { 
-            const data = JSON.parse(event.data); 
-
-            if (data.message === 'Nuevo usuario conectado' && data.gamerTag === gamerTag) { 
-                agregarPerfil(data.gamerTag); // Agrega la tarjeta del propio usuario 
-            } 
-
-            if (data.message === 'Lista de usuarios') { 
-                const cuerpoActivos = document.getElementById('personasConectadas'); 
-                cuerpoActivos.innerHTML = ''; // Limpiar el contenedor de perfiles 
+        fetch('./php/ingresar_sala.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data) 
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success') {
+                console.log(data.message);
                 
-                data.users.forEach(user => { 
-                    agregarPerfil(user); 
-                }); 
-            } 
-        }; 
-
-        socket.onclose = (event) => { 
-            if (!event.wasClean) console.log('Conexión cerrada por el servidor'); 
-        }; 
-
-        socket.onerror = (error) => console.error(error); 
-    } 
-
-
+              const mensajeModal = new bootstrap.Modal(document.getElementById('mensajeModal'));
+              const mensajeModalBody = document.getElementById('mensajeModalBody');
+           mensajeModalBody.innerHTML = `
+           <div class="alert alert-secondary" style="text-align: center; margin-top:-12px;" >
+               Código verificado correctamente. Redirigiendo para renovar la contraseña
+               <br> 
+               <i class="fa-solid fa-check" style="display: block; font-size: 80px; margin: 20px auto;"></i>
+           </div>
+        `;
+           mensajeModal.show();
+               setTimeout(() => {
+                    window.location.href = 'renovar_contrasena.html'; // Redirigir después de 3 segundos
+                }, 3000); 
+            } else {
+             // Mostrar modal de error 
+             const mensajeModal = new bootstrap.Modal(document.getElementById('mensajeModal'));
+             const mensajeModalBody = document.getElementById('mensajeModalBody');
+             mensajeModalBody.innerHTML = `
+               <div class="alert alert-danger" style="font-size: 70px;">
+                   ${data.message}
+                   <br>
+                   <i class="fa-solid fa-xmark" style="display: flex; justify-content: center; font-size: 120px; color: red; margin-left:350px;"></i>
+               </div>
+           `;
+           mensajeModal.show();
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error); // Manejo de errores en la consola
+        });
+    });
 });

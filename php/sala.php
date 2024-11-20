@@ -1,28 +1,21 @@
 <?php
-include_once '../app/config/connection.php'; // Incluye la conexión a la base de datos
-
-// Establecer el encabezado de contenido JSON
+include_once '../app/config/connection.php'; 
+session_start();
 header('Content-Type: application/json');
-
-// Crear una instancia de la conexión
 $conn = new Connection();
-$pdo = $conn->connect(); // Obtener el objeto PDO
-
+$pdo = $conn->connect();
 try {
-    // Consulta SQL para obtener el gamerTag
-    $sql = "SELECT user.gamerTag FROM player INNER JOIN user ON player.userID = user.userID";
+    $codigoGenerado=$_SESSION['codigo'];
+    $sql = "SELECT user.gamerTag FROM player INNER JOIN user ON player.userID = user.userID WHERE roomCode=:codigoGenerado";
     $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(':codigoGenerado', $codigoGenerado, PDO::PARAM_STR);
     $stmt->execute();
-    $results = $stmt->fetchAll(PDO::FETCH_ASSOC); // Obtener todos los resultados
+    $results = $stmt->fetchAll(PDO::FETCH_ASSOC); 
 
-    // Enviar los resultados como JSON
     echo json_encode($results);
 } catch (PDOException $e) {
-    // Manejo de errores
     echo json_encode(['status' => 'error', 'message' => 'Error al procesar la solicitud: ' . $e->getMessage()]);
 }
 
-// Cerrar la conexión
+
 $pdo = null;
-
-

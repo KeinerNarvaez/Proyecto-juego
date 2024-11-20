@@ -1,4 +1,4 @@
-class codigo {
+class Codigo {
     constructor(numeroCaracteres) {
         this.caracteres = numeroCaracteres;
     }
@@ -50,8 +50,10 @@ class Cronometro {
         clearInterval(this.intervalo);
     }
 }
-class tarjetasUsuario {
+
+class TarjetasUsuario {
     creadorTarjeta() {
+        const socket = new WebSocket("ws://localhost:8080"); 
         fetch('./php/sala.php', {
             method: 'POST',
             headers: {
@@ -64,47 +66,105 @@ class tarjetasUsuario {
                 console.log('Datos recibidos:', data);
                 data.forEach(item => {
                     console.log('GamerTag:', item.gamerTag);
-                    this.estructuraTabla(item.gamerTag); // Envía cada gamerTag
+                    this.conectarSocket(item.gamerTag); 
                 });
             })
             .catch(error => console.error('Error:', error));
     }
 
-    estructuraTabla(data){
-            const clientId = `client-${Date.now()}`; 
-            let perfil = document.createElement('div'); 
-            perfil.classList.add('perfil'); 
-            perfil.id = clientId; 
-            perfil.innerHTML = ` 
-                <div class="perfil-jugador"> 
-                    <i class="fa-solid fa-user"></i> 
-                    <h1>${data}</h1> 
-                </div> 
-            `; 
-            document.getElementById('personasConectadas').appendChild(perfil); 
-    }
-    
+    conectarSocket(gamerTag) { 
+        socket.onopen = () => { 
+            console.log("Conectado al servidor WebSocket"); 
+            // Enviar solo el mensaje de conexión una vez
+            socket.send(JSON.stringify({ 
+                message: 'Nuevo usuario conectado', 
+                gamerTag: gamerTag 
+            })); 
+        };
+
+        socket.onmessage = (event) => { 
+            const data = JSON.parse(event.data); 
+
+            if (data.message === 'Nuevo usuario conectado' && data.gamerTag === gamerTag) { 
+                this.agregarPerfil(data.gamerTag); // Agrega la tarjeta del propio usuario 
+            } 
+
+            if (data.message === 'Lista de usuarios') { 
+                const cuerpoActivos = document.getElementById('personasConectadas'); 
+                cuerpoActivos.innerHTML = ''; // Limpiar el contenedor de perfiles 
+                
+                data.users.forEach(user => { 
+                    this.agregarPerfil(user); 
+                }); 
+            } 
+        }; 
+
+        socket.onclose = (event) => { 
+            if (!event.wasClean) console.log('Conexión cerrada por el servidor'); 
+        }; 
+
+        socket.onerror = (error) => console.error(error); 
+    } 
+    agregarPerfil(gamerTag) { 
+        const clientId = `client-${Date.now()}`; 
+        let perfil = document.createElement('div'); 
+        perfil.classList.add('perfil'); 
+        perfil.id = clientId; 
+        perfil.innerHTML = ` 
+            <div class="perfil-jugador"> 
+                <i class="fa-solid fa-user"></i> 
+                <h1>${gamerTag}</h1> 
+            </div> 
+        `; 
+        document.getElementById('personasConectadas').appendChild(perfil); 
+    } 
 }
 
-class sala {
+class Sala {
     constructor() {
+        this.tarjeta = new TarjetasUsuario();
         this.cronometro = new Cronometro(9, 59, () => this.sinTiempo());
-        this.tarjeta = new tarjetasUsuario();
-        this.codigo = new codigo(6);
+        this.codigo = new Codigo(6);
     }
 
-    iniciar_juego() {
+    iniciarJuego() {
         this.tarjeta.creadorTarjeta();
         this.generarCodigo();
         document.getElementById('iniciar_juego').addEventListener('click', () => {
             this.cronometro.iniciar();
-            document.getElementById('botones').innerHTML='';
+            document.getElementById('botones').innerHTML = '';
         });
     }
 
     generarCodigo() {
-        const codigoGenerado = this.codigo.generarCodigo();
-        document.getElementById('codigo-sala').innerText = codigoGenerado;
+        const codigoGenerado = 'KFC123'//this.codigo.generarCodigo();
+        console.log('Código generado:', codigoGenerado);
+        var inputSelect = document.getElementById("select");
+        var select = inputSelect.options[inputSelect.selectedIndex].text;
+        console.log(select);
+
+        // Validar que la selección sea válida
+        if (select !== "Hechizos" && select !== "Pociones de color") {
+            console.error("Selección inválida");
+            return;
+        }
+
+        fetch('./php/hostroom.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ codigoGenerado, select })
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    document.getElementById('codigo-sala').innerText = data.codigoGenerado;
+                } else {
+                    console.error('Error del servidor:', data.message);
+                }
+            })
+            .catch(error => console.error('Error al enviar el código:', error));
     }
 
     sinTiempo() {
@@ -112,5 +172,5 @@ class sala {
     }
 }
 
-const miSala = new sala();
-miSala.iniciar_juego();
+const miSala = new Sala();
+miSala.iniciarJuego();
