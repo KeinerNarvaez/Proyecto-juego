@@ -77,17 +77,16 @@ try {
     $hostRoomID = $checkHostRoomStmt->fetchColumn();
 
     if ($hostRoomID) {
-        // Si el roomCode existe en ambas tablas (player y hostroom), inserta en privatematch
-        $insertMatchQuery = "INSERT INTO privatematch (hostRoomID, playerID) VALUES (:hostRoomID, :playerID)";
+
+        $insertMatchQuery = "INSERT INTO privatemath (hostRoomID, playerID) VALUES (:hostRoomID, :playerID)";
         $insertMatchStmt = $pdo->prepare($insertMatchQuery);
         $insertMatchStmt->bindParam(':hostRoomID', $hostRoomID, PDO::PARAM_INT);
         $insertMatchStmt->bindParam(':playerID', $playerID, PDO::PARAM_INT);
         $insertMatchStmt->execute();
 
-        echo json_encode(['status' => 'success', 'message' => 'Partida creada correctamente.']);
     } else {
-        // Si no existe un roomCode válido en hostroom
-        echo json_encode(['status' => 'error', 'message' => 'Código inválido en la sala de host.']);
+        // Si el roomCode existe en ambas tablas (player y hostroom), inserta en privatematch
+        echo json_encode(['status' => 'success', 'message' => $e->getMessage()]);
     }
 
 } catch (Exception $e) {
