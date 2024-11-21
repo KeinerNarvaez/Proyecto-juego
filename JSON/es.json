@@ -57,6 +57,16 @@
     "mecanicas8.2" :"serie de  adivinanzas",
     "mecanicas8.3" :"Hechizos",
     "mecanicas9" :"Solo al seleccionar correctamente los ingredientes podrás crear el hechizo y desbloquear el siguiente nivel de desafío, avanzando más en tu travesía mágica. Este modo pone a prueba no solo tus habilidades de lógica, sino también tu intuición en un mundo lleno de misterios y encantamientos." ,
-    "mecanicas10" :"¿Como te gustaría ser llamado?" 
-    
+    "mecanicas10" :"¿Como te gustaría ser llamado?" ,
+    "iniciar" : "iniciar",
+    "siguiente" : "siguiente",
+    "verificar" : "verificar",
+    "solitario"  : "Solitario",
+    "sala" :  "Crear sala",
+    "unirse"  : " Unirse"  ,
+    "alias" : "ingresa un alias",
+    "codigoSala" : "Inserte el código" ,
+    "textoSala" : "Ingresa el codigo de sala que te brinda el  moderador, para unirte a la sala y que  puedas jugar con otros jugadores.",
+    "optionsTitle" : "OPCIONES",
+    "musicVolume" : "VOLUMEN DE MÚSICA"
 }
