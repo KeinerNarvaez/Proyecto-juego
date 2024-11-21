@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <!--icono-->
-    <link rel="shortcut icon" href="/Assest/ImagenBruja.png" type="image/x-icon">
+    <link rel="shortcut icon" href="./Assest/ImagenBruja.png" type="image/x-icon">
         <!--enlace para fuente de google-->
     <link href="https://fonts.googleapis.com/css2?family=Koh+Santepheap:wght@100;300;400;700;900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Koh+Santepheap:wght@100;300;400;700;900&display=swap" rel="stylesheet">
@@ -39,11 +39,11 @@
     <div class="verificacion-codigo">
 
         <div class="titulo-cuenta" style="margin-top: -12px;">
-            <h2>Inserte el código</h2>
+            <h2  data-translate-key="codigoSala">Inserte el código</h2>
             <hr> 
         </div>
 
-        <h6  style="font-size: 30px;">Ingresa el codigo de sala que te brinda el  moderador, para unirte a la sala y que  puedas jugar con otros jugadores.</h6>
+        <h6  style="font-size: 30px;" data-translate-key="textoSala" >Ingresa el codigo de sala que te brinda el  moderador, para unirte a la sala y que  puedas jugar con otros jugadores.</h6>
 
 
         <div class="inputs-verificacion" id="codigo-unirse">
@@ -56,12 +56,15 @@
         </div>
 
 
-           <!--boton-->
-        <div class="boton-envio" style="margin-left: 100px; ">
-            <div class="boton" id="boton-envio">
-              <input type="submit" style="font-size: 25px;" id="botonVerificarCodigo" value="Unirse" >
-            </div>
-        </div>
+      <!-- Botón -->
+<div class="boton-envio" style="margin-left: 100px;">
+    <div class="boton" id="boton-envio">
+        <button id="botonVerificarCodigo" style="background: none; border: none; padding: 0; cursor: pointer;" >
+            <h2 style="margin: 0; color: #FF9900; font-size: 38px;"  data-translate-key="unirse">Unirse</h2>
+        </button>
+    </div>
+</div>
+
 
     </div>
    </form>
@@ -77,6 +80,7 @@
      </audio>
      <!--/audio-->
   <script src="./js/sala.js"></script>
+  <script src="./js/idiomas.js"></script>
   <script src="./js/index.js"></script>
   <script src="./boostrap/bootstrap-5.3.2-dist/js/bootstrap.js"></script>
   <script src="./js/clickleo.js"></script>

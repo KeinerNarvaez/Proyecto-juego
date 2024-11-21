@@ -10,7 +10,19 @@ window.addEventListener('DOMContentLoaded', () => {
 
         // Validar que el campo de email no esté vacío
         if (!emailUsuario) {
-            alert('Campo vacío');
+
+             // Mostrar modal de error 
+             const mensajeModal = new bootstrap.Modal(document.getElementById('mensajeModal'));
+             const mensajeModalBody = document.getElementById('mensajeModalBody');
+             mensajeModalBody.innerHTML = `
+               <div class="alert alert-danger" style="font-size: 65px; height: 350px;">
+                 <h1 style="font-size: 95px; margin-left: 120px; margin-top: 25px;  ">  Campo vacío  </h1> 
+                   <br>
+                   <i class="fa-solid fa-xmark" style="display: flex;font-size: 120px; color: red; margin-left:350px; margin-top: -55px;  "></i>
+               </div>
+           `;
+           mensajeModal.show();
+           
             return; // Detener la ejecución si hay campos vacíos
         }
 

@@ -170,13 +170,13 @@
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h1 class="modal-title text-bt" id="exampleModalLabel" style="font-family: kavoon; font-size: 80px;">OPCIONES</h1>
+                  <h1 class="modal-title text-bt" id="exampleModalLabel" style="font-family: kavoon; font-size: 80px;" data-translate-key="optionsTitle">OPCIONES</h1>
                 </div>
                 <div class="modal-body">
                   <div class="modal-inicio">
                     <!-- Control de volumen de música -->
                     <div class="volumen">
-                      <label for="sliderEfecto" class="text-bt fs-1" style="font-family: kavoon;">VOLUMEN DE MÚSICA</label>
+                      <label for="sliderEfecto" class="text-bt fs-1" style="font-family: kavoon;" data-translate-key="musicVolume">VOLUMEN DE MÚSICA</label>
                       <div class="col-12 modal-slider">
                         <div class="col-10">
                           <input class="range col-10" type="range" value="100" min="0" max="100" id="sliderEfecto">
@@ -302,23 +302,41 @@
                   <!--boton solitario-->
                   <div class="boton-envio">
                     <div class="boton" id="boton-envio">
-                       <a href="./modo solitario/menu_solitaro.html" class="text-boton"><input type="button" style="font-size: 25px;" value="Solitario" ></a>   
+                        <a href="./modo solitario/menu_solitaro.html" class="text-boton" style="text-decoration: none;">
+                            <button 
+                                type="button" 
+                                style="font-size: 25px; background: none; border: none; padding: 0; cursor: pointer;  color: #FF9900;" data-translate-key="solitario">
+                                Solitario
+                            </button>
+                        </a>
+                    </div>
+                  </div> 
+                  <!--boton crear sala-->
+                  <div class="boton-envio">
+                    <div class="boton" id="boton-envio"  style="text-decoration: none; ">
+                      <a href="./sala.html" class="text-boton" style="text-decoration: none;">
+                      <button 
+                      type="button" 
+                      style="font-size: 25px; background: none; border: none; padding: 0; cursor: pointer;  color: #FF9900;" data-translate-key="sala"> 
+                      Crear sala
+                  </button>
                     </div>
                </div>
                 
-                  <!--boton crear sala-->
-                  <div class="boton-envio">
-                      <div class="boton" id="boton-envio">
-                         <a href="./sala.html" class="text-boton"><input type="button" style="font-size: 25px;" value="Crear sala" ></a>   
-                      </div>
-                 </div>
+    
 
-                  <!--boton unirse-->
-                  <div class="boton-envio">
-                    <div class="boton" id="boton-envio">
-                      <a href="./unirse_sala.html" class="text-boton"><input type="button" style="font-size: 25px;" value="Unirse" ></a> 
-                    </div>
-                </div>
+<!-- Botón unirse -->
+<div class="boton-envio">
+  <div class="boton" id="boton-envio">
+      <a href="./unirse_sala.html" class="text-boton" style="text-decoration: none;">
+          <button 
+              type="button" 
+              style="font-size: 25px; background: none; border: none; padding: 0; cursor: pointer;  color: #FF9900;" data-translate-key="unirse">
+              Unirse
+          </button>
+      </a>
+  </div>
+</div>
         </div>
 
 

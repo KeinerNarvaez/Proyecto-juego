@@ -13,12 +13,18 @@ function changeLanguage(lang) {
     fetch(filePath)
         .then((response) => response.json())
         .then((translations) => {
-            // Encuentra los elementos con la clave de traducción
+            // Encuentra los elementos con la clave de traducción para texto normal
             const elements = document.querySelectorAll('[data-translate-key]');
             elements.forEach((element) => {
                 const key = element.getAttribute('data-translate-key');
                 if (translations[key]) {
-                    element.textContent = translations[key];
+                    // Si es un input, actualiza el placeholder
+                    if (element.tagName.toLowerCase() === 'input') {
+                        element.placeholder = translations[key];
+                    } else {
+                        // Para otros elementos, actualiza el texto
+                        element.textContent = translations[key];
+                    }
                 }
             });
             
