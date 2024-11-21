@@ -6,7 +6,7 @@ $conn = new Connection();
 $pdo = $conn->connect();
 try {
     $codigoGenerado=$_SESSION['codigo'];
-    $sql = "SELECT u.gamerTag FROM privatemath pp JOIN player js ON pp.playerID = js.playerID  JOIN user u ON js.userID = u.userID WHERE pp.hostRoomID= :codigoGenerado";  
+    $sql = "SELECT user.gamerTag FROM player INNER JOIN user ON player.userID = user.userID WHERE roomCode=:codigoGenerado";  
     $stmt = $pdo->prepare($sql);
     $stmt->bindParam(':codigoGenerado', $codigoGenerado, PDO::PARAM_STR);
     $stmt->execute();
