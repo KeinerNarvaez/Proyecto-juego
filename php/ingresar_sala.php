@@ -5,7 +5,7 @@ session_start();
 header('Content-Type: application/json');
 
 try {
-    // Verificar la sesión
+    // Verificar que el usuario esté autenticado
     if (!isset($_SESSION['userID'])) {
         echo json_encode(['status' => 'error', 'message' => 'Usuario no autenticado.']);
         exit;
@@ -21,13 +21,14 @@ try {
     }
 
     $codigoGenerado = $codigo['codigoGenerado']; 
-    // Validar formato del código
+
+    // Validar el formato del código (6 caracteres alfanuméricos)
     if (!preg_match('/^[A-Z0-9]{6}$/', $codigoGenerado)) {
         echo json_encode(['status' => 'error', 'message' => 'Formato del código inválido.']);
         exit;
     }
 
-    // Conexión a la base de datos
+    // Conectar a la base de datos
     $conn = new Connection();
     $pdo = $conn->connect();
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -41,7 +42,7 @@ try {
     $exists = $checkStmt->fetchColumn() > 0;
 
     if ($exists) {
-        // Actualizar el código si ya existe el registro
+        // Si el usuario ya tiene un registro, actualizar el código de la sala
         $updateQuery = "UPDATE player SET roomCode = :codigoGenerado WHERE userID = :userID";
         $updateStmt = $pdo->prepare($updateQuery);
         $updateStmt->bindParam(':codigoGenerado', $codigoGenerado, PDO::PARAM_STR);
@@ -55,9 +56,8 @@ try {
         $selectStmt->execute();
         $player = $selectStmt->fetch(PDO::FETCH_ASSOC);
         $playerID = $player['playerID'];
-
     } else {
-        // Insertar un nuevo registro si no existe
+        // Si no existe el usuario en la tabla, insertarlo
         $insertQuery = "INSERT INTO player (userID, roomCode) VALUES (:userID, :codigoGenerado)";
         $insertStmt = $pdo->prepare($insertQuery);
         $insertStmt->bindParam(':userID', $userID, PDO::PARAM_INT);
@@ -65,10 +65,10 @@ try {
         $insertStmt->execute();
 
         // Obtener el playerID después de la inserción
-        $playerID = $pdo->lastInsertId(); 
+        $playerID = $pdo->lastInsertId();
     }
 
-    // Ahora, verifica si el roomCode también existe en la tabla hostroom
+    // Verificar si el roomCode existe en la tabla hostroom
     $checkHostRoomQuery = "SELECT hostRoomID FROM hostroom WHERE roomCode = :codigoGenerado";
     $checkHostRoomStmt = $pdo->prepare($checkHostRoomQuery);
     $checkHostRoomStmt->bindParam(':codigoGenerado', $codigoGenerado, PDO::PARAM_STR);
@@ -77,23 +77,25 @@ try {
     $hostRoomID = $checkHostRoomStmt->fetchColumn();
 
     if ($hostRoomID) {
-
+        // Si el código de la sala existe, agregar el jugador a la tabla privatematch
         $insertMatchQuery = "INSERT INTO privatemath (hostRoomID, playerID) VALUES (:hostRoomID, :playerID)";
         $insertMatchStmt = $pdo->prepare($insertMatchQuery);
         $insertMatchStmt->bindParam(':hostRoomID', $hostRoomID, PDO::PARAM_INT);
         $insertMatchStmt->bindParam(':playerID', $playerID, PDO::PARAM_INT);
         $insertMatchStmt->execute();
 
+        // Enviar respuesta de éxito
+        echo json_encode(['status' => 'success', 'message' => 'Jugador agregado al juego exitosamente.']);
     } else {
-        // Si el roomCode existe en ambas tablas (player y hostroom), inserta en privatematch
-        echo json_encode(['status' => 'success', 'message' => $e->getMessage()]);
+        // Si el código no existe en la tabla hostroom
+        echo json_encode(['status' => 'error', 'message' => 'El código de la sala no existe.']);
     }
 
 } catch (Exception $e) {
+    // Manejo de errores
     error_log("Error: " . $e->getMessage());
     echo json_encode(['status' => 'error', 'message' => $e->getMessage()]);
 }
 ?>
-
 
 
