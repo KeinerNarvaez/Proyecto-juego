@@ -61,11 +61,14 @@
     "siguiente" : "next" ,
     "verificar" : "verify",
     "solitario": "lonely",
-"sala": "Create Room",
-"unirse": "Join",
- "alias" : "enter an alias",
- "codigoSala" : "Insert the code",
+    "sala": "Create Room",
+    "unirse": "Join",
+    "alias" : "enter an alias",
+    "codigoSala" : "Insert the code",
     "textoSala" : "Enter the room code provided by the moderator to join the room and play with other players.",
-     "optionsTitle": "OPTIONS",
-  "musicVolume": "MUSIC VOLUME"
+    "optionsTitle": "OPTIONS",
+    "musicVolume": "MUSIC VOLUME",
+    "continuar" : "Continue",
+    "nuevaPartida":"New game",
+    "historial": "History"
 }
