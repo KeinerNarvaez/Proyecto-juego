@@ -27,7 +27,23 @@ class Chat implements MessageComponentInterface {
 
     public function onMessage(ConnectionInterface $from, $msg) {  
         $data = json_decode($msg, true);  
+        if (isset($data['gamerTag']) && $data['message'] === 'Nuevo usuario online') {  
+            // Procesar la conexión del usuario
+            $gamerTag = $data['gamerTag'];
+            $this->usernames[$from->resourceId] = $gamerTag;
 
+            // Notificar a todos los clientes sobre el nuevo usuario
+            foreach ($this->clients as $client) {  
+                $client->send(json_encode([  
+                    'message' => 'Nuevo usuario online',
+                    'codigo'=> $data['codigo'],  
+                    'gamerTag' => $gamerTag  
+                ]));  
+            }
+
+            // Enviar la lista actual de usuarios conectados a todos
+            $this->broadcastUserList();
+        }
         // Verificar si el mensaje es un evento de conexión
         if (isset($data['gamerTag']) && $data['message'] === 'Nuevo usuario conectado') {  
             // Procesar la conexión del usuario

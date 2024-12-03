@@ -3,7 +3,39 @@
     font-family:kavoon;
     margin: 0;
     cursor: url("../Assest/varita-magica.png"), auto;
+}
+
+body{
     background-color: #0E3032;
+}
+
+.btn-wsp {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    line-height: 63px;
+    top: 25px;  /* Mueve el botón hacia arriba */
+    left: 25px;  /* Mueve el botón hacia la izquierda */
+    background: red;
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 35px;
+    box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.3);
+    z-index: 100;
+    transition: all 300ms ease;
+}
+
+.btn-wsp:hover {
+    background: red;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 768px) {
+    .btn-wsp {
+        width: 63px;
+        height: 63px;
+        line-height: 66px;
+    }
 }
 
 
@@ -25,55 +57,79 @@
 .avatar{
     position: absolute;
     top: 50%;
-    left: 60%;
-    transform: translate(-50%, -47%);
+    left: 20%;
+    width: 80%;
+    transform: translate(0%, -47%);
 }
 
 .boseto {
-    width: 290px;
-    height: 280px;
-    border: 8px solid black;
+    width: 250px;
+    height: 240px;
+    border: 8px solid;
     padding-top: 5px;
-    padding-left: 23px;
+    padding-left: 17px;
     padding-right: 25px;
     background-color: #A32121;
-    border-radius: 60%;
-    position:relative;
-    margin-left: 192px;
+    border-radius: 50%;
+    position:absolute;
+    top: 5%;
+    margin-left: 26%;
     
 }
 .boseto img{
-    width: 230px;
-    height: 250px;
+    width: 200px;
+    height: 200px;
+    margin-top: 7px;
     background-color: white;
-    border-radius: 60%;
+    border-radius: 100%;
     padding-left: 10px;
     padding-top: 12px;
-    border: 5px solid black;
+    border: 5px solid;
+}
+
+@keyframes colores {
+    0%{
+        color: yellow;
+    }
+    25%{
+        color:#ffa407;
+    }
+    50%{
+        color: rgb(255, 0, 0);
+    }
+    75%{
+        color: deeppink;
+    }
+    100%{
+        color: rgb(17, 255, 0);
+    }
+    
 }
 
 .nombre-opcion{
-    border-radius: 20px;
-    margin-top: 0px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    margin-top:200px;
     margin-left: -140px;
     display: flex;
-    width: 950px;
-    height: 100px;
-    border: 4px solid black;
-    padding-top: 2px;
-    gap: 145px;
+    width: 100%;
+    height: 70px;
+    border: 2px solid black;
+    gap: 0%;
     background-color: #906767;
     font-family:kavoon;
 }
 
 .nombre-opcion a{
-    padding-top: 12px;
+    width: 25%;
+    height: 100%;
+    text-align:center;
     font-size: 40px;
+    margin-bottom: 600px;
     padding-left: 10px;
     text-decoration: none;
     background-color: #906767;
     color: white;
-    border-radius: 32px;
 }
 
 .nombre-opcion a:hover {
@@ -84,24 +140,30 @@
 }
 
 .cuadro{
-    background-color: #da6c06;
-    margin-left: -132px;
-    width: 930px;
+    background:linear-gradient(#da6c06,rgb(97, 55, 8));
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-left: -140px;
+    width: 100%;
+    margin-right: 120px;
     height: 250px;
-    border-radius: 5px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
     border: 2px solid black;
-    overflow-y: auto;
+    overflow-y:auto;
     overflow-x: hidden;
 }
 
 .imagenes{
     display: flex;
-    justify-content: space-between;
-    background-color: #da6c06;
+    margin-left: 20px;
+
+    
 }
 
 .imagenes img{
-    background-color: #da6c06;
+    margin-right: 40px;
+    margin-left: 40px; 
     width:120px ;
 }
 
@@ -117,11 +179,22 @@
 
 .boton-limpiar button{
     width: 320px;
-    height: 50px;
-    font-size: 32px;
+    height: 65px;
+    font-size: 45px;
+    text-align: center;
+    border-style: none;
     color: white;
-    background-color: red;
+    border: 2px solid black;
+    transition: all 500ms;
+    
+    background:linear-gradient(red,rgb(186, 98, 98));
 }
+
+.boton-limpiar button:hover{
+    transform: translateY(-4px);
+    background:linear-gradient(rgb(247, 71, 71),rgb(255, 0, 0));
+}
+
 
 
 .cuadro::-webkit-scrollbar-thumb {
