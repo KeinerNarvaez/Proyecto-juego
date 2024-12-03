@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-11-2024 a las 19:29:09
+-- Tiempo de generación: 28-11-2024 a las 13:55:10
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 8.2.0
 
@@ -33,14 +33,6 @@ CREATE TABLE `accountactivation` (
   `activationCode` varchar(6) NOT NULL,
   `expires` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
-
---
--- Volcado de datos para la tabla `accountactivation`
---
-
-INSERT INTO `accountactivation` (`accountActivationID`, `activation`, `activationCode`, `expires`) VALUES
-(1, 1, '604490', '2024-10-24 03:07:37'),
-(2, 1, '536163', '2024-10-24 04:13:45');
 
 -- --------------------------------------------------------
 
@@ -76,18 +68,18 @@ CREATE TABLE `history` (
 CREATE TABLE `hostroom` (
   `hostRoomID` int(11) NOT NULL,
   `userID` int(11) DEFAULT NULL,
-  `levelPositionID` int(11) DEFAULT NULL,
-  `spellLevelID` int(11) DEFAULT NULL,
-  `gameTime` time DEFAULT NULL,
-  `roomCode` varchar(6) DEFAULT NULL
+  `roomCode` varchar(6) DEFAULT NULL,
+  `levelPosition` int(11) DEFAULT NULL,
+  `spelllevel` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `hostroom`
 --
 
-INSERT INTO `hostroom` (`hostRoomID`, `userID`, `levelPositionID`, `spellLevelID`, `gameTime`, `roomCode`) VALUES
-(0, 1, NULL, NULL, NULL, 'KFC123');
+INSERT INTO `hostroom` (`hostRoomID`, `userID`, `roomCode`, `levelPosition`, `spelllevel`) VALUES
+(5, 1, 'KFC123', 0, 1),
+(6, 2, 'KFC123', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -103,6 +95,13 @@ CREATE TABLE `levelposition` (
   `level4` int(11) NOT NULL,
   `level5` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `levelposition`
+--
+
+INSERT INTO `levelposition` (`levelPositionID`, `level1`, `level2`, `level3`, `level4`, `level5`) VALUES
+(1, 0, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -124,9 +123,8 @@ CREATE TABLE `login` (
 --
 
 INSERT INTO `login` (`loginID`, `userID`, `password`, `email`, `loginDate`, `online`) VALUES
-(1, 1, '$2y$10$hgtrwjKYd/7HOgEh4cq7we1D3sEMSPq1KpklacUNhnY0ooI7BoG.m', 'ckeinercano@gmail.com', '2024-10-23 20:06:37', 0),
-(2, 2, '$2y$10$J90NRIpbFqOhHc5WXm2UsOhS/QO2aQn/YZgYm5y9314gV86pIiwzu', 'franciscoandradebermeo560@gmail.com', '2024-10-23 21:12:45', 0),
-(4, 4, '$2y$10$x6ChqVbPYcC8ipAzUGEe1eKPl1SyEr15GSmsbrIO6na.z/L3kZ.MK', 'cristoferlozano233@gmail.com', '2024-11-14 14:27:14', 0);
+(4, 1, '$2y$10$PL/tzVC339rjpeqa.DDei.fX8J9/i/cPRBzOJQFG62Xz01nQfuJc.', 'ckeinercano@gmail.com', '2024-11-21 12:53:52', 0),
+(5, 2, '$2y$10$fSK9ffnDQrRvh2fTzAz94.VDjhbrME0ZQhhItTEKkeFm9PkYlrZNm', 'cristoferlozano233@gmail.com', '2024-11-21 14:20:22', 0);
 
 -- --------------------------------------------------------
 
@@ -159,8 +157,8 @@ CREATE TABLE `player` (
 --
 
 INSERT INTO `player` (`playerID`, `userID`, `roomCode`) VALUES
-(1, 4, 'KFC123'),
-(3, 1, 'KFC123');
+(1, 1, 'KFC123'),
+(3, 2, 'KFC123');
 
 -- --------------------------------------------------------
 
@@ -171,8 +169,17 @@ INSERT INTO `player` (`playerID`, `userID`, `roomCode`) VALUES
 CREATE TABLE `privatemath` (
   `privateMatchID` int(11) NOT NULL,
   `hostRoomID` int(11) DEFAULT NULL,
-  `playerID` int(11) DEFAULT NULL
+  `playerID` int(11) DEFAULT NULL,
+  `levelPositionID` int(11) DEFAULT NULL,
+  `spelllevelID` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `privatemath`
+--
+
+INSERT INTO `privatemath` (`privateMatchID`, `hostRoomID`, `playerID`, `levelPositionID`, `spelllevelID`) VALUES
+(5, 5, 3, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -187,17 +194,6 @@ CREATE TABLE `recoverpassword` (
   `codeEstatus` int(11) NOT NULL,
   `applicationDate` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
-
---
--- Volcado de datos para la tabla `recoverpassword`
---
-
-INSERT INTO `recoverpassword` (`recoverPasswordID`, `userID`, `code`, `codeEstatus`, `applicationDate`) VALUES
-(1, 1, '849790', 1, '2024-10-20 06:38:31'),
-(2, 1, '783159', 1, '2024-10-22 04:35:28'),
-(3, 1, '923796', 1, '2024-10-24 02:06:48'),
-(4, 4, '151757', 0, '2024-10-24 03:00:07'),
-(5, 4, '981018', 1, '2024-10-24 03:00:11');
 
 -- --------------------------------------------------------
 
@@ -241,9 +237,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`userID`, `avatarID`, `accountActivationID`, `name`, `lastName`, `gamerTag`) VALUES
-(1, 0, 1, 'keiner', 'andres', 'keiner'),
-(2, 0, 2, 'francisco', 'andrade', 'franc'),
-(4, 0, 4, 'Cristofer', 'Lozano', 'kriztoff');
+(1, 0, 4, 'KEINER', 'lozano', 'KANOA'),
+(2, 0, 5, 'cristofer', 'Lozano', 'krizto');
 
 --
 -- Índices para tablas volcadas
@@ -273,9 +268,7 @@ ALTER TABLE `history`
 --
 ALTER TABLE `hostroom`
   ADD PRIMARY KEY (`hostRoomID`),
-  ADD KEY `userID` (`userID`),
-  ADD KEY `hostroom_modo1` (`levelPositionID`),
-  ADD KEY `hostroom_modo2` (`spellLevelID`);
+  ADD KEY `userID` (`userID`);
 
 --
 -- Indices de la tabla `levelposition`
@@ -312,7 +305,9 @@ ALTER TABLE `player`
 ALTER TABLE `privatemath`
   ADD PRIMARY KEY (`privateMatchID`),
   ADD KEY `hostRoomID` (`hostRoomID`),
-  ADD KEY `playerID` (`playerID`);
+  ADD KEY `playerID` (`playerID`),
+  ADD KEY `private_Mode1` (`levelPositionID`),
+  ADD KEY `private_Mode2` (`spelllevelID`);
 
 --
 -- Indices de la tabla `recoverpassword`
@@ -342,7 +337,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT de la tabla `accountactivation`
 --
 ALTER TABLE `accountactivation`
-  MODIFY `accountActivationID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `accountActivationID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `avatar`
@@ -351,10 +346,22 @@ ALTER TABLE `avatar`
   MODIFY `avartarID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `hostroom`
+--
+ALTER TABLE `hostroom`
+  MODIFY `hostRoomID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT de la tabla `levelposition`
+--
+ALTER TABLE `levelposition`
+  MODIFY `levelPositionID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT de la tabla `login`
 --
 ALTER TABLE `login`
-  MODIFY `loginID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `loginID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `player`
@@ -363,16 +370,28 @@ ALTER TABLE `player`
   MODIFY `playerID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT de la tabla `privatemath`
+--
+ALTER TABLE `privatemath`
+  MODIFY `privateMatchID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT de la tabla `recoverpassword`
 --
 ALTER TABLE `recoverpassword`
   MODIFY `recoverPasswordID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
+-- AUTO_INCREMENT de la tabla `spelllevel`
+--
+ALTER TABLE `spelllevel`
+  MODIFY `spellLevelID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT de la tabla `user`
 --
 ALTER TABLE `user`
-  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Restricciones para tablas volcadas
@@ -388,9 +407,7 @@ ALTER TABLE `history`
 -- Filtros para la tabla `hostroom`
 --
 ALTER TABLE `hostroom`
-  ADD CONSTRAINT `hostroom_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `user` (`userID`),
-  ADD CONSTRAINT `hostroom_modo1` FOREIGN KEY (`levelPositionID`) REFERENCES `levelposition` (`levelPositionID`),
-  ADD CONSTRAINT `hostroom_modo2` FOREIGN KEY (`spellLevelID`) REFERENCES `spelllevel` (`spellLevelID`);
+  ADD CONSTRAINT `hostroom_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `user` (`userID`);
 
 --
 -- Filtros para la tabla `login`
@@ -403,8 +420,8 @@ ALTER TABLE `login`
 --
 ALTER TABLE `only`
   ADD CONSTRAINT `only_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `user` (`userID`),
-  ADD CONSTRAINT `only_modo1` FOREIGN KEY (`levelPositionID`) REFERENCES `levelposition` (`levelPositionID`),
-  ADD CONSTRAINT `only_modo2` FOREIGN KEY (`spellLevelID`) REFERENCES `spelllevel` (`spellLevelID`);
+  ADD CONSTRAINT `only_mode1` FOREIGN KEY (`levelPositionID`) REFERENCES `levelposition` (`levelPositionID`),
+  ADD CONSTRAINT `only_mode2` FOREIGN KEY (`spellLevelID`) REFERENCES `spelllevel` (`spellLevelID`);
 
 --
 -- Filtros para la tabla `player`
@@ -416,7 +433,9 @@ ALTER TABLE `player`
 -- Filtros para la tabla `privatemath`
 --
 ALTER TABLE `privatemath`
-  ADD CONSTRAINT `privatemath_ibfk_1` FOREIGN KEY (`hostRoomID`) REFERENCES `hostroom` (`hostRoomID`),
+  ADD CONSTRAINT `admin_sala` FOREIGN KEY (`hostRoomID`) REFERENCES `hostroom` (`hostRoomID`),
+  ADD CONSTRAINT `private_Mode1` FOREIGN KEY (`levelPositionID`) REFERENCES `levelposition` (`levelPositionID`),
+  ADD CONSTRAINT `private_Mode2` FOREIGN KEY (`spelllevelID`) REFERENCES `spelllevel` (`spellLevelID`),
   ADD CONSTRAINT `privatemath_ibfk_2` FOREIGN KEY (`playerID`) REFERENCES `player` (`playerID`);
 COMMIT;
 

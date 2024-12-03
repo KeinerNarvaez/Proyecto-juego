@@ -35,17 +35,22 @@
         <div class="row">
           <div class="col">
             <div class="boton-envio" style="width: 200%;">
-                <div class="boton" id="boton-envio">
-                   <a href="../modo solitario/modos_juego.html" class="text-boton"><input type="button" style="font-size: 35px;" value="Nueva partida" ></a>   
-                </div>
-           </div>
+              <div class="boton" id="boton-envio">
+                  <button type="button" id="botonNuevaPartida" style="font-size: 35px; position: relative; background: none; border: none;" onclick="location.href='../modo solitario/modos_juego.html'">
+                      <h2 style="font-size: 35px; margin: 0; color: #FF9900;" data-translate-key="nuevaPartida">Nueva partida</h2>
+                  </button>
+              </div>
+          </div>
+          
           </div>
           <div class="col">
             <div class="boton-envio" style="width: 200%;">
-                <div class="boton" id="boton-envio">
-                   <a  href="../modo solitario/historial_partidas.html" class="text-boton"><input type="button" style="font-size: 35px;" value="Historial" ></a>   
-                </div>
-           </div>
+              <div class="boton" id="boton-envio">
+                  <button type="button" id="botonHistorial" style="font-size: 35px; background: none; border: none;" onclick="location.href='../modo solitario/historial_partidas.html'">
+                      <h2 style="font-size: 35px; margin: 0; color: #FF9900;" data-translate-key="historial">Historial</h2>
+                  </button>
+              </div>
+            </div>
           </div>
         </div>
         <div class="row">
@@ -53,11 +58,13 @@
            <!--espacio-->
           </div>
           <div class="col">
-            <div class="boton-envio" style="width: 300%;margin-left: -95px; margin-top: -230px;">
-                <div class="boton" id="boton-envio">
-                   <a href="../nivelesPociones/nivel2.html" class="text-boton"><input type="button" style="font-size: 35px;" value="Continuar" ></a>   
-                </div>
-           </div> 
+            <div class="boton-envio" style="width: 300%; margin-left: -95px; margin-top: -230px;">
+              <div class="boton" id="boton-envio">
+                  <button type="button" id="botonContinuar" style="font-size: 35px; background: none; border: none;" onclick="location.href='../nivelesPociones/nivel2.html'">
+                      <h2 style="font-size: 35px; margin: 0; color: #FF9900;" data-translate-key="continuar">Continuar</h2>
+                  </button>
+              </div>
+          </div>
           </div>
           <div class="col">
             <!--espacio-->
@@ -86,6 +93,7 @@
      <audio id="backgroundMusic" src="../musica/musica_fondo.mp3" loop autoplay></audio>
 
   <script src="../js/index.js"></script>
+  <script src="./js/idiomas.js"></script>
   <script src="../js/musica_fondo.js"></script>
   <script src="../boostrap/bootstrap-5.3.2-dist/js/bootstrap.js"></script>
   <script src="../js/clickleo.js"></script>

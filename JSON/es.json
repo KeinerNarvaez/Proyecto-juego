@@ -37,7 +37,6 @@
     "titulo-renovacion" :"Renovar Contraseña" ,
     "renovacion1" : "Nueva contraseña",
     "renovacion2" : "Confirmar contraseña",
-
     "conectados" :"Personas jugando" ,
     "tutorial" :"¿Cómo se juega" ,
     "saludo" :"¡Bienvenido a Mythical Witch Mixes! Esta guía te ayudará a entender las mecánicas básicas del juego para que puedas comenzar tu aventura en el mundo de la alquimia y hechicería.",
@@ -68,5 +67,8 @@
     "codigoSala" : "Inserte el código" ,
     "textoSala" : "Ingresa el codigo de sala que te brinda el  moderador, para unirte a la sala y que  puedas jugar con otros jugadores.",
     "optionsTitle" : "OPCIONES",
-    "musicVolume" : "VOLUMEN DE MÚSICA"
+    "musicVolume" : "VOLUMEN DE MÚSICA",
+    "continuar" : "Continuar",
+    "nuevaPartida":"Nueva partida",
+    "historial": "Historial"
 }
