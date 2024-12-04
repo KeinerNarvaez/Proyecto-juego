@@ -54,35 +54,46 @@ class Cronometro {
 class TarjetasUsuario {
     constructor(codigo) {
         this.codigo = codigo;
-        this.socket = new WebSocket("ws://localhost:8080"); // Asegúrate de que esta URL sea la correcta
+        this.socket = new WebSocket("ws://localhost:8080");
+        this.conectarSocket(); // Llama a conectarSocket aquí
     }
-
+    
     conectarSocket() {
+        // Verifica si la conexión se establece correctamente
+        this.socket.onopen = () => {
+            console.log("Conexión WebSocket establecida");
+            // Aquí podrías enviar el gamerTag y el roomCode al servidor si es necesario
+        };
+        
         this.socket.onmessage = (event) => {
             const data = JSON.parse(event.data);
-
-            if (data.message === 'Nuevo usuario online' && data.codigo === this.codigo) {
-                this.agregarPerfil(data.gamerTag);
+            console.log('Mensaje recibido:', data); // Agrega un log para ver qué datos llegan
+            // Si se recibe el mensaje de "Nuevo usuario online" y el código de la sala es el correcto
+            if (data.message === 'Nuevo usuario online' && data.roomCode === this.codigo) {
+                this.agregarPerfil(data.gamerTag); // Agrega la tarjeta del propio usuario
             }
-
+            // Si se recibe la lista de usuarios
             if (data.message === 'Lista de usuarios') {
                 const cuerpoActivos = document.getElementById('personasConectadas');
                 cuerpoActivos.innerHTML = ''; // Limpiar el contenedor de perfiles
-
-                // Agregar los perfiles de los usuarios conectados
+                // Asegúrate de que `data.users` es un array válido
                 data.users.forEach(user => {
                     this.agregarPerfil(user);
                 });
             }
         };
-
+        
         this.socket.onclose = (event) => {
-            if (!event.wasClean) console.log('Conexión cerrada por el servidor');
+            if (!event.wasClean) {
+                console.log('Conexión cerrada por el servidor');
+            }
         };
-
-        this.socket.onerror = (error) => console.error('Error en WebSocket:', error);
+        
+        this.socket.onerror = (error) => {
+            console.error('Error en WebSocket:', error);
+        };
     }
-
+    
     agregarPerfil(gamerTag) {
         const clientId = `client-${Date.now()}`;
         let perfil = document.createElement('div');
@@ -114,7 +125,7 @@ class Sala {
     }
 
     generarCodigo() {
-        const codigoGenerado = 'KFC123'//this.codigo.generarCodigo();
+        const codigoGenerado = this.codigo.generarCodigo();
         console.log('Código generado:', codigoGenerado);
         var inputSelect = document.getElementById("select");
         var select = inputSelect.options[inputSelect.selectedIndex].text;
@@ -148,6 +159,5 @@ class Sala {
         alert('¡Se acabó el tiempo!');
     }
 }
-
 const miSala = new Sala();
 miSala.iniciarJuego();

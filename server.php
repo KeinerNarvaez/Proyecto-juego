@@ -11,16 +11,19 @@ echo "El servidor está corriendo...\n";
 class Chat implements MessageComponentInterface {  
     protected $clients;  
     protected $chat;  
-    protected $usernames;  
+    protected $usernames;
+    protected $user_online;  
 
     public function __construct() {  
         $this->clients = new SplObjectStorage();  
+        $this->user_online = new SplObjectStorage();  
         $this->chat = new SplObjectStorage();  
         $this->usernames = []; // Almacena los gamertags  
     }  
 
     public function onOpen(ConnectionInterface $conn) {  
         $this->clients->attach($conn);  
+        $this->user_online->attach($conn);  
         $this->chat->attach($conn);  
         echo "Nueva conexión! ({$conn->resourceId})\n";  
     }  
@@ -33,14 +36,14 @@ class Chat implements MessageComponentInterface {
             $this->usernames[$from->resourceId] = $gamerTag;
 
             // Notificar a todos los clientes sobre el nuevo usuario
-            foreach ($this->clients as $client) {  
-                $client->send(json_encode([  
+            foreach ($this->user_online as $user_online) {  
+                $user_online->send(json_encode([  
                     'message' => 'Nuevo usuario online',
-                    'codigo'=> $data['codigo'],  
+                    'roomCode'=> $data['roomCode'],  
                     'gamerTag' => $gamerTag  
                 ]));  
             }
-
+            echo "Nuevo usuario: {$gamerTag} con código de sala: {$data['roomCode']}\n";
             // Enviar la lista actual de usuarios conectados a todos
             $this->broadcastUserList();
         }
