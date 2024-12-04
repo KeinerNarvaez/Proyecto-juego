@@ -223,19 +223,21 @@ class Juego {
         
         const puntuacionGano = document.getElementById('puntaje-ganado');       
         ganas.show();
-        let puntaje =(this.cronometro.minutos + this.cronometro.segundos)/this.corazones.corazonesRestantes;
-        this.puntajes=puntaje
+    
+        let puntaje = (this.cronometro.minutos + this.cronometro.segundos) / this.corazones.corazonesRestantes;
+        this.puntajes = puntaje;
         this.cronometro.detenerTiempo();
-
+    
         let valorMinuto = this.cronometro.minutos;
         let valorSegundos = this.cronometro.segundos;
         const dataOperaciones = {
-            puntaje,
+            currentScore: puntaje,
+            result: 'win',  // Enviar 'win' si ganó el juego
             valorMinuto,
             valorSegundos
         };
     
-        fetch('../php/datosJuegos.php', {
+        fetch('../php/pocionNivel1.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -246,57 +248,44 @@ class Juego {
         .then(data => {
             let puntajePrint = "";   
             // Recorremos los datos que vienen del servidor
-            data.forEach(oper => {
-                puntajePrint = oper.puntajes
-            });
-            puntuacionGano.innerHTML = puntajePrint ;
+            puntajePrint = data.puntajes || "Error al obtener puntaje";
+            puntuacionGano.innerHTML = puntajePrint;
         })
         .catch(error => {
             console.log(error);
         });
     }
-
+    
     perder() {
         this.cronometro.detenerTiempo();
         this.bruja.style.backgroundImage = 'url("../Assest/brujaPerdio.gif")';
         this.colorMezcla.reiniciar();
         this.puntaje();
     }
-
-    avisoOrdenColor() {
-        const errorOrden = new bootstrap.Toast(document.getElementById('errorOrden'));
-        errorOrden.show();
-        this.colorMezcla.reiniciar(); 
-    }
-
-//perder
-
+    
     puntaje() {   
-        let puntaje =(this.cronometro.minutos + this.cronometro.segundos)/this.corazones.corazonesRestantes;
+        let puntaje = (this.cronometro.minutos + this.cronometro.segundos) / this.corazones.corazonesRestantes;
         let valorMinuto = this.cronometro.minutos;
         let valorSegundos = this.cronometro.segundos;
-        this.puntajes=puntaje;
+        this.puntajes = puntaje;
+    
         const datosAEnviar = {
-            puntaje,
+            currentScore: puntaje,
+            result: 'lose',  // Enviar 'lose' si el jugador pierde
             valorMinuto,
             valorSegundos
         };
     
-        fetch('../php/datosJuegos.php', {
+        fetch('../php/pocionNivel1.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(datosAEnviar)
         })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Error en la respuesta del servidor: ' + response.status);
-            }
-            return response.json();
-        })
+        .then(response => response.json())
         .then(data => {
-            const print = data[0]?.puntajes || 0; 
+            const print = data.puntajes || 0;
             const valorPuntaje = document.getElementById('valorPuntaje');
             valorPuntaje.innerHTML = 'Tus puntos: ' + print;
     
@@ -310,6 +299,6 @@ class Juego {
             console.error('Error al enviar los datos:', error);
         });
     }
-}
+}    
 
 new Juego();

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solitario</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/fondo_solitario.css">
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
+    <!--Enlaces para fuentes de google-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <!--icono-->
+    <link rel="shortcut icon" href="../Assest/ImagenBruja.png" type="image/x-icon">
+        <!--enlace para fuente de google-->
+    <link href="https://fonts.googleapis.com/css2?family=Koh+Santepheap:wght@100;300;400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Koh+Santepheap:wght@100;300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./fontawesome-free-6.6.0-web/css/all.css">
+</head>
+<body>
+
+  <style>
+    html, body {
+    overflow: hidden; /* Elimina el scroll de la página */
+    height: 100%; /* Asegura que el body ocupe el 100% de la altura */
+    margin: 0;
+    padding: 0;
+    }
+  </style>
+
+    <br><br><br><br><br>
+
+    <!--modos de juego-->
+    <div class="container text-center" style="margin-top: -150px; margin-left: 45px;">
+        <div class="row">
+          <div class="col">
+            <div class="boton-envio" style="width: 200%;">
+                <div class="boton" id="boton-envio">
+                   <a href="../modoSolitario/modos_juego.html" class="text-boton"><input type="button" style="font-size: 35px;" value="Nueva partida" ></a>   
+                </div>
+           </div>
+          </div>
+          <div class="col">
+            <div class="boton-envio" style="width: 200%;">
+                <div class="boton" id="boton-envio">
+                   <a  href="../modoSolitario/historial_partidas.html" class="text-boton"><input type="button" style="font-size: 35px;" value="Historial" ></a>   
+                </div>
+           </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+           <!--espacio-->
+          </div>
+          <div class="col">
+            <div class="boton-envio" style="width: 300%;margin-left: -95px; margin-top: -230px;">
+                <div class="boton" id="boton-envio">
+                   <a href="../nivelesPociones/nivel2.html" class="text-boton"><input type="button" style="font-size: 35px;" value="Continuar" ></a>   
+                </div>
+           </div> 
+          </div>
+          <div class="col">
+            <!--espacio-->
+          </div>
+        </div>
+      </div>
+    <!--/modos de juego-->
+
+
+      
+  <!--flecha-->
+   <div class="parte-izquierda" style="margin-top: -650px;">
+    <div class="salir">
+        <a class="text-boton" href="../menu.html"><i class="fa-solid fa-arrow-left" style="font-size: 45px; color: white;"></i></a> <br>
+    </div>
+ </div>
+   <!--/flecha-->
+
+
+      <!--audio-->
+      <audio id="clickSound">
+        <source src="../audio/clickleo.mp3" type="audio/mp3">
+     </audio>
+     <!--/audio-->
+
+     <audio id="backgroundMusic" src="../musica/musica_fondo.mp3" loop autoplay></audio>
+
+  <script src="../js/index.js"></script>
+  <script src="../js/musica_fondo.js"></script>
+  <script src="../boostrap/bootstrap-5.3.2-dist/js/bootstrap.js"></script>
+  <script src="../js/clickleo.js"></script>
+  <script src="../fontawesome-free-6.6.0-web/js/all.js"></script> 
+</body>
+</html>
