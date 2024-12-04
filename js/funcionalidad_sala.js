@@ -59,24 +59,20 @@ class TarjetasUsuario {
     }
     
     conectarSocket() {
-        // Verifica si la conexión se establece correctamente
         this.socket.onopen = () => {
             console.log("Conexión WebSocket establecida");
-            // Aquí podrías enviar el gamerTag y el roomCode al servidor si es necesario
         };
         
         this.socket.onmessage = (event) => {
             const data = JSON.parse(event.data);
-            console.log('Mensaje recibido:', data); // Agrega un log para ver qué datos llegan
-            // Si se recibe el mensaje de "Nuevo usuario online" y el código de la sala es el correcto
+            console.log('Mensaje recibido:', data);
+            // Verifica que el mensaje sea para la sala correcta
             if (data.message === 'Nuevo usuario online' && data.roomCode === this.codigo) {
                 this.agregarPerfil(data.gamerTag); // Agrega la tarjeta del propio usuario
             }
-            // Si se recibe la lista de usuarios
-            if (data.message === 'Lista de usuarios') {
+            if (data.message === 'Lista de usuarios' && data.roomCode === this.codigo) {
                 const cuerpoActivos = document.getElementById('personasConectadas');
                 cuerpoActivos.innerHTML = ''; // Limpiar el contenedor de perfiles
-                // Asegúrate de que `data.users` es un array válido
                 data.users.forEach(user => {
                     this.agregarPerfil(user);
                 });

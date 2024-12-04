@@ -45,12 +45,21 @@ window.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    // Configurar el evento onerror para el WebSocket
+    window.addEventListener("beforeunload", () => {
+        if (socket.readyState === WebSocket.OPEN && gamerTag) {
+            socket.send(JSON.stringify({
+                message: 'Usuario desconectado',
+                gamerTag: gamerTag
+            }));
+        }
+        socket.close();
+    });
+
+
     socket.onerror = (error) => {
         console.error("Error en la conexión WebSocket:", error);
     };
 
-    // Configurar el evento onclose para el WebSocket
     socket.onclose = () => {
         console.log("Conexión WebSocket cerrada");
     };
