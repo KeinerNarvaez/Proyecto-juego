@@ -20,6 +20,8 @@ class Chat implements MessageComponentInterface {
         $this->user_online = new SplObjectStorage();  
         $this->chat = new SplObjectStorage();  
         $this->usernames = [];
+        $this->rooms = [];
+        
     }  
 
     public function onOpen(ConnectionInterface $conn) {  
@@ -31,21 +33,28 @@ class Chat implements MessageComponentInterface {
 
     public function onMessage(ConnectionInterface $from, $msg) {  
         $data = json_decode($msg, true);  
-        if (isset($data['gamerTag']) && $data['message'] === 'Nuevo usuario online') {  
-            // Procesar la conexión del usuario
+if (isset($data['gamerTag']) && $data['message'] === 'Nuevo usuario online') {  
             $gamerTag = $data['gamerTag'];
+            $roomCode = $data['roomCode'];
+        
             $this->usernames[$from->resourceId] = $gamerTag;
-
+        
+            // Agregar usuario a la sala
+            if (!isset($this->rooms[$roomCode])) {
+                $this->rooms[$roomCode] = [];
+            }
+            $this->rooms[$roomCode][] = ['gamerTag' => $gamerTag];
+        
             // Notificar a todos los clientes sobre el nuevo usuario
-            foreach ($this->user_online as $user_online) {  
-                $user_online->send(json_encode([  
-                    'message' => 'Nuevo usuario online',
-                    'roomCode'=> $data['roomCode'],  
+            foreach ($this->clients as $client) {  
+                $client->send(json_encode([  
+                    'message' => 'Nuevo usuario online',  
+                    'roomCode' => $roomCode,  
                     'gamerTag' => $gamerTag  
                 ]));  
             }
-            echo "Nuevo usuario: {$gamerTag} con código de sala: {$data['roomCode']}\n";
-            // Enviar la lista actual de usuarios conectados a todos
+        
+            echo "Nuevo usuario: {$gamerTag} con código de sala: {$roomCode}\n";            
             $this->broadcastUserList();
         }
         // Verificar si el mensaje es un evento de conexión
@@ -85,11 +94,46 @@ class Chat implements MessageComponentInterface {
     }  
 
     public function onClose(ConnectionInterface $conn) {  
-        // Eliminar al usuario de la lista al desconectarse  
-        unset($this->usernames[$conn->resourceId]);  
-        $this->clients->detach($conn);  
-        echo "Conexión {$conn->resourceId} desconectada\n";  
-    }  
+        // Eliminar al usuario de la lista de usernames  
+        if (isset($this->usernames[$conn->resourceId])) {
+            $gamerTag = $this->usernames[$conn->resourceId];
+            unset($this->usernames[$conn->resourceId]);
+    
+            // Notificar a todos los clientes que el usuario se desconectó
+            foreach ($this->clients as $client) {
+                $client->send(json_encode([
+                    'message' => 'Usuario desconectado',
+                    'gamerTag' => $gamerTag
+                ]));
+            }
+    
+            echo "Usuario {$gamerTag} desconectado\n";
+        }
+    
+        // Eliminar al usuario del listado de conexiones activas
+        $this->clients->detach($conn);
+    
+        // Opcional: Aquí puedes manejar la eliminación del usuario de las salas, si es necesario
+        if (isset($this->rooms)) {
+            foreach ($this->rooms as $roomCode => $users) {
+                foreach ($users as $key => $user) {
+                    if ($user['gamerTag'] === $gamerTag) {
+                        unset($this->rooms[$roomCode][$key]);
+    
+                        // Si la sala queda vacía, puedes eliminarla opcionalmente
+                        if (empty($this->rooms[$roomCode])) {
+                            unset($this->rooms[$roomCode]);
+                            echo "La sala {$roomCode} está vacía y se ha eliminado.\n";
+                        }
+                        break;
+                    }
+                }
+            }
+        }
+    
+        echo "Conexión {$conn->resourceId} desconectada\n";
+    }
+    
 
     public function onError(ConnectionInterface $conn, \Exception $e) {  
         echo "Error: {$e->getMessage()}\n";  

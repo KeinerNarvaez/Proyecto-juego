@@ -1,19 +1,21 @@
+let gamerTag = null;
+let roomCode = null;
+
 window.addEventListener('DOMContentLoaded', () => {
     // Crear la conexión WebSocket solo una vez
     const socket = new WebSocket("ws://localhost:8080");
-
+    
     // Configurar el evento onopen para el WebSocket
     socket.onopen = () => {
         console.log("Conectado al servidor WebSocket");
 
-        // Ahora que la conexión está abierta, se puede proceder a enviar mensajes
+        // Obtener información del usuario desde el servidor
         fetch('./php/sala.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            // Si no necesitas enviar datos, elimina la propiedad body
-            body: JSON.stringify({}) // O simplemente elimina esta línea si no es necesario
+            body: JSON.stringify({})
         })
         .then(response => response.json())
         .then(data => {
@@ -25,7 +27,11 @@ window.addEventListener('DOMContentLoaded', () => {
                     console.log('GamerTag:', item.gamerTag);
                     console.log('RoomCode:', item.roomCode);
 
-                    // Enviar el mensaje al WebSocket solo después de que la conexión esté abierta
+                    // Actualizar las variables globales
+                    gamerTag = item.gamerTag;
+                    roomCode = item.roomCode;
+
+                    // Enviar el mensaje al WebSocket
                     if (socket.readyState === WebSocket.OPEN) {
                         socket.send(JSON.stringify({ 
                             message: 'Nuevo usuario online', 
@@ -45,17 +51,19 @@ window.addEventListener('DOMContentLoaded', () => {
         });
     };
 
+    // Evento para manejar la desconexión
     window.addEventListener("beforeunload", () => {
-        if (socket.readyState === WebSocket.OPEN && gamerTag) {
+        if (socket.readyState === WebSocket.OPEN && gamerTag && roomCode) {
             socket.send(JSON.stringify({
                 message: 'Usuario desconectado',
-                gamerTag: gamerTag
+                gamerTag: gamerTag,
+                roomCode: roomCode
             }));
         }
         socket.close();
     });
 
-
+    // Manejo de errores y cierre de conexión
     socket.onerror = (error) => {
         console.error("Error en la conexión WebSocket:", error);
     };
@@ -64,6 +72,7 @@ window.addEventListener('DOMContentLoaded', () => {
         console.log("Conexión WebSocket cerrada");
     };
 });
+
 
 
 

@@ -164,7 +164,30 @@ body{
 .imagenes img{
     margin-right: 40px;
     margin-left: 40px; 
-    width:120px ;
+    width:16%;
+    height: 120px;
+    border-radius: 100%;
+    animation: bordes_colores 1s linear infinite;
+    margin-top: 10px;
+}
+
+@keyframes bordes_colores {
+    0%{
+        border:8px solid  yellow;
+    }
+    25%{
+        border:8px solid #ffa407;
+    }
+    50%{
+        border:8px solid  rgb(255, 0, 0);
+    }
+    75%{
+        border:8px solid  deeppink;
+    }
+    100%{
+        border:8px solid  rgb(17, 255, 0);
+    }
+    
 }
 
 

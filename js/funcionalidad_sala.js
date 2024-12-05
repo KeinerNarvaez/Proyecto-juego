@@ -55,7 +55,8 @@ class TarjetasUsuario {
     constructor(codigo) {
         this.codigo = codigo;
         this.socket = new WebSocket("ws://localhost:8080");
-        this.conectarSocket(); // Llama a conectarSocket aquí
+        this.gamerTag = ''; 
+        this.conectarSocket();
     }
     
     conectarSocket() {
@@ -66,16 +67,20 @@ class TarjetasUsuario {
         this.socket.onmessage = (event) => {
             const data = JSON.parse(event.data);
             console.log('Mensaje recibido:', data);
-            // Verifica que el mensaje sea para la sala correcta
+
             if (data.message === 'Nuevo usuario online' && data.roomCode === this.codigo) {
-                this.agregarPerfil(data.gamerTag); // Agrega la tarjeta del propio usuario
+                this.gamerTag = data.gamerTag; 
+                this.agregarPerfil(data.gamerTag); 
             }
             if (data.message === 'Lista de usuarios' && data.roomCode === this.codigo) {
                 const cuerpoActivos = document.getElementById('personasConectadas');
-                cuerpoActivos.innerHTML = ''; // Limpiar el contenedor de perfiles
+                cuerpoActivos.innerHTML = '';
                 data.users.forEach(user => {
                     this.agregarPerfil(user);
                 });
+            }
+            if (data.message === 'Usuario desconectado') {
+                this.eliminarPerfil(data.gamerTag); 
             }
         };
         
@@ -88,6 +93,17 @@ class TarjetasUsuario {
         this.socket.onerror = (error) => {
             console.error('Error en WebSocket:', error);
         };
+        
+        window.addEventListener("beforeunload", () => {
+            if (this.socket.readyState === WebSocket.OPEN && this.gamerTag) {
+                this.socket.send(JSON.stringify({
+                    message: 'Usuario desconectado',
+                    roomCode: this.codigo,
+                    gamerTag: this.gamerTag 
+                }));
+            }
+            this.socket.close();
+        });
     }
     
     agregarPerfil(gamerTag) {
@@ -103,7 +119,18 @@ class TarjetasUsuario {
         `;
         document.getElementById('personasConectadas').appendChild(perfil);
     }
+
+    eliminarPerfil(gamerTag) {
+        const perfiles = document.getElementById('personasConectadas');
+        Array.from(perfiles.children).forEach((perfil) => {
+            if (perfil.querySelector('h1').innerText === gamerTag) {
+                perfiles.removeChild(perfil);
+            }
+        });
+    }
 }
+
+
 
 
 class Sala {
