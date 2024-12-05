@@ -220,22 +220,22 @@ class Juego {
             backdrop: 'static',
             keyboard: false
         });
-        
         const puntuacionGano = document.getElementById('puntaje-ganado');       
         ganas.show();
-        let puntaje =(this.cronometro.minutos + this.cronometro.segundos)/this.corazones.corazonesRestantes;
-        this.puntajes=puntaje
+    
+        let puntaje = (this.cronometro.minutos + this.cronometro.segundos) / this.corazones.corazonesRestantes;
         this.cronometro.detenerTiempo();
-
+    
         let valorMinuto = this.cronometro.minutos;
         let valorSegundos = this.cronometro.segundos;
         const dataOperaciones = {
-            puntaje,
+            currentScore: puntaje,
+            result: 'win',  // Enviar 'win' si ganó el juego
             valorMinuto,
             valorSegundos
         };
     
-        fetch('../php/datosJuegos.php', {
+        fetch('../php/pocionNivel2.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -244,72 +244,56 @@ class Juego {
         })
         .then(response => response.json())
         .then(data => {
-            let puntajePrint = "";   
-            // Recorremos los datos que vienen del servidor
-            data.forEach(oper => {
-                puntajePrint = oper.puntajes
-            });
-            puntuacionGano.innerHTML = puntajePrint ;
+            if (data.error) {
+                console.error('Error en los datos: ', data.error);
+                puntuacionGano.innerHTML = 'Hubo un error al obtener los puntajes';
+            } else {
+                puntuacionGano.innerHTML = data.puntajes || "Error al obtener puntaje";
+            }
         })
         .catch(error => {
-            console.log(error);
+            console.log('Error al enviar los datos:', error);
         });
     }
-
+    
+    
+    
+    
     perder() {
         this.cronometro.detenerTiempo();
         this.bruja.style.backgroundImage = 'url("../Assest/brujaPerdio.gif")';
         this.colorMezcla.reiniciar();
         this.puntaje();
     }
-
-    avisoOrdenColor() {
-        const errorOrden = new bootstrap.Toast(document.getElementById('errorOrden'));
-        errorOrden.show();
-        this.colorMezcla.reiniciar(); 
-    }
-
-
-
-    puntaje() {   
-        let puntaje =(this.cronometro.minutos + this.cronometro.segundos)/this.corazones.corazonesRestantes;
+    
+    puntaje() {
+        let puntaje = (this.cronometro.minutos + this.cronometro.segundos) / this.corazones.corazonesRestantes;
         let valorMinuto = this.cronometro.minutos;
         let valorSegundos = this.cronometro.segundos;
-        this.puntajes=puntaje;
+    
         const datosAEnviar = {
-            puntaje,
+            currentScore: puntaje,
+            result: 'lose',  // Enviar 'lose' si el jugador pierde
             valorMinuto,
             valorSegundos
         };
     
-        fetch('../php/datosJuegos.php', {
+        fetch('../php/pocionNivel2.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(datosAEnviar)
         })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Error en la respuesta del servidor: ' + response.status);
-            }
-            return response.json();
-        })
+        .then(response => response.json())
         .then(data => {
-            const print = "3,50"; 
-            const valorPuntaje = document.getElementById('valorPuntaje');
-            valorPuntaje.innerHTML = 'Tus puntos: ' + print;
-    
-            const puntos = new bootstrap.Modal(document.getElementById('puntajes'), {
-                backdrop: 'static',
-                keyboard: false
-            });    
-            puntos.show();
+            const print = data.puntajes || 0;
+            // Muestra el puntaje en el frontend o realiza acciones necesarias
         })
-        .catch(error => {
-            console.error('Error al enviar los datos:', error);
-        });
+        .catch(error => console.log('Error al enviar los datos:', error));
     }
+    
+    
 }
 
 new Juego();

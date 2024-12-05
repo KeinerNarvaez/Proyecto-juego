@@ -13,12 +13,13 @@ class Chat implements MessageComponentInterface {
     protected $chat;  
     protected $usernames;
     protected $user_online;  
+    protected $rooms;
 
     public function __construct() {  
         $this->clients = new SplObjectStorage();  
         $this->user_online = new SplObjectStorage();  
         $this->chat = new SplObjectStorage();  
-        $this->usernames = []; // Almacena los gamertags  
+        $this->usernames = [];
     }  
 
     public function onOpen(ConnectionInterface $conn) {  
