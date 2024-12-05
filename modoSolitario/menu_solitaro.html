@@ -53,11 +53,14 @@
            <!--espacio-->
           </div>
           <div class="col">
-            <div class="boton-envio" style="width: 300%;margin-left: -95px; margin-top: -230px;">
-                <div class="boton" id="boton-envio">
-                   <a href="../nivelesPociones/nivel2.html" class="text-boton"><input type="button" style="font-size: 35px;" value="Continuar" ></a>   
-                </div>
-           </div> 
+            <div class="boton-envio" style="width: 300%; margin-left: -95px; margin-top: -230px;">
+              <div class="boton" id="boton-envio">
+                  <!-- El href inicialmente está vacío, se llenará desde JS -->
+                  <a href="" class="text-boton" id="enlace-boton">
+                      <input type="button" style="font-size: 35px;" value="Continuar">
+                  </a>
+              </div>
+          </div>
           </div>
           <div class="col">
             <!--espacio-->
@@ -84,11 +87,11 @@
      <!--/audio-->
 
      <audio id="backgroundMusic" src="../musica/musica_fondo.mp3" loop autoplay></audio>
-
   <script src="../js/index.js"></script>
   <script src="../js/musica_fondo.js"></script>
   <script src="../boostrap/bootstrap-5.3.2-dist/js/bootstrap.js"></script>
   <script src="../js/clickleo.js"></script>
   <script src="../fontawesome-free-6.6.0-web/js/all.js"></script> 
+  <script src="../js/getLastPlayed.js"></script>
 </body>
 </html>
