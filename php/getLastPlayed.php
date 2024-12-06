@@ -57,8 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                     // Todos los niveles completados
                     echo json_encode([
                         'status' => 'completed',
-                        'mode' => 'posiciones',
-                        'message' => 'Ya completaste todos los niveles de este modo.'
+                        'mode' => 'posiciones'
                     ]);
                     exit;
                 } elseif ($result['spellLevelID'] !== null) {
